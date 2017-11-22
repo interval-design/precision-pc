@@ -52,5 +52,6 @@ module.exports = {
     vendor: ["axios"]
   },
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
-  proxy: [["/api", { target: "" }]]
+  // proxy: [["/api", { target: "" }]]
+  plugins: ['~plugins/components.js']
 }

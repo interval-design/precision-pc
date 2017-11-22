@@ -1,5 +1,5 @@
 <template>
-  <button class="itv-base-button" :class="classes">
+  <button class="itv-base-button" :class="classes" @click="_click">
     <slot></slot>
   </button>
 </template>
@@ -23,6 +23,12 @@
       line: {
         type: Boolean,
         default: false
+      }
+    },
+    methods: {
+      // 触发click事件，组件上就不用写native了
+      _click () {
+        this.$emit('click')
       }
     },
     computed: {

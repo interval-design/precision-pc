@@ -1,5 +1,7 @@
 <template>
-  <div content="itv-view-index">首页</div>
+  <div content="itv-view-index">
+    content
+  </div>
 </template>
 
 <script>

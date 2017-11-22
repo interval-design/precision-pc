@@ -1,5 +1,7 @@
 module.exports = {
-  css: [{ src: '~assets/style/custom.scss', lang: 'scss' }],
+  css: [
+    { src: '~assets/style/custom.scss', lang: 'scss' }
+  ],
   /*
   ** Headers of the page
   */

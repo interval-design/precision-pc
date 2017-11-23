@@ -5,7 +5,8 @@
 </template>
 
 <script>
-  const prefixCls = 'itv-base-button'
+  const prefixCls = 'itv-base-button';
+
   export default {
     name: 'BaseButton',
     props: {

@@ -1,7 +1,8 @@
 module.exports = {
   css: [
     {src: '~assets/style/custom.scss', lang: 'scss'},
-    {src: '~assets/style/animate.scss', lang: 'scss'}
+    {src: '~assets/style/animate.scss', lang: 'scss'},
+    {src:'swiper/dist/css/swiper.css'}
   ],
   /*
   ** Headers of the page
@@ -53,9 +54,12 @@ module.exports = {
         loaders: ['style', 'css', 'sass'],
       }
     ],
-    vendor: ["axios"]
+    vendor: ["axios",'vue-awesome-swiper']
   },
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
   // proxy: [["/api", { target: "" }]]
-  plugins: ['~plugins/components.js']
+  plugins: [
+    { src: '~plugins/components.js', ssr: false },
+    { src: '~plugins/vue-awesome-swiper.js', ssr: false },
+  ]
 }

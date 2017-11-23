@@ -1,5 +1,5 @@
 <template>
-  <div class="itv-layout-default itv-wrapper">
+  <div class="itv-layout-default itv-wrapper full">
     <nav class="itv-nav">
       <div class="itv-nav-bar">
         <nuxt-link to="/">
@@ -63,7 +63,7 @@
         </ul>
       </div>
     </nav>
-    <nuxt class="itv-container full"/>
+    <nuxt class="itv-container"/>
     <footer class="itv-footer">
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
@@ -111,154 +111,4 @@
   }
 </script>
 
-<style lang="scss">
-  @import "../assets/style/variable";
-
-  .itv-wrapper {
-    min-height: 100%;
-    min-width: 1100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .itv-nav {
-    position: absolute;
-    top:0;
-    left: 0;
-    height: 50px;
-    width: 100%;
-    background: $white;
-    &-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 1100px;
-      height: 100%;
-      margin: auto;
-      color: $font-sub;
-      &-menu {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        height: 100%;
-        line-height: 50px;
-        .login {
-          position: relative;
-          &:before {
-            position: absolute;
-            content: '';
-            left: 0;
-            top: 50%;
-            width: 1px;
-            height: 20px;
-            background: $border;
-            transform: translateY(-50%);
-          }
-        }
-        .item {
-          position: relative;
-          float: left;
-          display: inline-block;
-          padding: 0 24px;
-          height: 100%;
-          cursor: pointer;
-          &:hover {
-            color: $blue;
-          }
-          &.active {
-            color: $font;
-          }
-          &__dropdown {
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 100%;
-            background: $white;
-            line-height: normal;
-            color: $font-sub;
-            li {
-              padding: 8px;
-              text-align: center;
-              &:not(:last-child) {
-                border-bottom: 1px solid $border;
-              }
-              &:hover {
-                color: $blue;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .itv-footer {
-    height: 228px;
-    width: 100%;
-    background: #353535;
-    color: $white;
-    font-size: 12px;
-    &-bd {
-      display: flex;
-      justify-content: space-between;
-      width: 1100px;
-      margin: auto;
-      padding-top: 24px;
-      padding-bottom: 24px;
-      &-item {
-        flex: 1;
-        .logo {
-          margin-bottom: 8px;
-        }
-        p {
-          margin-top: 16px;
-        }
-      }
-      &-item.nav {
-        display: flex;
-        justify-content: space-between;
-        .title {
-          opacity: .5;
-        }
-        .item {
-          padding: 0 24px;
-          li {
-            padding-bottom: 16px;
-          }
-          a{
-            &:hover{
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-      &-item.qr-code {
-        text-align: right;
-      }
-    }
-    &-copy {
-      position: absolute;
-      left: 50%;
-      bottom: 0;
-      width: 1100px;
-      margin: auto;
-      padding: 8px 0;
-      border-top: 1px solid #4E4E4E;
-      text-align: center;
-      transform: translateX(-50%);
-      opacity: .5;
-    }
-  }
-
-  .itv-container {
-    flex: 1;
-    width: 1100px;
-    &.full{
-      width: 100%;
-      background: $white;
-    }
-  }
-
-</style>
+<style lang="scss"></style>

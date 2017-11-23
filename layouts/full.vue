@@ -1,5 +1,5 @@
 <template>
-  <div class="itv-layout-default itv-wrapper">
+  <div class="itv-layout-default itv-wrapper full">
     <nav class="itv-nav">
       <div class="itv-nav-bar">
         <nuxt-link to="/">
@@ -105,6 +105,7 @@
     data() {
       return {
         active: null,
+        full:true
       }
     },
   }

@@ -73,8 +73,33 @@
       background-position-x: -280px;
     }
   }
-  &-arrow-right {
-    width: 20px;
-    height: 20px;
+  &-arrow-right,
+  &-arrow-right--done {
+    width: 102px;
+    height: 14px;
+    padding: 0 6px;
+    margin: 0 -6px;
+    background-position: 0 -298px;
+  }
+  &-arrow-right--done {
+    background-position-y: -318px;
+  }
+  &-add {
+    width: 50px;
+    height: 50px;
+    background-position: -252px -171px;
+  }
+  &-zfb,
+  &-wx {
+    margin-right: 8px;
+    width: 36px;
+    height: 30px;
+    background-position-y: -181px;
+  }
+  &-zfb {
+    background-position-x: -329px;
+  }
+  &-wx {
+    background-position-x: -392px;
   }
 }

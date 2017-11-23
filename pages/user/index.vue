@@ -97,6 +97,7 @@
 @import '../../assets/style/variable.scss';
 .itv-user {
   width: 1100px;
+  padding-bottom: 80px;
   &-breadcrumbs {
     line-height: 36px;
     color: $blue;

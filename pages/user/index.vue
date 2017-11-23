@@ -8,9 +8,11 @@
         <div class="itv-user-aside-portrait">
           <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
         </div>
-        <p class="itv-user-aside-text">我的微信名</p>
         <p class="itv-user-aside-text">
-          12345678907
+          <span class="itv-icon itv-icon-weixin"></span>我的微信名
+        </p>
+        <p class="itv-user-aside-text">
+          <span class="itv-icon itv-icon-phone"></span>12345678907
           <a href="javascript:;">改绑</a>
         </p>
         <div class="itv-user-aside-btn">
@@ -32,33 +34,43 @@
                 <li class="itv-user-main-table-item__content-list-item">
                   <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4"
                        class="itv-user-main-table-item__content-list-item__img">
-                  <p>肠癌早筛测试服务</p>
-                  <p>x1</p>
-                  <p class="itv-user-main-table-item__content-list-item__price">￥999</p>
-                  <p>报告未出</p>
+                  <p style="width: 160px">肠癌早筛测试服务</p>
+                  <p style="width: 40px">x1</p>
+                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">￥999999</p>
+                  <p style="width: 100px; color: #919191"><span class="itv-icon itv-icon-time"></span>报告未出</p>
                 </li>
                 <li class="itv-user-main-table-item__content-list-item">
                   <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4"
                        class="itv-user-main-table-item__content-list-item__img">
-                  <p>肠癌早筛测试服务</p>
-                  <p>x1</p>
-                  <p class="itv-user-main-table-item__content-list-item__price">￥999</p>
-                  <p>报告未出</p>
+                  <p style="width: 160px">肠癌早筛测试服务</p>
+                  <p style="width: 40px">x1</p>
+                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">￥999999</p>
+                  <p style="width: 100px">
+                    <span class="itv-icon itv-icon-paper"></span>
+                    <a href="javascript:;">查看报告</a>
+                  </p>
                 </li>
               </ul>
               <div class="itv-user-main-table-item__content-order">
-                <p>运单号</p>
+                <p><span class="itv-icon itv-icon-order"></span>运单号</p>
                 <p class="itv-user-main-table-item__content-order-number">
                   1234567890
                   <span class="itv-user-main-table-item__content-order-number-tip">
-                    <i>快递公司：顺丰快递</i>
-                    <base-button type="info" line>运单快捷查询</base-button>
+                    <span class="itv-user-main-table-item__content-order-number-tip__triangle"></span>
+                    <span class="itv-user-main-table-item__content-order-number-tip__content">
+                      <i>快递公司：顺丰快递</i>
+                      <base-button type="info" line>运单快捷查询</base-button>
+                    </span>
                   </span>
                 </p>
               </div>
               <div class="itv-user-main-table-item__content-message">
-                <p>留言</p>
-                <p>给客服留言</p>
+                <p>
+                  <span class="itv-icon itv-icon-message ">
+                    <i class="itv-user-main-table-item__content-message-Badge">99</i>
+                  </span>
+                </p>
+                <p><a href="javascript:;">给客服留言</a></p>
               </div>
             </div>
             <footer class="itv-user-main-table-item__footer">
@@ -95,13 +107,13 @@
   }
   &-aside {
     box-sizing: border-box;
-    padding: 20px 30px;
+    padding: 24px;
     width: 210px;
     color: $font;
-    background: #ccc;
+    background: $white;
     margin-bottom: auto;
     &-portrait {
-      padding: 13px 0;
+      padding: 16px 0;
       text-align: center;
       img {
         border-radius: 50%;
@@ -118,7 +130,7 @@
     }
     &-btn {
       border-top: 2px dashed $border;
-      padding-top: 20px;
+      padding-top: 24px;
       text-align: center;
     }
   }
@@ -129,16 +141,15 @@
     }
     &-table {
       box-sizing: border-box;
-      margin-top: 22px;
+      margin-top: 16px;
       border: 1px solid $border;
-      background: #fff;
+      background: $white;
       &-item {
         &__header {
           display: flex;
           padding: 0 24px;
-          line-height: 42px;
           span:first-child {
-            margin-right: 62px;
+            margin-right: 64px;
           }
           span:last-child {
             color: $blue;
@@ -157,6 +168,7 @@
               padding: 10px;
               border-bottom: 2px dashed $border;
               >* {
+                text-align: center;
                 margin: auto 0;
               }
               &:last-child {
@@ -171,6 +183,24 @@
               }
             }
           }
+          &-message {
+            .itv-icon-message {
+              position: relative;
+            }
+            &-Badge {
+              position: absolute;
+              right: -12px;
+              top: -13px;
+              border-radius: 50%;
+              width: 21px;
+              height: 21px;
+              font-size: 12px;
+              line-height: 21px;
+              text-align: center;
+              background: $red;
+              color: $white;
+            }
+          }
           &-message,
           &-order {
             flex: 1;
@@ -179,21 +209,43 @@
             justify-content: center;
             text-align: center;
             &-number {
+              padding-bottom: 16px;
+              margin-bottom: -16px;
               position: relative;
               cursor: pointer;
+              &:hover {
+                .itv-user-main-table-item__content-order-number-tip {
+                  display: block;
+                }
+              }
               &-tip {
                 position: absolute;
-                display: block;
+                display: none;
                 left: 50%;
-                top: 40px;
-                padding: 16px 24px;
+                top: 54px;
                 transform: translateX(-50%);
                 width: 130%;
-                background: #fff;
+                background: $white;
                 box-shadow: 0 1px 7px #E7E7E7;
+                &__triangle {
+                  position: absolute;
+                  left: 50%;
+                  top: -20px;
+                  width: 40px;
+                  height: 40px;
+                  background: $white;
+                  box-shadow: 0 1px 7px #E7E7E7;
+                  transform: translateX(-50%) rotate(45deg);
+                }
+                &__content {
+                  position: relative;
+                  display: block;
+                  padding: 16px 24px;
+                  background: $white;
+                }
                 i {
                   display: block;
-                  margin-bottom: 18px;
+                  margin-bottom: 16px;
                 }
               }
             }
@@ -209,7 +261,7 @@
           line-height: 28px;
           text-align: right;
           &-price {
-            margin-right: 30px;
+            margin-right: 32px;
             i {
               color: $red;
             }

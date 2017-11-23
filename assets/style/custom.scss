@@ -1,4 +1,6 @@
 @import "./reset";
+@import "./variable";
+@import "./icon.scss";
 
 #__nuxt{
   height: 100%;
@@ -21,5 +23,6 @@
 .itv-table-header {
   color: $font-sub;
   background: $extra-light-gray;
+  line-height: 42px;
 }
 

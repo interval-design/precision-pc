@@ -1,0 +1,80 @@
+.itv-icon {
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../icon.svg') no-repeat;
+  &-weixin,
+  &-phone,
+  &-time,
+  &-message,
+  &-order,
+  &-paper {
+    width: 20px;
+    height: 20px;
+    background-position-y: -270px;
+  }
+  &-weixin,
+  &-phone,
+  &-time,
+  &-order,
+  &-paper {
+    margin-right: 8px
+  }
+  &-weixin {
+    background-position-x: 0;
+  }
+  &-phone {
+    background-position-x: -38px;
+  }
+  &-time {
+    background-position-x: -190px;
+  }
+  &-paper {
+    background-position-x: -228px;
+  }
+  &-order {
+    background-position-x: -341px;
+  }
+  &-message {
+    background-position-x: -304px;
+  }
+  &-order-status {
+    &-a,
+    &-b,
+    &-c,
+    &-d,
+    &-e {
+      width: 50px;
+      height: 50px;
+      background-position-y: -8px;
+      &--done {
+        width: 50px;
+        height: 50px;
+        background-position-y: -80px;
+      }
+    }
+    &-a,
+    &-a--done {
+      background-position-x: 0;
+    }
+    &-b,
+    &-b--done {
+      background-position-x: -70px;
+    }
+    &-c,
+    &-c--done {
+      background-position-x: -140px;
+    }
+    &-d,
+    &-d--done {
+      background-position-x: -210px;
+    }
+    &-e,
+    &-e--done {
+      background-position-x: -280px;
+    }
+  }
+  &-arrow-right {
+    width: 20px;
+    height: 20px;
+  }
+}

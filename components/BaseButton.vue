@@ -27,12 +27,12 @@
     },
     methods: {
       // 触发click事件，组件上就不用写native了
-      _click () {
+      _click() {
         this.$emit('click')
       }
     },
     computed: {
-      classes () {
+      classes() {
         return [
           `${prefixCls}`,
           {
@@ -47,102 +47,103 @@
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/style/variable.scss';
-.itv-base-button {
-  padding: 0px 14px;
-  border-radius: 2px;
-  outline: none;
-  font-size: 14px;
-  line-height: 1;
-  cursor: pointer;
-  border: 1px solid $font;
-  &--huge {
-    height: 44px;
-  }
-  &--big {
-    height: 36px;
-  }
-  &--middle {
-    height: 32px;
-  }
-  &--small {
-    height: 28px;
-  }
-  &--primary,
-  &--success,
-  &--error,
-  &--warning,
-  &--info {
-    color: #fff;
-    &:hover {
-      filter: brightness(1.1);
+  @import '../assets/style/variable.scss';
+
+  .itv-base-button {
+    padding: 0px 14px;
+    border-radius: 2px;
+    outline: none;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    border: 1px solid $font;
+    &--huge {
+      height: 44px;
     }
-  }
-  &--primary {
-    border-color: $blue;
-    background: $blue;
-  }
-  &--success {
-    border-color: $green;
-    background: $green;
-  }
-  &--error {
-    border-color: $red;
-    background: $red;
-  }
-  &--warning {
-    border-color: $yellow;
-    background: $yellow;
-  }
-  &--info {
-    border-color: $font;
-    background: $font;
-  }
-  &--primary.itv-base-button--line {
-    border-color: $blue;
-    color: $blue;
-    &:hover {
+    &--big {
+      height: 36px;
+    }
+    &--middle {
+      height: 32px;
+    }
+    &--small {
+      height: 28px;
+    }
+    &--primary,
+    &--success,
+    &--error,
+    &--warning,
+    &--info {
+      color: #fff;
+      &:hover {
+        filter: brightness(1.1);
+      }
+    }
+    &--primary {
+      border-color: $blue;
       background: $blue;
     }
-  }
-  &--success.itv-base-button--line {
-    border-color: $green;
-    color: $green;
-    &:hover {
+    &--success {
+      border-color: $green;
       background: $green;
     }
-  }
-  &--error.itv-base-button--line {
-    border-color: $red;
-    color: $red;
-    &:hover {
+    &--error {
+      border-color: $red;
       background: $red;
     }
-  }
-  &--warning.itv-base-button--line {
-    border-color: $yellow;
-    color: $yellow;
-    &:hover {
+    &--warning {
+      border-color: $yellow;
       background: $yellow;
     }
-  }
-  &--info.itv-base-button--line {
-    border-color: $font;
-    color: $font;
-    &:hover {
+    &--info {
+      border-color: $font;
       background: $font;
     }
-  }
-  &--line {
-    background: #fff;
-    &:hover {
-      color: #fff;
-      filter: brightness(1);
+    &--primary.itv-base-button--line {
+      border-color: $blue;
+      color: $blue;
+      &:hover {
+        background: $blue;
+      }
+    }
+    &--success.itv-base-button--line {
+      border-color: $green;
+      color: $green;
+      &:hover {
+        background: $green;
+      }
+    }
+    &--error.itv-base-button--line {
+      border-color: $red;
+      color: $red;
+      &:hover {
+        background: $red;
+      }
+    }
+    &--warning.itv-base-button--line {
+      border-color: $yellow;
+      color: $yellow;
+      &:hover {
+        background: $yellow;
+      }
+    }
+    &--info.itv-base-button--line {
+      border-color: $font;
+      color: $font;
+      &:hover {
+        background: $font;
+      }
+    }
+    &--line {
+      background: #fff;
+      &:hover {
+        color: #fff;
+        filter: brightness(1);
+      }
+    }
+    &:active {
+      filter: brightness(.9);
+      border-style: solid;
     }
   }
-  &:active {
-    filter: brightness(.9);
-    border-style: solid;
-  }
-}
 </style>

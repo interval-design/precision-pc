@@ -1,0 +1,20 @@
+.slideInDown-enter-active,
+.slideInDown-leave-active {
+  transition: all .2s;
+}
+
+.slideInDown-enter,
+.slideInDown-leave-active {
+  opacity: 0;
+}
+
+.slideInDown-enter {
+  transform: translateY(-25px);
+  transition: all .2s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+
+.slideInDown-leave-active {
+  transform: translateY(-25px);
+  transition: all .2s cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+

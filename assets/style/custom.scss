@@ -8,20 +8,19 @@
 
 .itv-wrapper {
   min-height: 100%;
-  min-width: 1100px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  &.full{
-    .itv-nav{
+  &.full {
+    .itv-nav {
       position: absolute;
-      top:0;
+      top: 0;
       left: 0;
+      min-width: 1100px;
     }
-    .itv-container{
+    .itv-container {
       width: 100%;
-      background: $white;
     }
   }
 }
@@ -30,6 +29,7 @@
   height: 50px;
   width: 100%;
   background: $white;
+  z-index: 10;
   &-bar {
     display: flex;
     justify-content: space-between;
@@ -95,7 +95,8 @@
 }
 
 .itv-footer {
-  height: 228px;
+  position: relative;
+  height: 210px;
   width: 100%;
   background: #353535;
   color: $white;
@@ -127,8 +128,8 @@
         li {
           padding-bottom: 16px;
         }
-        a{
-          &:hover{
+        a {
+          &:hover {
             text-decoration: underline;
           }
         }
@@ -157,8 +158,21 @@
   width: 1100px;
 }
 
+.itv-container--special {
+  position: relative;
+  height: 100%;
+  width: 1100px;
+  margin: auto;
+}
+
 .itv-table-header {
   color: $font-sub;
   background: $extra-light-gray;
   line-height: 42px;
+}
+
+.itv-card{
+  border-radius: 5px;
+  background: $white;
+  box-shadow: 0 9px 25px 0 rgba(219,235,254,1);
 }

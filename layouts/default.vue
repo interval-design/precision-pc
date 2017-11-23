@@ -2,9 +2,11 @@
   <div class="itv-layout-default itv-wrapper">
     <nav class="itv-nav">
       <div class="itv-nav-bar">
-        <nuxt-link to="/">
-          <img src="../assets/logo.png" alt="logo">
-        </nuxt-link>
+        <h1>
+          <nuxt-link to="/">
+            <img src="../assets/logo.png" alt="logo">
+          </nuxt-link>
+        </h1>
         <ul class="itv-nav-bar-menu">
           <li class="item" :class="{active:$route.name == 'index'}">
             <nuxt-link to="/">首页</nuxt-link>

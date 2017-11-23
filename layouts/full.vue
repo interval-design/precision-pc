@@ -63,7 +63,7 @@
         </ul>
       </div>
     </nav>
-    <nuxt class="itv-container"/>
+    <nuxt class="itv-container full"/>
     <footer class="itv-footer">
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
@@ -105,6 +105,7 @@
     data() {
       return {
         active: null,
+        full:true
       }
     },
   }

@@ -7,8 +7,8 @@
 <script>
 
 export default {
-  components: {
-  }
+  layout: 'full',
+  components: {}
 }
 </script>
 

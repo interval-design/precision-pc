@@ -16,7 +16,7 @@
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 1">
                 <li>
-                  <nuxt-link to="">微生物学</nuxt-link>
+                  <nuxt-link to="">微生物组学</nuxt-link>
                 </li>
                 <li>
                   <nuxt-link to="">科研动态</nuxt-link>
@@ -29,13 +29,13 @@
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 2">
                 <li>
-                  <nuxt-link to="">肠癌早筛</nuxt-link>
+                  <nuxt-link to="">肠癌风险评估</nuxt-link>
                 </li>
                 <li>
                   <nuxt-link to="">儿童肠道检测</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="">肠道大数据服务</nuxt-link>
+                  <nuxt-link to="">肠道微生态检测</nuxt-link>
                 </li>
               </ul>
             </transition>
@@ -45,10 +45,10 @@
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 3">
                 <li>
-                  <nuxt-link to="">公司介绍</nuxt-link>
+                  <nuxt-link to="">了解普瑞森</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="">团队介绍</nuxt-link>
+                  <nuxt-link to="">普瑞森团队</nuxt-link>
                 </li>
                 <li>
                   <nuxt-link to="">加入我们</nuxt-link>

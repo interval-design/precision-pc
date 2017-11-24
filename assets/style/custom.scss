@@ -26,12 +26,6 @@
   align-items: center;
   justify-content: space-between;
   &.full {
-    .itv-nav {
-      position: absolute;
-      top: 0;
-      left: 0;
-      min-width: 1100px;
-    }
     .itv-container {
       width: 100%;
       overflow: hidden;
@@ -47,6 +41,7 @@
   width: 100%;
   background: $white;
   z-index: 10;
+  min-width: 1100px;
   &-bar {
     display: flex;
     justify-content: space-between;
@@ -215,5 +210,10 @@
   padding: 48px;
   border-radius: 5px;
   background: $white;
+}
+
+.itv-buy{
+  padding: 72px 0;
+  background: $font-sub;
 }
 

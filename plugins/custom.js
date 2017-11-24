@@ -4,6 +4,7 @@
  */
 
 import Vue from 'vue'
-import Custom from '../assets/components'
+import Custom from '~/components/components'
 
 Vue.use(Custom);
+

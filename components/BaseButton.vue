@@ -48,7 +48,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import '../assets/style/variable.scss';
+  @import '../assets/style/variable';
 
   .itv-base-button {
     padding: 0px 16px;

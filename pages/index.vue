@@ -66,7 +66,7 @@
           </div>
           <img class="section-5-item__right" src="../assets/index/pic-section5-1.png" alt="pic-1">
         </div>
-        <div class="section-5-item ">
+        <div class="section-5-item">
           <img class="section-5-item__left" src="../assets/index/pic-section5-2.png" alt="pic-2">
           <div class="section-5-item__right desc">
             <h2 class="desc__title">世界领先的基因检测平台</h2>
@@ -128,11 +128,15 @@
 </template>
 
 <script>
-
-  import NuxtLink from "../.nuxt/components/nuxt-link";
-
   export default {
-    components: {NuxtLink},
+    head () {
+      return {
+        title: '普瑞森',
+        meta: [
+          { hid: 'description', name: 'description', content: '普瑞森的描述' }
+        ]
+      }
+    },
     layout: 'full',
     data() {
       return {
@@ -197,6 +201,7 @@
         top: 35%;
         left: 0;
         letter-spacing: 1.85px;
+        z-index: 10;
         p {
           font-size: 16px;
           color: $font-sub;
@@ -222,6 +227,7 @@
         position: absolute;
         top: 30%;
         right: 0;
+        z-index: 10;
         p {
           color: $font-sub;
           width: 546px;
@@ -268,6 +274,9 @@
       height: 800px;
     }
     .section-5 {
+      background: url("../assets/index/pic-section5-2-bg.png") no-repeat;
+      background-position: center 800px;
+      background-size: contain;
       &-item {
         position: relative;
         height: 500px;

@@ -6,6 +6,19 @@
   height: 100%;
 }
 
+.itv-link{
+  color: $blue;
+  &:hover {
+    filter: brightness(1.1);
+  }
+}
+
+.itv-flex-justify--sb{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .itv-wrapper {
   min-height: 100%;
   display: flex;
@@ -21,6 +34,10 @@
     }
     .itv-container {
       width: 100%;
+      overflow: hidden;
+    }
+    .itv-footer{
+      height: 460px;
     }
   }
 }
@@ -101,6 +118,28 @@
   background: #353535;
   color: $white;
   font-size: 12px;
+  &-contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 250px;
+    padding: 20px 0;
+    background: url("../pic-footer-contact.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+    font-size: 22px;
+    text-align: center;
+    .tel{
+      font-size: 48px;
+      font-weight: 500;
+      img{
+        width: 37px;
+        height: 38px;
+        vertical-align: middle;
+        margin-right: 20px;
+      }
+    }
+  }
   &-bd {
     display: flex;
     justify-content: space-between;
@@ -156,9 +195,10 @@
 .itv-container {
   flex: 1;
   width: 1100px;
+  overflow: hidden;
 }
 
-.itv-container--special {
+.itv-content {
   position: relative;
   height: 100%;
   width: 1100px;
@@ -172,7 +212,8 @@
 }
 
 .itv-card{
+  padding: 48px;
   border-radius: 5px;
   background: $white;
-  box-shadow: 0 9px 25px 0 rgba(219,235,254,1);
 }
+

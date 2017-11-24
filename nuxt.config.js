@@ -59,7 +59,7 @@ module.exports = {
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
   // proxy: [["/api", { target: "" }]]
   plugins: [
-    { src: '~plugins/components.js', ssr: false },
+    { src: '~plugins/custom.js', ssr: false },
     { src: '~plugins/vue-awesome-swiper.js', ssr: false },
-  ]
+  ],
 }

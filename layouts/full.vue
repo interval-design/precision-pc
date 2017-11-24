@@ -67,6 +67,11 @@
     </nav>
     <nuxt class="itv-container"/>
     <footer class="itv-footer">
+      <div class="itv-footer-contact">
+        <p>想成为我们的合作伙伴？</p>
+        <p class="tel"><img src="../assets/pic-footer-phone.png" alt="icon-phone">021-59234123</p>
+        <p>期待与您合作</p>
+      </div>
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
           <img class="logo" src="../assets/logo-white.png" alt="logo-white">

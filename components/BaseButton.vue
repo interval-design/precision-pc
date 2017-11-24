@@ -138,6 +138,15 @@
         border-color: $blue;
       }
     }
+    &--code.itv-base-button--line {
+      border-color: $gray;
+      color: $gray;
+      &:hover {
+        color: $white;
+        background: $gray;
+        border-color: $gray;
+      }
+    }
     &--line {
       background: #fff;
       &:hover {

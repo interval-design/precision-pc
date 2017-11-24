@@ -12,11 +12,11 @@
           <span class="itv-icon itv-icon-weixin"></span>我的微信名
         </p>
         <p class="itv-user-aside-text">
-          <span class="itv-icon itv-icon-phone"></span>12345678907
-          <a href="javascript:;">改绑</a>
+          <span class="itv-icon itv-icon-phone--done"></span>12345678907
+          <a @click="showPhoneBindDialog = true">改绑</a>
         </p>
         <div class="itv-user-aside-btn">
-          <base-button line>查看全部报告</base-button>
+          <base-button line @click="$router.push({path: '/user/paper'})">查看全部报告</base-button>
         </div>
       </aside>
       <section class="itv-user-main">
@@ -66,29 +66,164 @@
               </div>
               <div class="itv-user-main-table-item__content-message">
                 <p>
-                  <span class="itv-icon itv-icon-message ">
-                    <i class="itv-user-main-table-item__content-message-Badge">99</i>
-                  </span>
+                  <a @click="showMessageDialog = true" class="itv-user-main-table-item__content-message-text">
+                     给客服留言<i class="itv-user-main-table-item__content-message-Badge">99</i>
+                  </a>
                 </p>
-                <p><a href="javascript:;">给客服留言</a></p>
+                <p><a @click="$router.push({path: '/user/order'})">订单详情</a></p>
               </div>
             </div>
             <footer class="itv-user-main-table-item__footer">
               <span class="itv-user-main-table-item__footer-price">总金额：<i>￥1998</i></span>
-              <base-button size="small" type="error">去付款</base-button>
+              <base-button size="small" type="error" @click="$router.push({path: '/user/pay'})">去付款</base-button>
             </footer>
           </div>
         </div>
       </section>
     </div>
+
+    <!-- 留言弹窗 -->
+    <base-dialog :visible.sync="showMessageDialog">
+      <h3 class="itv-user-message-title">给客服留言</h3>
+      <ul class="itv-user-message-list">
+        <li>
+          <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
+          <p>客服回复客服回复客服回复客服回复客服回复客服回复客服回复客服回复客服回复</p>
+        </li>
+        <li class="precision">
+          <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
+          <p>我的留言我的留言我的留言我的留言我的留言我的留言我的留言我的留言我的留言</p>
+        </li>
+      </ul>
+      <div class="itv-user-message-reply">
+        <textarea name="" id=""></textarea>
+      </div>
+      <footer slot="footer" class="itv-user-dialog-footer">
+        <base-button style="width: 100%;">提交</base-button>
+      </footer>
+    </base-dialog>
+
+    <!-- 手机绑定弹窗 -->
+    <base-dialog :visible.sync="showPhoneBindDialog">
+      <ul class="itv-user-bind-process">
+        <li class="itv-user-bind-process-item" :class="bindStatus(1)">
+          <span>1</span>
+          <p>验证当前手机号</p>
+        </li>
+        <li class="itv-user-bind-process-line">
+          <span :class="'itv-icon itv-icon-process-line'+ (bindForm.status>1? '--done':'')"></span>
+        </li>
+        <li class="itv-user-bind-process-item" :class="bindStatus(2)">
+          <span>2</span>
+          <p>验证新的手机号</p>
+        </li>
+        <li class="itv-user-bind-process-line">
+          <span :class="'itv-icon itv-icon-process-line'+ (bindForm.status>2? '--done':'')"></span>
+        </li>
+        <li class="itv-user-bind-process-item" :class="bindStatus(3)">
+          <span>3</span>
+          <p>完成改绑</p>
+        </li>
+      </ul>
+      <p class="itv-user-bind-title">{{bindForm.title}}</p>
+      <div class="itv-user-bind-form">
+        <p>
+          <span class="itv-icon itv-icon-phone--done"></span>
+          <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.phone">
+        </p>
+        <p>
+          <span class="itv-icon itv-icon-time--done"></span>
+          <input type="text" placeholder="输入验证码" v-model.number="bindForm.code">
+          <base-button size="small" type="code" line>获取验证码</base-button>
+        </p>
+        <div class="itv-user-bind-form-info">{{bindForm.errorText}}</div>
+      </div>
+      <footer slot="footer" class="itv-user-dialog-footer">
+        <base-button size="big" style="width: 100%" @click="bindNext">{{bindForm.btnText}}</base-button>
+      </footer>
+    </base-dialog>
+
+    <!-- 绑定成功提醒 -->
+    <base-dialog :visible.sync="showAlert" :auto="true" :fn="resetBindForm">
+      <p class="itv-user-bind-success">
+        <span class="itv-icon itv-icon-info-success"></span>
+        <span>改绑成功</span>
+      </p>
+    </base-dialog>
   </div>
 </template>
 
 <script>
   export default {
+    name: 'User',
     data () {
       return {
-        show: false
+        showMessageDialog: false,
+        showPhoneBindDialog: false,
+        showAlert: false,
+        bindForm: {
+          title: '验证当前手机号',
+          status: 1,
+          phone: '',
+          info: '请输入当前手机号',
+          code: '',
+          errorText: '请输入当前手机号',
+          btnText: '下一步'
+        }
+      }
+    },
+    methods: {
+      /**
+       * 根据绑定手机操作状态返回状态标志的颜色class
+       */
+      bindStatus(index) {
+        if (this.bindForm.status === index) {
+          return 'itv-user-bind-process-item--now';
+        }else if(this.bindForm.status > index) {
+          return 'itv-user-bind-process-item--done';
+        }else {
+          return '';
+        }
+      },
+
+      /**
+       * 绑定手机操作的下一步按钮
+       */
+      bindNext() {
+        if (this.bindForm.status === 1) {
+          this.bindForm.title = '验证新的手机号';
+          this.bindForm.status = 2;
+          this.bindForm.info = '请输入新的手机号';
+          this.bindForm.errorText = '手机号或验证码错误';
+          this.bindForm.btnText = '完成绑定';
+        }else if (this.bindForm.status === 2) {
+          this.bindForm.status = 3;
+          let _this = this;
+          setTimeout(()=>{
+            _this.bindForm.status = 4;
+          },300);
+          setTimeout(()=>{
+            _this.showPhoneBindDialog = false;
+          },500);
+          setTimeout(()=>{
+            _this.showAlert = true;
+          },700);
+        }
+      },
+
+      /**
+       * 重置绑定手机操作状态
+       */
+      resetBindForm() {
+        this.bindForm = {
+          title: '验证当前手机号',
+          status: 1,
+          phone: '',
+          info: '请输入当前手机号',
+          code: '',
+          errorText: '请输入当前手机号',
+          btnText: '下一步'
+        }
       }
     }
   }
@@ -100,6 +235,7 @@
   padding-bottom: 80px;
   &-breadcrumbs {
     line-height: 36px;
+    font-size: 12px;
     color: $blue;
   }
   &-content {
@@ -185,13 +321,16 @@
             }
           }
           &-message {
-            .itv-icon-message {
+            >p:nth-of-type(2) {
+              margin-top: 24px;
+            }
+            &-text {
               position: relative;
             }
             &-Badge {
               position: absolute;
-              right: -12px;
-              top: -13px;
+              right: -10px;
+              top: -10px;
               border-radius: 50%;
               width: 21px;
               height: 21px;
@@ -210,8 +349,8 @@
             justify-content: center;
             text-align: center;
             &-number {
-              padding-bottom: 16px;
-              margin-bottom: -16px;
+              padding-bottom: 32px;
+              margin-bottom: -32px;
               position: relative;
               cursor: pointer;
               &:hover {
@@ -223,7 +362,7 @@
                 position: absolute;
                 display: none;
                 left: 50%;
-                top: 54px;
+                top: 48px;
                 transform: translateX(-50%);
                 width: 130%;
                 background: $white;
@@ -270,6 +409,150 @@
         }
       }
     }
+  }
+  &-message {
+    &-title {
+      font-size: 18px;
+      text-align: center;
+    }
+    &-list {
+      margin-top: 24px;
+      max-height: 300px;
+      overflow-y: auto;
+      >li {
+        margin-top: 16px;
+        display: flex;
+        img {
+          margin-right: 16px;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+        }
+        p {
+          position: relative;
+          padding: 8px;
+          width: 230px;
+          border-radius: 2px;
+          font-size: 12px;
+          color: $font-sub;
+          background: #f7f7f7;
+          &:before {
+            content: "";
+            position: absolute;
+            left: -20px;
+            top: 8px;
+            border: 10px solid transparent;
+            border-right-color: #f7f7f7;
+          }
+        }
+        &.precision {
+          flex-direction: row-reverse;
+          img {
+            margin-right: 0;
+            margin-left: 16px;
+          }
+          p {
+            &:before {
+              left: auto;
+              right: -20px;
+              border-right-color: transparent;
+              border-left-color: #f7f7f7;
+            }
+          }
+        }
+      }
+    }
+    &-reply {
+      margin-top: 40px;
+      textarea {
+        padding: 8px;
+        border: 1px solid $border;
+        width: 100%;
+        height: 144px;
+        background: #f7f7f7;
+      }
+    }
+  }
+  &-bind {
+    &-process {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      &-item {
+        width: 88px;
+        text-align: center;
+        color: $font-sub;
+        span {
+          display: inline-block;
+          vertical-align: top;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          border: 1px solid $font-sub;
+          text-align: center;
+          line-height: 26px;
+        }
+        p {
+          margin-top: 8px;
+          font-size: 12px;
+        }
+        &--now {
+          span {
+            border-color: $blue;
+            color: $white;
+            background: $blue;
+          }
+        }
+        &--done {
+          span {
+            border-color: $green;
+            color: $white;
+            background: $green;
+          }
+        }
+      }
+      &-line {
+        line-height: 28px;
+      }
+    }
+    &-title {
+      margin-top: 56px;
+      font-size: 18px;
+      text-align: center;
+    }
+    &-form {
+      margin-top: 56px;
+      padding: 0 24px;
+      >p {
+        display: flex;
+        margin-top: 24px;
+        padding: 5px;
+        border-bottom: 1px solid $light-gray;
+        >* {
+          margin: auto 0;
+        }
+        input {
+          margin-left: 16px;
+          flex: 1;
+        }
+      }
+      &-info {
+        margin-top: 8px;
+        height: 18px;
+        font-size: 12px;
+        color: $red;
+        text-align: right;
+      }
+    }
+    &-success {
+      padding: 24px 0;
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+  &-dialog-footer {
+    padding: 24px 48px 32px;
+    text-align: center;
   }
 }
 </style>

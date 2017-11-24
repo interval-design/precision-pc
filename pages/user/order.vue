@@ -1,7 +1,7 @@
 <template>
   <div class="itv-order">
     <header class="itv-order-breadcrumbs">
-      <a href="javascript:;">个人中心</a>  &gt; 订单详情
+      <a @click="$router.push({path: '/user'})">个人中心</a>  &gt; 订单详情
     </header>
     <div class="itv-order-main">
       <!-- 订单状态 -->
@@ -174,7 +174,7 @@
 
 <script>
   export default {
-
+    name: 'Order'
   }
 </script>
 
@@ -186,6 +186,7 @@
   &-breadcrumbs {
     line-height: 36px;
     color: $blue;
+    font-size: 12px;
   }
   &-main {
     &-item {

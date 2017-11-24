@@ -1,7 +1,7 @@
 <template>
   <div class="itv-paper">
     <header class="itv-paper-breadcrumbs">
-      <a href="javascript:;">个人中心</a>  &gt; 我的报告
+      <a @click="$router.push({path: '/user'})">个人中心</a>  &gt; 我的报告
     </header>
     <div class="itv-paper-main">
       <h2 class="itv-paper-main-title">我的报告</h2>
@@ -55,7 +55,7 @@
 
 <script>
   export default {
-
+    name: 'Paper'
   }
 </script>
 <style lang="scss">
@@ -66,6 +66,7 @@
   &-breadcrumbs {
     line-height: 36px;
     color: $blue;
+    font-size: 12px;
   }
   &-main {
     &-title {

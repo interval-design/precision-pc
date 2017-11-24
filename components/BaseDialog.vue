@@ -1,13 +1,13 @@
 <template>
   <div class="itv-base-dialog" :class="{'itv-base-dialog--show': visible}">
     <div class="itv-base-dialog-wrap" :style="{width: width}">
-      <header class="itv-base-dialog-header">
-        <span class="itv-base-dialog-close" @click="close">关闭</span>
+      <header class="itv-base-dialog-header" v-if="!auto">
+        <span class="itv-base-dialog-close itv-icon itv-icon-close" @click="close"></span>
       </header>
       <section class="itv-base-dialog-body">
         <slot></slot>
       </section>
-      <footer class="itv-base-dialog-footer">
+      <footer>
         <slot name="footer"></slot>
       </footer>
     </div>
@@ -17,10 +17,32 @@
 <script>
   export default {
     name: 'BaseDialog',
-    props: ['visible', 'width'], // dialog是否显示
+    props: ['visible', 'width','auto','fn'], // dialog是否显示
+    data() {
+      return {
+        timer: null
+      }
+    },
     methods: {
       close () {
         this.$emit('update:visible', false)
+      }
+    },
+    watch: {
+      visible(newVal,oldVal) {
+        if (this.auto) {
+          if (newVal) {
+            let _this = this;
+            this.timer = setTimeout(
+              () => {
+                _this.close();
+                _this.fn();
+              },1000
+            );
+          }else {
+            this.timer = null;
+          }
+        }
       }
     }
   }
@@ -42,7 +64,7 @@
     transform: scale(1);
     opacity: 1;
     .itv-base-dialog-wrap {
-      margin: 15vh auto 0;
+      transform: translateY(30px);
     }
   }
   &-wrap {
@@ -53,6 +75,7 @@
     width: 400px;
     background: #fff;
     transition: .2s ease;
+    transform: translateY(0);
   }
   &-header {
     position: relative;
@@ -62,16 +85,11 @@
     position: absolute;
     top: 16px;
     right: 16px;
-    background: yellow;
     cursor: pointer;
 
   }
   &-body {
     padding: 0 24px;
-  }
-  &-footer {
-    padding: 24px 24px 32px;
-    text-align: center;
   }
 }
 </style>

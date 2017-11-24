@@ -61,5 +61,7 @@ module.exports = {
   plugins: [
     { src: '~plugins/custom.js'},
     { src: '~plugins/vue-awesome-swiper.js', ssr: false },
+    { src: '~plugins/vue-area-linkage.js', ssr: false }
+    
   ],
 }

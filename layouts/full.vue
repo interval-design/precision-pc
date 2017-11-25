@@ -19,7 +19,7 @@
                   <nuxt-link to="">微生物组学</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="">科研动态</nuxt-link>
+                  <nuxt-link to="/research">科研动态</nuxt-link>
                 </li>
               </ul>
             </transition>

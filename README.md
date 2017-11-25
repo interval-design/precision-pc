@@ -26,16 +26,19 @@ $ npm run generate
 # 获取.nuxt文件
 # 创建package.json
 {
-   "name": "my-app",
-  "dependencies": {
-    "nuxt": "^0.9.9"
-  },
+  "name": "precision-pc",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start"
-  }
-}
+  },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3000"
+    }
+  },
+ }
 
 # 安装依赖
 $npm install

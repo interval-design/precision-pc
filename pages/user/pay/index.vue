@@ -27,16 +27,16 @@
         <div class="itv-pay-address-content-form" v-show="showForm">
           <div>
             <span>所在地区：</span>
-            <area-select :level='2' type='text' v-model='addressForm.address' ref="select"></area-select>
+            <area-select :level='2' type='text' v-model='addressForm.address' ref="select" style="margin-left: -8px"></area-select>
           </div>
           <div>
             <span>详细地址：</span>
-            <textarea name="" id="" cols="50" rows="3" placeholder="街道、小区、门牌号等" v-model="addressForm.detail"></textarea>
+            <textarea name="" id="" rows="3" placeholder="街道、小区、门牌号等" v-model="addressForm.detail"></textarea>
           </div>
-          <div>
+          <div class="info">
             <span>收货人：</span>
             <input type="text" v-model="addressForm.name">
-            <span>手机号：</span>
+            <span style="margin-left: 60px">手机号：</span>
             <input type="text" v-model="addressForm.tel">
           </div>
           <div>
@@ -133,12 +133,14 @@
        * 打开地址表单
        */
       openAddressForm(type, item) {
+
+        this.$refs.select.isSetDefault = false; // 触发一下组件的选择变化
         if (type === 'new') {
           // 重置选中地址状态
           this.activeAddress = 0;
           this.addressForm = {
             type: 'new',
-            address: [],
+            address: ['北京市','市辖区','朝阳区'],
             detail: '',
             name: '',
             tel: ''
@@ -152,7 +154,6 @@
             name: item.name,
             tel: item.tel
           };
-          console.log(this.$ref)
         }
         this.showForm = true;
       },
@@ -260,26 +261,27 @@
         margin-top: 54px;
         >div {
           margin-top: 16px;
+          display: flex;
           >span {
             display: inline-block;
             vertical-align: middle;
+            line-height: 30px;
             width: 70px;
           }
         }
         input,
-        textarea,
-        select {
+        textarea {
           border: 1px solid $border;
           border-radius: 2px;
           vertical-align: middle;
           margin: 0 8px;
           padding: 4px;
         }
-        select {
-          width: 100px;
-        }
         textarea {
-          vertical-align: top;
+          width: 510px;
+        }
+        .info input {
+          width: 182px;
         }
       }
     }

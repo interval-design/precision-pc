@@ -5,7 +5,7 @@
         <span>技术</span>
         <i>&gt;</i>
       </span>
-      <nuxt-link to="/research">科研文章</nuxt-link>
+      <nuxt-link to="/research">科研动态</nuxt-link>
       <span class="itv-breadcrumbs-item">
         <i>&gt;</i>
         <span>文章详情</span>
@@ -38,7 +38,7 @@
 
 <script>
   export default {
-    name: 'Article',
+    name: 'ResearchDynamicDetails',
     data() {
       return {
         article: {
@@ -53,7 +53,7 @@
 </script>
 
 <style lang="scss">
-@import '../../../assets/style/variable.scss';
+@import '../../../../assets/style/variable';
 .itv-article {
   padding-bottom: 80px;
   &-main {

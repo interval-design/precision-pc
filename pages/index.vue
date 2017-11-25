@@ -140,9 +140,6 @@
     head() {
       return {
         title: '普瑞森',
-        meta: [
-          {hid: 'description', name: 'description', content: '普瑞森的描述'}
-        ]
       }
     },
     layout: 'full',

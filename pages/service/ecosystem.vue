@@ -163,7 +163,7 @@
       return {
         title: '普瑞森',
         meta: [
-          {hid: 'description', name: 'description', content: '肠癌风险评估'}
+          {hid: 'description', name: 'description', content: '肠道微生态检测'}
         ]
       }
     },

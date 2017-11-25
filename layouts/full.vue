@@ -2,45 +2,45 @@
   <div class="itv-layout-default itv-wrapper full">
     <nav class="itv-nav">
       <div class="itv-nav-bar">
-       <h1>
-         <nuxt-link to="/">
-           <img src="../assets/logo.png" alt="logo">
-         </nuxt-link>
-       </h1>
+        <h1>
+          <nuxt-link to="/">
+            <img src="../assets/logo.png" alt="logo">
+          </nuxt-link>
+        </h1>
         <ul class="itv-nav-bar-menu">
           <li class="item" :class="{active:$route.name == 'index'}">
             <nuxt-link to="/">首页</nuxt-link>
           </li>
-          <li class="item" @mouseover="active = 1" @mouseleave="active = null">
+          <li class="item" :class="{active:$route.name.indexOf('research') > -1 }" @mouseover="active = 1" @mouseleave="active = null">
             研究与技术
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 1">
                 <li>
-                  <nuxt-link to="">微生物组学</nuxt-link>
+                  <nuxt-link :to="{name:'research-microbiology'}">微生物组学</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="/research">科研动态</nuxt-link>
+                  <nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>
                 </li>
               </ul>
             </transition>
           </li>
-          <li class="item" @mouseover="active = 2" @mouseleave="active = null">
+          <li class="item" :class="{active:$route.name.indexOf('service') > -1 }" @mouseover="active = 2" @mouseleave="active = null">
             产品与服务
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 2">
                 <li>
-                  <nuxt-link to="/service/filter">肠癌风险评估</nuxt-link>
+                  <nuxt-link :to="{name:'service-filter'}">肠癌风险评估</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="/service/child">儿童肠道检测</nuxt-link>
+                  <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="/service/ecosystem">肠道微生态检测</nuxt-link>
+                  <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
                 </li>
               </ul>
             </transition>
           </li>
-          <li class="item" @mouseover="active = 3" @mouseleave="active = null">
+          <li class="item" :class="{active:$route.name.indexOf('about') > -1 }" @mouseover="active = 3" @mouseleave="active = null">
             关于普瑞森
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 3">
@@ -74,7 +74,7 @@
     </nav>
     <nuxt class="itv-container"/>
     <footer class="itv-footer">
-      <div class="itv-footer-contact">
+      <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology'">
         <p>想成为我们的合作伙伴？</p>
         <p class="tel"><img src="../assets/pic-footer-phone.png" alt="icon-phone">021-59234123</p>
         <p>期待与您合作</p>
@@ -88,20 +88,36 @@
         <div class="itv-footer-bd-item nav">
           <ul class="item">
             <li class="title">技术</li>
-            <li><nuxt-link to="">微生物组学</nuxt-link></li>
-            <li><nuxt-link to="">科研动态</nuxt-link></li>
+            <li>
+              <nuxt-link :to="{name:'research-microbiology'}">微生物组学</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>
+            </li>
           </ul>
           <ul class="item">
             <li class="title">产品及服务</li>
-            <li><nuxt-link to="/service/filter">肠癌风险评估</nuxt-link></li>
-            <li><nuxt-link to="/service/child">儿童肠道检测</nuxt-link></li>
-            <li><nuxt-link to="/service/ecosystem">肠道微生态检测</nuxt-link></li>
+            <li>
+              <nuxt-link :to="{name:'service-filter'}">肠癌风险评估</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
+            </li>
           </ul>
           <ul class="item">
             <li class="title">关于普瑞森</li>
-            <li><nuxt-link to="">了解普瑞森</nuxt-link></li>
-            <li><nuxt-link to="">普瑞森团队</nuxt-link></li>
-            <li><nuxt-link to="">加入我们</nuxt-link></li>
+            <li>
+              <nuxt-link to="">了解普瑞森</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="">普瑞森团队</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link to="">加入我们</nuxt-link>
+            </li>
           </ul>
         </div>
         <div class="itv-footer-bd-item qr-code">
@@ -119,7 +135,7 @@
     data() {
       return {
         active: null,
-        full:true
+        full: true
       }
     },
   }

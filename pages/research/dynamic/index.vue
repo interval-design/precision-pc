@@ -5,11 +5,11 @@
         <span>技术</span>
         <i>&gt;</i>
       </span>
-      <span>科研文章</span>
+      <span>科研动态</span>
     </header>
     <ul class="itv-research-list">
       <li class="itv-research-list-item" v-for="item in articleList" :key="item.id"
-          @click="$router.push({path: 'research/article/1'})">
+          @click="$router.push({name: 'research-dynamic-id',params:{id:1}})">
         <div class="itv-research-list-item__img">
           <img :src="item.img">
         </div>
@@ -29,7 +29,7 @@
 
 <script>
   export default {
-    name: 'Research',
+    name: 'ResearchDynamic',
     data() {
       return {
         articleList: [
@@ -61,7 +61,7 @@
 </script>
 
 <style lang="scss">
-@import '../../assets/style/variable.scss';
+@import '../../../assets/style/variable';
 .itv-research {
   padding-bottom: 80px;
   &-list {

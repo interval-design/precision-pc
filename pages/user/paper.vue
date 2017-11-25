@@ -10,7 +10,7 @@
     <div class="itv-paper-main">
       <h2 class="itv-paper-main-title">我的报告</h2>
       <table class="itv-paper-main-table">
-        <thead class="itv-table-header"
+        <thead class="itv-table-header">
           <tr>
             <th>报告类型</th>
             <th>生成时间</th>

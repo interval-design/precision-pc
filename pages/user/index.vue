@@ -1,6 +1,6 @@
 <template>
   <div class="itv-user">
-    <header class="itv-user-breadcrumbs">
+    <header class="itv-breadcrumbs">
       <span>个人中心</span>
     </header>
     <div class="itv-user-content">

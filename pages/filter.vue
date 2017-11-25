@@ -278,23 +278,6 @@
         background-position: top;
         background-size: contain;
       }
-      &-cnt {
-        position: absolute;
-        top: 35%;
-        left: 0;
-        letter-spacing: 1.85px;
-        z-index: 10;
-        &__title {
-          font-size: 48px;
-          padding: 0;
-          margin-bottom: 24px;
-        }
-        &__desc {
-          color: $font-sub;
-          width: 400px;
-          margin-bottom: 32px;
-        }
-      }
     }
     .section {
       position: relative;

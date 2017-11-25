@@ -189,9 +189,6 @@
       padding: 0 24px;
     }
     .itv-banner{
-      position: relative;
-      margin-top: -50px;
-      text-align: left;
       .swiper-slide{
         height: 660px;
         img{
@@ -201,24 +198,6 @@
         &.n1{
           background: url("../assets/index/banner-1.jpg") no-repeat;
           background-position: -200px;
-        }
-      }
-      &-cnt {
-        position: absolute;
-        top: 35%;
-        left: 0;
-        letter-spacing: 1.85px;
-        z-index: 10;
-        &__title{
-          font-size: 48px;
-          padding: 0;
-          margin-bottom: 24px;
-        }
-        &__desc{
-          font-size: 16px;
-          color: $font-sub;
-          width: 400px;
-          margin-bottom: 32px;
         }
       }
       &.n1{

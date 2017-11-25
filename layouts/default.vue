@@ -32,7 +32,7 @@
                   <nuxt-link to="/filter">肠癌风险评估</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="">儿童肠道检测</nuxt-link>
+                  <nuxt-link to="child">儿童肠道检测</nuxt-link>
                 </li>
                 <li>
                   <nuxt-link to="">肠道微生态检测</nuxt-link>
@@ -88,8 +88,8 @@
           </ul>
           <ul class="item">
             <li class="title">产品及服务</li>
-            <li><nuxt-link to="">肠癌风险评估</nuxt-link></li>
-            <li><nuxt-link to="">儿童肠道检测</nuxt-link></li>
+            <li><nuxt-link to="/filter">肠癌风险评估</nuxt-link></li>
+            <li><nuxt-link to="/child">儿童肠道检测</nuxt-link></li>
             <li><nuxt-link to="">肠道微生态检测</nuxt-link></li>
           </ul>
           <ul class="item">

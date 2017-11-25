@@ -35,7 +35,7 @@
         <div v-swiper:mySwiper="swiperOption">
           <div class="swiper-wrapper">
             <div class="swiper-slide" v-for="item in 3">
-              <img src="../assets/index/icon-section3-all.png" alt="">
+              <img src="../assets/index/icon-section3.png" alt="">
             </div>
           </div>
           <div class="swiper-button-prev" slot="button-prev"></div>
@@ -189,6 +189,9 @@
       padding: 0 24px;
     }
     .itv-banner{
+      &-cnt__desc{
+        font-size: 16px;
+      }
       .swiper-slide{
         height: 660px;
         img{
@@ -268,14 +271,14 @@
         width: 57px;
         height: 57px;
         background-size: auto;
-        background-image: url("../assets/index/btn-arrow-left.png");
+        background-image: url("../assets/btn-arrow-left.png");
       }
       .swiper-button-next {
         right: 0;
         width: 57px;
         height: 57px;
         background-size: auto;
-        background-image: url("../assets/index/btn-arrow-right.png");
+        background-image: url("../assets/btn-arrow-right.png");
       }
       .itv-card {
         width: 260px !important;

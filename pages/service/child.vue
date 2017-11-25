@@ -25,12 +25,12 @@
     <section class="section section-2 bg--white">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           <div class="content">
             <p>检测3000+种微生物组成的菌群及其丰度</p>
             <p>全面评估儿童的肠道健康</p>
           </div>
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
         <div class="section-2-item">
           <div class="desc">
@@ -39,10 +39,10 @@
               <p>儿童肠道菌群失调是引起儿童消化不良、食欲不振肥胖 营养不良、发育迟缓等成长问题的重要原因。</p>
             </div>
           </div>
-          <img src="../assets/child/pic-section2-1.png" alt="pic-1">
+          <img src="../../assets/child/pic-section2-1.png" alt="pic-1">
         </div>
         <div class="section-2-item">
-          <img src="../assets/child/pic-section2-2.png" alt="pic-2">
+          <img src="../../assets/child/pic-section2-2.png" alt="pic-2">
           <div class="desc">
             <h2 class="desc__title">疾病预防</h2>
             <div class="desc__bd">
@@ -59,15 +59,15 @@
               <p>能了解儿童肠道免疫环境情况 / 能指导有益菌摄取，增强免疫力 / 能监测儿童是否受到服用抗生素的威胁。</p>
             </div>
           </div>
-          <img src="../assets/child/pic-section2-3.png" alt="pic-3">
+          <img src="../../assets/child/pic-section2-3.png" alt="pic-3">
         </div>
         <div class="section-2-item center">
-          <img src="../assets/child/pic-section2-4.png" alt="pic-3">
+          <img src="../../assets/child/pic-section2-4.png" alt="pic-3">
           <div class="desc">
             <p>宝宝出生前，生活在无菌的子宫中</p>
             <p>出生后，外界微生物开始在宝宝肠道内定植宝宝肠道菌群逐步发展，到3岁左右接近成人状态。</p>
           </div>
-          <img src="../assets/child/pic-section2-5.png" alt="pic-3">
+          <img src="../../assets/child/pic-section2-5.png" alt="pic-3">
           <p class="desc-sub">这些都会影响儿童肠道菌群，从而影响肠道健康，我们的儿童肠道检测报告，会帮助您规避可能存在的健康风险</p>
         </div>
       </div>
@@ -75,9 +75,9 @@
     <section class="section section-3">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           普瑞森基因用心和技术对待每一项检测
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
         <div class="section-3-item">
           <div class="desc">
@@ -87,10 +87,10 @@
               <p>严格的无菌检测环境 / 用心追求精准的检测结果</p>
             </div>
           </div>
-          <img src="../assets/pic-flow-1.png" alt="pic-1">
+          <img src="../../assets/pic-flow-1.png" alt="pic-1">
         </div>
         <div class="section-3-item">
-          <img src="../assets/pic-flow-2.png" alt="pic-2">
+          <img src="../../assets/pic-flow-2.png" alt="pic-2">
           <div class="desc">
             <h2 class="desc__title">世界领先的基因检测平台</h2>
             <div class="desc__bd">
@@ -110,38 +110,38 @@
             </div>
             <nuxt-link class="itv-link" to="">继续了解普瑞森大数据平台 ></nuxt-link>
           </div>
-          <img src="../assets/pic-flow-3.png" alt="pic-3">
+          <img src="../../assets/pic-flow-3.png" alt="pic-3">
         </div>
       </div>
     </section>
     <section class="section">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           服务流程
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/pic-process.png" alt="pic-section9">
+        <img src="../../assets/pic-process.png" alt="pic-section9">
       </div>
     </section>
     <section class="section">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           普瑞森基因儿童倡导检测包含项目明细
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/child/pic-section5.png" alt="pic-section-10">
+        <img src="../../assets/child/pic-section5.png" alt="pic-section-10">
       </div>
     </section>
     <section class="section">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           示例报告
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/pic-report-demo.png" alt="pic-section-11">
+        <img src="../../assets/pic-report-demo.png" alt="pic-section-11">
       </div>
     </section>
     <section class="itv-buy">
@@ -153,7 +153,7 @@
         </div>
       </div>
       <div class="itv-buy—form qr">
-        <img src="../assets/qr-code.jpg" alt="qr">
+        <img src="../../assets/qr-code.jpg" alt="qr">
         <div class="qr-desc">
           <h3>如何获取二维码</h3>
           <p>扫描关注微信公众号</p>
@@ -165,11 +165,8 @@
 </template>
 
 <script>
-  import BaseButton from "../components/BaseButton.vue";
-
   export default {
-    components: {BaseButton},
-    name: 'Filter',
+    name: 'ServiceChild',
     head() {
       return {
         title: '普瑞森',
@@ -193,7 +190,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/style/variable";
+  @import "../../assets/style/variable";
 
   .itv-view-child {
     .bg--white {
@@ -203,7 +200,7 @@
       background: #dfe4e7;
       .itv-content {
         height: 500px;
-        background: url("../assets/index/banner-1.jpg") no-repeat;
+        background: url("../../assets/index/banner-1.jpg") no-repeat;
         background-position: top;
         background-size: contain;
       }

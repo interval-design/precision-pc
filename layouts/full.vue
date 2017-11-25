@@ -29,13 +29,13 @@
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 2">
                 <li>
-                  <nuxt-link to="/filter">肠癌风险评估</nuxt-link>
+                  <nuxt-link to="/service/filter">肠癌风险评估</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="/child">儿童肠道检测</nuxt-link>
+                  <nuxt-link to="/service/child">儿童肠道检测</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="">肠道微生态检测</nuxt-link>
+                  <nuxt-link to="/service/ecosystem">肠道微生态检测</nuxt-link>
                 </li>
               </ul>
             </transition>
@@ -93,9 +93,9 @@
           </ul>
           <ul class="item">
             <li class="title">产品及服务</li>
-            <li><nuxt-link to="/filter">肠癌风险评估</nuxt-link></li>
-            <li><nuxt-link to="/child">儿童肠道检测</nuxt-link></li>
-            <li><nuxt-link to="">肠道微生态检测</nuxt-link></li>
+            <li><nuxt-link to="/service/filter">肠癌风险评估</nuxt-link></li>
+            <li><nuxt-link to="/service/child">儿童肠道检测</nuxt-link></li>
+            <li><nuxt-link to="/service/ecosystem">肠道微生态检测</nuxt-link></li>
           </ul>
           <ul class="item">
             <li class="title">关于普瑞森</li>

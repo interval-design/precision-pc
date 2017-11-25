@@ -18,9 +18,9 @@
     <section class="section section-2 bg--white">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           中国的结肠癌的趋势
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
           <p class="hint">数据来源：2017中国肿瘤登记年报</p>
         </h3>
         <div class="section-2-item">
@@ -30,10 +30,10 @@
               <p>肠癌在男性和女性中的发病率都排在前五，并有上升趋势</p>
             </div>
           </div>
-          <img src="../assets/filter/pic-section2-1.png" alt="pic-1">
+          <img src="../../assets/filter/pic-section2-1.png" alt="pic-1">
         </div>
         <div class="section-2-item">
-          <img src="../assets/filter/pic-section2-2.png" alt="pic-2">
+          <img src="../../assets/filter/pic-section2-2.png" alt="pic-2">
           <div class="desc">
             <h2 class="desc__title">年轻化</h2>
             <div class="desc__bd">
@@ -49,29 +49,29 @@
               <p>肠癌发病率与城市化程度呈正相关，大城市发病率可达小城市发病率的2倍，主要与不健康饮食、久坐、腰围增粗有关。右图以男性为例，女性发病情况与男性相似。</p>
             </div>
           </div>
-          <img src="../assets/filter/pic-section2-3.png" alt="pic-3">
+          <img src="../../assets/filter/pic-section2-3.png" alt="pic-3">
         </div>
       </div>
     </section>
     <section class="section">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           癌症的发病原因
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/filter/pic-section3.png" alt="">
+        <img src="../../assets/filter/pic-section3.png" alt="">
       </div>
     </section>
     <section class="section section-4">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           日常预防与定期检查是肠癌最有效的预防针
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
         <div class="section-4-item">
-          <img src="../assets/filter/pic-section4-1.png" alt="pic-1">
+          <img src="../../assets/filter/pic-section4-1.png" alt="pic-1">
           <div class="desc">
             <h2 class="desc__title">饮食和生活习惯</h2>
             <div class="desc__bd">
@@ -98,18 +98,18 @@
               <p>美中患者生存率的差异原因主要在于：筛查不及时，发</br>现已经是晚期，治疗率低</p>
             </div>
           </div>
-          <img src="../assets/filter/pic-section4-2.png" alt="pic-2">
+          <img src="../../assets/filter/pic-section4-2.png" alt="pic-2">
         </div>
       </div>
     </section>
     <section class="section section-5 bg--white">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           普瑞森基因肠癌风险评估——常安易™
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/filter/pic-section5.png" alt="pic-section5">
+        <img src="../../assets/filter/pic-section5.png" alt="pic-section5">
         <p>
           肠道中的正常菌群以厌氧菌组成为主，正常时与机体处于相对的平衡状态，当肠道出现异常时，肠道中的微生态平衡也被打破，菌群的种类和丰度与正常时会有显著差异。肠道微生物是引起肠癌的重要因素，与肠道内炎症肿瘤的发生密切相关，通过分析3000位肠癌患者、腺癌患者和正常人的肠道菌群样本，基于生物信息学分析粪便微生物的组成可早预测肠癌风险。</p>
       </div>
@@ -117,30 +117,30 @@
     <section class="section section-6 bg--white">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           普瑞森常安易™肠癌风险评估与传统检测方式
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/filter/pic-section6.png" alt="pic-section6">
+        <img src="../../assets/filter/pic-section6.png" alt="pic-section6">
         <p>普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议</p>
       </div>
     </section>
     <section class="section section-7 bg--white">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           普瑞森常安易™肠癌风险评估与国外最畅销产品ColoGuard
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/filter/pic-section7.png" alt="pic-section7">
+        <img src="../../assets/filter/pic-section7.png" alt="pic-section7">
       </div>
     </section>
     <section class="section section-8">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           普瑞森基因用心和技术对待每一项检测
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
         <div class="section-8-item">
           <div class="desc">
@@ -150,10 +150,10 @@
               <p>严格的无菌检测环境 / 用心追求精准的检测结果</p>
             </div>
           </div>
-          <img src="../assets/pic-flow-1.png" alt="pic-1">
+          <img src="../../assets/pic-flow-1.png" alt="pic-1">
         </div>
         <div class="section-8-item">
-          <img src="../assets/pic-flow-2.png" alt="pic-2">
+          <img src="../../assets/pic-flow-2.png" alt="pic-2">
           <div class="desc">
             <h2 class="desc__title">世界领先的基因检测平台</h2>
             <div class="desc__bd">
@@ -173,39 +173,39 @@
             </div>
             <nuxt-link class="itv-link" to="">继续了解普瑞森大数据平台 ></nuxt-link>
           </div>
-          <img src="../assets/pic-flow-3.png" alt="pic-3">
+          <img src="../../assets/pic-flow-3.png" alt="pic-3">
         </div>
       </div>
     </section>
     <section class="section">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           服务流程
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/pic-process.png" alt="pic-section9">
+        <img src="../../assets/pic-process.png" alt="pic-section9">
       </div>
     </section>
     <section class="section">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           普瑞森基因肠癌早筛包含项目明细
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
           <p class="hint">数据来源：2017中国肿瘤登记年报</p>
         </h3>
-        <img src="../assets/filter/pic-section-10.png" alt="pic-section-10">
+        <img src="../../assets/filter/pic-section-10.png" alt="pic-section-10">
       </div>
     </section>
     <section class="section">
       <div class="itv-content">
         <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
           示例报告
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/pic-report-demo.png" alt="pic-section-11">
+        <img src="../../assets/pic-report-demo.png" alt="pic-section-11">
       </div>
     </section>
     <section class="itv-buy">
@@ -217,7 +217,7 @@
         </div>
       </div>
       <div class="itv-buy—form qr">
-        <img src="../assets/qr-code.jpg" alt="qr">
+        <img src="../../assets/qr-code.jpg" alt="qr">
         <div class="qr-desc">
           <h3>如何获取二维码</h3>
           <p>扫描关注微信公众号</p>
@@ -229,11 +229,8 @@
 </template>
 
 <script>
-  import BaseButton from "../components/BaseButton.vue";
-
   export default {
-    components: {BaseButton},
-    name: 'Filter',
+    name: 'ServiceFilter',
     head() {
       return {
         title: '普瑞森',
@@ -257,7 +254,7 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/style/variable";
+  @import "../../assets/style/variable";
 
   .itv-view-filter {
     .itv-view-index--btn {
@@ -274,7 +271,7 @@
     .itv-banner {
       .itv-content {
         height: 500px;
-        background: url("../assets/filter/banner.jpg") no-repeat;
+        background: url("../../assets/filter/banner.jpg") no-repeat;
         background-position: top;
         background-size: contain;
       }
@@ -327,7 +324,7 @@
       }
     }
     .section-8 {
-      background: url("../assets/pic-flow-bg.png") no-repeat;
+      background: url("../../assets/pic-flow-bg.png") no-repeat;
       background-position: center 680px;
       background-size: contain;
     }

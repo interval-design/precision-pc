@@ -29,7 +29,7 @@
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 2">
                 <li>
-                  <nuxt-link to="">肠癌风险评估</nuxt-link>
+                  <nuxt-link to="/filter">肠癌风险评估</nuxt-link>
                 </li>
                 <li>
                   <nuxt-link to="">儿童肠道检测</nuxt-link>
@@ -56,11 +56,18 @@
               </ul>
             </transition>
           </li>
-          <li class="item login">
-            <nuxt-link to="/">登录</nuxt-link>
-          </li>
-          <li class="item">
-            <base-button line size="small">注册</base-button>
+          <template v-if="1 == 0">
+            <li class="item login">
+              <nuxt-link to="/">登录</nuxt-link>
+            </li>
+            <li class="item">
+              <base-button line size="small">注册</base-button>
+            </li>
+          </template>
+          <li class="item login" v-else>
+            <nuxt-link to="/user">
+              <img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -81,19 +88,19 @@
         <div class="itv-footer-bd-item nav">
           <ul class="item">
             <li class="title">技术</li>
-            <li><nuxt-link to="">微生物学</nuxt-link></li>
+            <li><nuxt-link to="">微生物组学</nuxt-link></li>
             <li><nuxt-link to="">科研动态</nuxt-link></li>
           </ul>
           <ul class="item">
             <li class="title">产品及服务</li>
-            <li><nuxt-link to="">肠癌早筛</nuxt-link></li>
+            <li><nuxt-link to="">肠癌风险评估</nuxt-link></li>
             <li><nuxt-link to="">儿童肠道检测</nuxt-link></li>
-            <li><nuxt-link to="">肠道大数据服务</nuxt-link></li>
+            <li><nuxt-link to="">肠道微生态检测</nuxt-link></li>
           </ul>
           <ul class="item">
             <li class="title">关于普瑞森</li>
-            <li><nuxt-link to="">公司介绍</nuxt-link></li>
-            <li><nuxt-link to="">团队介绍</nuxt-link></li>
+            <li><nuxt-link to="">了解普瑞森</nuxt-link></li>
+            <li><nuxt-link to="">普瑞森团队</nuxt-link></li>
             <li><nuxt-link to="">加入我们</nuxt-link></li>
           </ul>
         </div>

@@ -1,12 +1,16 @@
 <template>
   <div class="itv-paper">
-    <header class="itv-paper-breadcrumbs">
-      <a @click="$router.push({path: '/user'})">个人中心</a>  &gt; 我的报告
+    <header class="itv-breadcrumbs">
+       <span class="itv-breadcrumbs-item">
+         <nuxt-link to="/user">个人中心</nuxt-link>
+        <i>&gt;</i>
+      </span>
+      <span>我的报告</span>
     </header>
     <div class="itv-paper-main">
       <h2 class="itv-paper-main-title">我的报告</h2>
       <table class="itv-paper-main-table">
-        <thead class="itv-table-header">
+        <thead class="itv-table-header"
           <tr>
             <th>报告类型</th>
             <th>生成时间</th>
@@ -63,11 +67,6 @@
 .itv-paper {
   width: 1100px;
   padding-bottom: 80px;
-  &-breadcrumbs {
-    line-height: 36px;
-    color: $blue;
-    font-size: 12px;
-  }
   &-main {
     &-title {
       font-size: 18px;

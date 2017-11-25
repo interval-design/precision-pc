@@ -69,6 +69,12 @@
           transform: translateY(-50%);
         }
       }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
       .item {
         position: relative;
         float: left;
@@ -213,7 +219,71 @@
 }
 
 .itv-buy{
-  padding: 72px 0;
-  background: $font-sub;
+  height: 300px;
+  padding: 48px 0;
+  background: $light-blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &—form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 56px;
+    height: 100%;
+    &__title{
+      font-size: 18px;
+      color: $blue;
+      text-align: right;
+      margin-bottom: 24px;
+    }
+  }
+  .qr{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-left: 1px solid $border;
+    &-desc{
+      margin-left: 24px;
+    }
+    h3{
+      font-size: 18px;
+      margin-bottom: 16px;
+    }
+    p{
+      color: $font-sub;
+    }
+  }
+}
+
+.itv-input-group{
+  border: 1px solid $blue;
+  &__input{
+    height: 100%;
+    padding: 0 16px;
+    text-align: center;
+  }
+  &__button{
+    border-radius: 0 !important;
+    border:0 !important;
+  }
+}
+
+.itv-breadcrumbs{
+  line-height: 36px;
+  font-size: 12px;
+  color: $font-sub;
+  &-item{
+    i{
+      display: inline-block;
+      margin:0 5px;
+    }
+  }
+  a{
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 }
 

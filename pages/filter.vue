@@ -1,5 +1,12 @@
 <template>
   <div class="itv-view-filter">
+    <header class="itv-content itv-breadcrumbs">
+      <span class="itv-breadcrumbs-item">
+         <nuxt-link to="/">首页</nuxt-link>
+        <i>&gt;</i>
+      </span>
+      <span>肠癌风险评估</span>
+    </header>
     <section class="itv-banner bg--white">
       <div class="itv-content">
         <div class="itv-banner-cnt">
@@ -203,15 +210,29 @@
     </section>
     <section class="itv-buy">
       <div class="itv-buy—form">
-        <p>输入邀请码体验检测服务</p>
-        <div></div>
+        <p class="itv-buy—form__title">输入邀请码体验检测服务</p>
+        <div class="itv-input-group">
+          <input class="itv-input-group__input" type="text" v-model="code" placeholder="输入邀请码">
+          <base-button class="itv-input-group__button" @click="submit">体验服务</base-button>
+        </div>
+      </div>
+      <div class="itv-buy—form qr">
+        <img src="../assets/qr-code.jpg" alt="qr">
+        <div class="qr-desc">
+          <h3>如何获取二维码</h3>
+          <p>扫描关注微信公众号</p>
+          <p>参与公众号内的讲座获取邀请码</p>
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+  import BaseButton from "../components/BaseButton.vue";
+
   export default {
+    components: {BaseButton},
     name: 'Filter',
     head() {
       return {
@@ -223,7 +244,14 @@
     },
     layout: 'full',
     data() {
-      return {}
+      return {
+        code:'',
+      }
+    },
+    methods:{
+      submit(){
+        this.$router.push({name:'user-pay'});
+      }
     }
   }
 </script>
@@ -245,7 +273,7 @@
     }
     .itv-banner {
       .itv-content {
-        height: 660px;
+        height: 500px;
         background: url("../assets/filter/banner.jpg") no-repeat;
         background-position: top;
         background-size: contain;

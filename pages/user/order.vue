@@ -1,7 +1,11 @@
 <template>
   <div class="itv-order">
-    <header class="itv-order-breadcrumbs">
-      <a @click="$router.push({path: '/user'})">个人中心</a>  &gt; 订单详情
+    <header class="itv-breadcrumbs">
+      <span class="itv-breadcrumbs-item">
+         <nuxt-link to="/user">个人中心</nuxt-link>
+        <i>&gt;</i>
+      </span>
+      <span>订单详情</span>
     </header>
     <div class="itv-order-main">
       <!-- 订单状态 -->
@@ -183,11 +187,6 @@
 .itv-order {
   width: 1100px;
   padding-bottom: 80px;
-  &-breadcrumbs {
-    line-height: 36px;
-    color: $blue;
-    font-size: 12px;
-  }
   &-main {
     &-item {
       &-title {
@@ -227,7 +226,7 @@
     }
   }
   &-finished {
-    margin-top: 16px; 
+    margin-top: 16px;
     &-table {
       margin-top: 16px;
       width: 100%;

@@ -5,7 +5,7 @@
         <span>技术</span>
         <i>&gt;</i>
       </span>
-      <nuxt-link to="/research">科研动态</nuxt-link>
+      <nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>
       <span class="itv-breadcrumbs-item">
         <i>&gt;</i>
         <span>文章详情</span>
@@ -39,6 +39,14 @@
 <script>
   export default {
     name: 'ResearchDynamicDetails',
+    head() {
+      return {
+        title: '文章详情 -普瑞森基因',
+        meta: [
+          { hid: 'dynamicDetails', name: 'description', content: '文章详情' }
+        ]
+      }
+    },
     data() {
       return {
         article: {

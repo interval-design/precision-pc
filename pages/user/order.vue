@@ -204,6 +204,14 @@
 <script>
   export default {
     name: 'Order',
+    head() {
+      return {
+        title: '订单详情 - 普瑞森基因',
+        meta: [
+          { hid: 'order', name: 'description', content: '订单详情' }
+        ]
+      }
+    },
     data() {
       return {
         showMessageDialog: false

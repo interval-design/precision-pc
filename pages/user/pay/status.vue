@@ -27,6 +27,14 @@
 <script>
   export default {
     name: 'PayStatus',
+    head() {
+      return {
+        title: '支付结果 - 普瑞森基因',
+        meta: [
+          { hid: 'payStatus', name: 'description', content: '支付结果' }
+        ]
+      }
+    },
     data() {
       return {
         payStatus: true
@@ -62,6 +70,6 @@
   }
   &-error-info {
     margin-top: 40px;
-  } 
+  }
 }
 </style>

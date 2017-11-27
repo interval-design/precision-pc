@@ -156,6 +156,14 @@
 <script>
   export default {
     name: 'User',
+    head() {
+      return {
+        title: '个人中心 - 普瑞森基因',
+        meta: [
+          { hid: 'center', name: 'description', content: '个人中心' }
+        ]
+      }
+    },
     data () {
       return {
         showMessageDialog: false,

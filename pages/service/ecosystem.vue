@@ -89,7 +89,7 @@
               <p>GutCheckTM 肠道微生物基因检测平台 / illumine Miseq 高通量测序仪</p>
               <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
             </div>
-            <nuxt-link class="itv-link" to="">继续了解普瑞森测序 ></nuxt-link>
+            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
           </div>
         </div>
         <div class="section-4-item">
@@ -100,7 +100,7 @@
               <p>因突变、疾病、药物数据千万条 / 上万篇肠道微生物与疾病的英文文献</p>
               <p>自主的测序数据分析计算机程序 / 肠道微生物组成与疾病关系的数学模型、基因大数据库</p>
             </div>
-            <nuxt-link class="itv-link" to="">继续了解普瑞森大数据平台 ></nuxt-link>
+            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#three'}">继续了解普瑞森大数据平台 ></nuxt-link>
           </div>
           <img src="../../assets/pic-flow-3.png" alt="pic-3">
         </div>
@@ -147,7 +147,7 @@
       <div class="itv-buy—form qr">
         <img src="../../assets/qr-code.jpg" alt="qr">
         <div class="qr-desc">
-          <h3>如何获取二维码</h3>
+          <h3>如何获取邀请码</h3>
           <p>扫描关注微信公众号</p>
           <p>参与公众号内的讲座获取邀请码</p>
         </div>
@@ -161,9 +161,9 @@
     name: 'ServiceEcosystem',
     head() {
       return {
-        title: '普瑞森',
+        title: '肠道微生态检测 -普瑞森基因',
         meta: [
-          {hid: 'description', name: 'description', content: '肠道微生态检测'}
+          { hid: 'ecosystem', name: 'description', content: '肠道微生态检测' }
         ]
       }
     },

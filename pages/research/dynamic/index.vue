@@ -30,6 +30,14 @@
 <script>
   export default {
     name: 'ResearchDynamic',
+    head() {
+      return {
+        title: '科研动态 -普瑞森基因',
+        meta: [
+          { hid: 'dynamic', name: 'description', content: '科研动态' }
+        ]
+      }
+    },
     data() {
       return {
         articleList: [

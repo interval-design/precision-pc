@@ -72,7 +72,9 @@
         </ul>
       </div>
     </nav>
-    <nuxt class="itv-container"/>
+    <transition name="page">
+      <nuxt class="itv-container"/>
+    </transition>
     <footer class="itv-footer">
       <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology'">
         <p>想成为我们的合作伙伴？</p>

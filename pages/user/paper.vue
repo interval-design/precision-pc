@@ -59,7 +59,15 @@
 
 <script>
   export default {
-    name: 'Paper'
+    name: 'Paper',
+    head() {
+      return {
+        title: '我的报告 - 普瑞森基因',
+        meta: [
+          { hid: 'paper', name: 'description', content: '我的报告' }
+        ]
+      }
+    },
   }
 </script>
 <style lang="scss">

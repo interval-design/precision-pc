@@ -17,9 +17,6 @@
       width: 100%;
       overflow: hidden;
     }
-    .itv-footer{
-      height: 460px;
-    }
   }
 }
 
@@ -101,7 +98,6 @@
 
 .itv-footer {
   position: relative;
-  height: 210px;
   width: 100%;
   background: #353535;
   color: $white;
@@ -137,6 +133,7 @@
     padding-bottom: 24px;
     &-item {
       flex: 1;
+      margin-bottom: 16px;
       .logo {
         margin-bottom: 8px;
       }
@@ -308,6 +305,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.page-enter-active, .page-leave-active {
+  transition: opacity .5s;
+}
+.page-enter, .page-leave-active {
+  opacity: 0;
 }
 
 

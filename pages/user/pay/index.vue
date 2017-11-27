@@ -89,6 +89,14 @@
 <script>
   export default {
     name: 'UserPay',
+    head() {
+      return {
+        title: '支付 - 普瑞森基因',
+        meta: [
+          { hid: 'pay', name: 'description', content: '支付' }
+        ]
+      }
+    },
     data() {
       return {
         active: '',

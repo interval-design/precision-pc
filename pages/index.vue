@@ -8,7 +8,7 @@
               <div class="itv-banner-cnt">
                 <h2 class="itv-banner-cnt__title">儿童肠道检测</h2>
                 <p class="itv-banner-cnt__desc">检测3000+种微生物自称的菌群及其丰富程度，全面评估儿童的倡导健康</p>
-                <base-Button class="itv-view-index--btn" size="big">了解更多</base-Button>
+                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-child'})">了解更多</base-Button>
               </div>
             </div>
           </div>
@@ -20,7 +20,7 @@
         <div class="section-2__desc">
           <h3 class="desc__title">你的肠道健康他们都知道</h3>
           <p class="desc__bd">您的肠道内住着大约8888种数以亿计的微生物。其中888种有益菌，8888万种有害菌。最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
-          <base-button class="itv-view-index--btn" size="big">了解微生物组学</base-button>
+          <base-button class="itv-view-index--btn" size="big" @click="$router.push({name:'research-microbiology'})">了解微生物组学</base-button>
         </div>
         <img class="section-2__banner" src="../assets/index/banner-2.png" alt="banner">
       </div>
@@ -78,7 +78,7 @@
               <p>GutCheckTM 肠道微生物基因检测平台 / illumine Miseq 高通量测序仪</p>
               <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
             </div>
-            <nuxt-link class="itv-link" to="">继续了解普瑞森测序 ></nuxt-link>
+            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
           </div>
         </div>
         <div class="section-5-item">
@@ -89,7 +89,7 @@
               <p>因突变、疾病、药物数据千万条 / 上万篇肠道微生物与疾病的英文文献</p>
               <p>自主的测序数据分析计算机程序 / 肠道微生物组成与疾病关系的数学模型、基因大数据库</p>
             </div>
-            <nuxt-link class="itv-link" to="">继续了解普瑞森大数据平台 ></nuxt-link>
+            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#three'}">继续了解普瑞森大数据平台 ></nuxt-link>
           </div>
           <img src="../assets/pic-flow-3.png" alt="pic-3">
         </div>
@@ -97,17 +97,17 @@
     </section>
     <section class="section section-6">
       <div class="itv-content itv-flex-justify--sb">
-        <nuxt-link to="" class="itv-card itv-flex-justify--sb">
+        <nuxt-link :to="{name:'service-filter'}" class="itv-card itv-flex-justify--sb">
           <img src="../assets/index/icon-section6-1.png" alt="icon-section6-1">
-          <span>了解肠癌早筛</span>
+          <span>了解肠癌风险评估</span>
         </nuxt-link>
-        <nuxt-link to="" class="itv-card itv-flex-justify--sb">
+        <nuxt-link :to="{name:'service-child'}" class="itv-card itv-flex-justify--sb">
           <img src="../assets/index/icon-section6-2.png" alt="icon-section6-2">
           <span>了解儿童肠道检测</span>
         </nuxt-link>
-        <nuxt-link to="" class="itv-card itv-flex-justify--sb">
+        <nuxt-link :to="{name:'service-ecosystem'}" class="itv-card itv-flex-justify--sb">
           <img src="../assets/index/icon-section6-3.png" alt="icon-section6-3">
-          <span>了解肠道大数据服务</span>
+          <span>了解肠道微生态检测</span>
         </nuxt-link>
       </div>
     </section>
@@ -139,7 +139,10 @@
     name: 'Index',
     head() {
       return {
-        title: '普瑞森',
+        title: '首页 - 普瑞森基因',
+        meta: [
+          { hid: 'index', name: 'description', content: '首页' }
+        ]
       }
     },
     layout: 'full',

@@ -99,7 +99,6 @@
     },
     data() {
       return {
-        active: '',
         showForm: false,
         addressForm: {
           type: '',
@@ -108,7 +107,7 @@
           name: '',
           tel: ''
         },
-        activeAddress: 0,
+        activeAddress: 1,
         addressList: [
           {
             id: 1,

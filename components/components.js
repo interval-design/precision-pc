@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import BaseButton from './BaseButton.vue'
 import BaseDialog from './BaseDialog.vue'
+import BaseMessage from './BaseMessage.vue'
 
 const PRECISION = {
   BaseButton,
-  BaseDialog
+  BaseDialog,
+  BaseMessage
 };
 
 export default () =>{

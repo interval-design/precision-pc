@@ -174,30 +174,9 @@
       </div>
     </div>
 
-
-
-
-    <!-- 临时使用，后续将提出作为公共组件 -->
     <!-- 留言弹窗 -->
-    <base-dialog :visible.sync="showMessageDialog">
-      <h3 class="itv-order-message-title">给客服留言</h3>
-      <ul class="itv-order-message-list">
-        <li>
-          <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
-          <p>客服回复客服回复客服回复客服回复客服回复客服回复客服回复客服回复客服回复</p>
-        </li>
-        <li class="precision">
-          <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
-          <p>我的留言我的留言我的留言我的留言我的留言我的留言我的留言我的留言我的留言</p>
-        </li>
-      </ul>
-      <div class="itv-order-message-reply">
-        <textarea name="" id=""></textarea>
-      </div>
-      <footer slot="footer" class="itv-order-dialog-footer">
-        <base-button style="width: 100%;">提交</base-button>
-      </footer>
-    </base-dialog>
+    <base-message :visible.sync="showMessageDialog"></base-message>
+
   </div>
 </template>
 
@@ -340,74 +319,5 @@
       }
     }
   }
-}
-
-// 以下临时使用，后续将提出作为公共组件
-.itv-order-message {
-  &-title {
-    font-size: 18px;
-    text-align: center;
-  }
-  &-list {
-    margin-top: 24px;
-    max-height: 300px;
-    overflow-y: auto;
-    >li {
-      margin-top: 16px;
-      display: flex;
-      img {
-        margin-right: 16px;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-      }
-      p {
-        position: relative;
-        padding: 8px;
-        width: 230px;
-        border-radius: 2px;
-        font-size: 12px;
-        color: $font-sub;
-        background: #f7f7f7;
-        &:before {
-          content: "";
-          position: absolute;
-          left: -20px;
-          top: 8px;
-          border: 10px solid transparent;
-          border-right-color: #f7f7f7;
-        }
-      }
-      &.precision {
-        flex-direction: row-reverse;
-        img {
-          margin-right: 0;
-          margin-left: 16px;
-        }
-        p {
-          &:before {
-            left: auto;
-            right: -20px;
-            border-right-color: transparent;
-            border-left-color: #f7f7f7;
-          }
-        }
-      }
-    }
-  }
-  &-reply {
-    margin-top: 40px;
-    textarea {
-      padding: 8px;
-      border: 1px solid $border;
-      width: 100%;
-      height: 144px;
-      background: #f7f7f7;
-    }
-  }
-}
-.itv-order-dialog-footer {
-  padding: 24px 48px 32px;
-  text-align: center;
 }
 </style>

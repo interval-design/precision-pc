@@ -3,6 +3,7 @@
   vertical-align: middle;
   background: url('../icon.svg') no-repeat;
   &-weixin,
+  &-phone,
   &-phone--done,
   &-time,
   &-time--done,
@@ -12,9 +13,10 @@
   &-close {
     width: 20px;
     height: 20px;
-    background-position-y: -270px;
+    background-position-y: -268px;
   }
   &-weixin,
+  &-phone,
   &-phone--done,
   &-time,
   &-time--done,
@@ -25,14 +27,17 @@
   &-weixin {
     background-position-x: 0;
   }
+  &-phone {
+    background-position-x: -112px;
+  }
   &-phone--done {
-    background-position-x: -38px;
+    background-position-x: -74px;
   }
   &-time {
     background-position-x: -190px;
   }
   &-time--done {
-    background-position-x: -151px;
+    background-position-x: -150px;
   }
   &-paper {
     background-position-x: -228px;

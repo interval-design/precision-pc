@@ -106,14 +106,14 @@
       </ul>
       <p class="itv-user-bind-title">{{bindForm.title}}</p>
       <div class="itv-dialog-form">
-        <div class="itv-dialog-form__item">
-          <span class="itv-icon itv-icon-phone--done"></span>
-          <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.phone">
+        <div class="itv-dialog-form__item"  :class="{'active':focus == 1}">
+          <span class="itv-icon" :class="'itv-icon-phone'+ (focus === 1 ? '--done': '')"></span>
+          <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.phone" @focus="focus = 1">
         </div>
-        <div class="itv-dialog-form__item">
-          <span class="itv-icon itv-icon-time--done"></span>
-          <input type="text" placeholder="输入验证码" v-model.number="bindForm.code">
-          <base-button class="form-code" size="small" type="code" line @clcik="sendCode">{{ codeStatus.statusText }}</base-button>
+        <div class="itv-dialog-form__item"  :class="{'active':focus == 2}">
+          <span class="itv-icon" :class="'itv-icon-time'+ (focus === 2 ? '--done': '')"></span>
+          <input type="text" placeholder="输入验证码" v-model.number="bindForm.code" @focus="focus = 2">
+          <base-button class="form-code" size="small" line @clcik="sendCode">{{ codeStatus.statusText }}</base-button>
         </div>
         <div class="itv-dialog-form__info">{{bindForm.errorText}}</div>
       </div>
@@ -165,7 +165,8 @@
           statusText: "获取验证码",
           sending: false,
           interval: undefined,
-        }
+        },
+        focus: 1
       }
     },
     methods: {

@@ -1,26 +1,28 @@
 <template>
-  <div class="itv-base-message" :class="{'itv-base-message--show': visible}">
-    <div class="itv-base-message-wrap">
-      <header class="itv-base-message-header">
-        <span class="itv-base-message-close itv-icon itv-icon-close" @click="close"></span>
-      </header>
-      <section class="itv-base-message-body">
-        <h3 class="itv-base-message-title">给客服留言</h3>
-        <ul class="itv-base-message-list">
-          <li v-for="item in messageList" :key="item.id" :class="{user: item.type==='user'}">
-            <img :src="item.img">
-            <p>{{item.message}}</p>
-          </li>
-        </ul>
-        <div class="itv-base-message-reply">
-          <textarea v-model="replyVal" @keyup.enter="submit"></textarea>
-        </div>
-      </section>
-      <footer class="itv-base-message-footer">
-        <base-button szie="big" class="itv-base-message-submit" @click="submit">提交</base-button>
-      </footer>
+  <transition name="page">
+    <div class="itv-base-message" v-show="visible">
+      <div class="itv-base-message-wrap">
+        <header class="itv-base-message-header">
+          <span class="itv-base-message-close itv-icon itv-icon-close" @click="close"></span>
+        </header>
+        <section class="itv-base-message-body">
+          <h3 class="itv-base-message-title">给客服留言</h3>
+          <ul class="itv-base-message-list">
+            <li v-for="item in messageList" :key="item.id" :class="{user: item.type==='user'}">
+              <img :src="item.img">
+              <p>{{item.message}}</p>
+            </li>
+          </ul>
+          <div class="itv-base-message-reply">
+            <textarea v-model="replyVal" @keyup.enter="submit"></textarea>
+          </div>
+        </section>
+        <footer class="itv-base-message-footer">
+          <base-button szie="big" class="itv-base-message-submit" @click="submit">提交</base-button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -66,18 +68,18 @@
       },
       // 留言列表滚动至底部
       scrollToBottom() {
-        this.list.scrollTop = this.list.scrollHeight;
+        // 这里需要等dom渲染完再调用滚至底部
+        this.$nextTick(()=>{
+          this.list.scrollTop = this.list.scrollHeight;
+        });
       }
     },
     watch: {
       visible(newVal,oldVal) {
-        newVal || this.scrollToBottom();
+        newVal && this.scrollToBottom();
       },
       messageList() {
-        // 这里需要等dom渲染完再调用滚至底部
-        this.$nextTick(()=>{
-          this.scrollToBottom();
-        });
+        this.scrollToBottom();
       }
     }
   }
@@ -86,8 +88,6 @@
 <style lang="scss">
 @import '../assets/style/variable.scss';
 .itv-base-message {
-  transform: scale(0);
-  opacity: 0;
   position: fixed;
   left: 0;
   right: 0;
@@ -95,14 +95,6 @@
   bottom: 0;
   background: rgba(0, 0, 0, .3);
   z-index: 9999;
-  transition: .2s opacity;
-  &--show {
-    transform: scale(1);
-    opacity: 1;
-    .itv-base-message-wrap {
-      transform: translateY(30px);
-    }
-  }
   &-wrap {
     box-sizing: border-box;
     margin: 10vh auto 0;
@@ -110,8 +102,6 @@
     border-radius: 2px;
     width: 400px;
     background: #fff;
-    transition: .2s ease;
-    transform: translateY(0);
   }
   &-header {
     position: relative;

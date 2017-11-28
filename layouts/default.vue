@@ -128,7 +128,7 @@
       </div>
       <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>
     </footer>
-    <base-dialog :visible.sync="loginDialog">
+    <base-dialog :visible.sync="loginDialog" class="itv-login">
       <div class="itv-dialog-title">
         <img src="../assets/logo2.png" alt="logo">
       </div>
@@ -145,7 +145,13 @@
         <div class="itv-dialog-form__info">{{ loginForm.errorText }}</div>
       </div>
       <footer slot="footer" class="itv-dialog-footer">
-        <base-button size="big" style="width: 100%" @click="">登录</base-button>
+        <base-button size="big" style="width: 100%" @click="">{{ action }}</base-button>
+        <template v-if="action == '登录'">
+          <p class="divide">使用第三方授权登录</p>
+          <div class="third-party">
+            <img src="../assets/wechat.png" alt="wechat" @click="">
+          </div>
+        </template>
       </footer>
     </base-dialog>
   </div>
@@ -172,6 +178,7 @@
           sending: false,
           interval: undefined,
         },
+        action:'',
       }
     },
     methods:{
@@ -200,15 +207,40 @@
       },
 
       login(){
+        this.action = '登录';
         this.loginDialog = true;
       },
 
       register(){
+        this.action = '绑定';
         this.loginDialog = true;
       }
     }
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  @import "../assets/style/variable";
+  .itv-login{
+    .divide{
+      position: relative;
+      margin: 40px 0 32px;
+      color: $font-sub;
+      font-size: 12px;
+      &:before,&:after{
+        position: absolute;
+        content: "";
+        width:80px;
+        height: 2px;
+        top:50%;
+        background: $border;
+      }
+      &:before{
+        left: 0;
+      }
+      &:after{
+        right: 0;
+      }
+    }
+  }
 </style>

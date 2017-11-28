@@ -321,8 +321,8 @@
       padding: 5px;
       border-bottom: 1px solid $light-gray;
       align-items: center;
-      &:focus{
-        border-bottom: 1px solid $blue;
+      &.active{
+        border-bottom:1px solid $blue;
       }
       input {
         padding: 0 16px;

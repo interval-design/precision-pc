@@ -133,13 +133,13 @@
         <img src="../assets/logo2.png" alt="logo">
       </div>
       <div class="itv-dialog-form">
-        <div class="itv-dialog-form__item">
-          <span class="itv-icon itv-icon-phone--done"></span>
-          <input type="text" placeholder="手机号" v-model.number="loginForm.mobile">
+        <div class="itv-dialog-form__item" :class="{'active':focus == 1}">
+          <span class="itv-icon" :class="focus == 1 ? 'itv-icon-phone--done':'itv-icon-phone'"></span>
+          <input type="text" placeholder="手机号" v-model.number="loginForm.mobile" @focus="focus = 1">
         </div>
-        <div class="itv-dialog-form__item">
-          <span class="itv-icon itv-icon-time--done"></span>
-          <input type="text" placeholder="输入验证码" v-model.number="loginForm.code">
+        <div class="itv-dialog-form__item" :class="{'active':focus == 2}">
+          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-time--done':'itv-icon-time'"></span>
+          <input type="text" placeholder="输入验证码" v-model.number="loginForm.code" @focus="focus = 2">
           <base-button class="form-code" size="small" line :disabled="codeStatus.sending" @click="sendCode">{{ codeStatus.statusText }}</base-button>
         </div>
         <div class="itv-dialog-form__info">{{ loginForm.errorText }}</div>
@@ -164,6 +164,14 @@
     computed: {
       full () { return this.$store.state.layoutsFull }
     },
+    directives: {
+      focus: {
+        componentUpdated: function(el, binding) {
+          if (binding.value) el.focus();
+          else el.blur();
+        },
+      }
+    },
     data() {
       return {
         active: null,
@@ -179,6 +187,7 @@
           interval: undefined,
         },
         action:'',
+        focus:1,
       }
     },
     methods:{

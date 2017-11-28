@@ -4,7 +4,6 @@
  */
 
 export default function ({ route, store }, next) {
-  console.log(route.name);
   const fullPageNames = ['index', 'service-child', 'service-ecosystem','service-filter','research-microbiology'];
   const full = fullPageNames.includes(route.name);
 

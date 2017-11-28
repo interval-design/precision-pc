@@ -56,19 +56,19 @@
               </ul>
             </transition>
           </li>
-          <template v-if="1 == 0">
+          <template>
             <li class="item login">
-              <nuxt-link to="/">登录</nuxt-link>
+              <span @click="login">登录</span>
             </li>
             <li class="item">
-              <base-button line size="small">注册</base-button>
+              <base-button line size="small" @click="register">注册</base-button>
             </li>
           </template>
-          <li class="item login" v-else>
-            <nuxt-link to="/user">
-              <img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">
-            </nuxt-link>
-          </li>
+          <!--<li class="item login">-->
+            <!--<nuxt-link to="/user">-->
+              <!--<img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">-->
+            <!--</nuxt-link>-->
+          <!--</li>-->
         </ul>
       </div>
     </nav>
@@ -128,6 +128,26 @@
       </div>
       <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>
     </footer>
+    <base-dialog :visible.sync="loginDialog">
+      <div class="itv-dialog-title">
+        <img src="../assets/logo2.png" alt="logo">
+      </div>
+      <div class="itv-dialog-form">
+        <div class="itv-dialog-form__item">
+          <span class="itv-icon itv-icon-phone--done"></span>
+          <input type="text" placeholder="手机号" v-model.number="loginForm.mobile">
+        </div>
+        <div class="itv-dialog-form__item">
+          <span class="itv-icon itv-icon-time--done"></span>
+          <input type="text" placeholder="输入验证码" v-model.number="loginForm.code">
+          <base-button class="form-code" size="small" line :disabled="codeStatus.sending" @click="sendCode">{{ codeStatus.statusText }}</base-button>
+        </div>
+        <div class="itv-dialog-form__info">{{ loginForm.errorText }}</div>
+      </div>
+      <footer slot="footer" class="itv-dialog-footer">
+        <base-button size="big" style="width: 100%" @click="">登录</base-button>
+      </footer>
+    </base-dialog>
   </div>
 </template>
 
@@ -137,10 +157,54 @@
     data() {
       return {
         active: null,
-        full: true
+        loginDialog:false,
+        loginForm:{
+          mobile:'',
+          code:'',
+          errorText:'',
+        },
+        codeStatus: {
+          statusText: "获取验证码",
+          sending: false,
+          interval: undefined,
+        },
       }
     },
+    methods:{
+      /**
+       * 获取验证码
+       */
+      sendCode(){
+        let _seconds = 30;
+        if (this.loginForm.mobile === "") {
+          this.loginForm.errorText = "手机号不能为空";
+          return;
+        }
+        this.loginForm.errorText = '';
+        this.codeStatus.sending = true;
+        this.codeStatus.statusText = _seconds + 's';
+        this.codeStatus.interval = setInterval(() => {
+          if (_seconds === 1) {
+            this.codeStatus.sending = false;
+            this.codeStatus.statusText = "获取验证码";
+            clearInterval(this.status.interval);
+            return;
+          }
+          _seconds--;
+          this.codeStatus.statusText = _seconds + "s";
+        }, 1000);
+      },
+
+      login(){
+        this.loginDialog = true;
+      },
+
+      register(){
+        this.loginDialog = true;
+      }
+    }
   }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+</style>

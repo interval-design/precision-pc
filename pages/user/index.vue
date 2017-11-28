@@ -105,19 +105,19 @@
         </li>
       </ul>
       <p class="itv-user-bind-title">{{bindForm.title}}</p>
-      <div class="itv-user-bind-form">
-        <p>
+      <div class="itv-dialog-form">
+        <div class="itv-dialog-form__item">
           <span class="itv-icon itv-icon-phone--done"></span>
           <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.phone">
-        </p>
-        <p>
+        </div>
+        <div class="itv-dialog-form__item">
           <span class="itv-icon itv-icon-time--done"></span>
           <input type="text" placeholder="输入验证码" v-model.number="bindForm.code">
-          <base-button size="small" type="code" line>获取验证码</base-button>
-        </p>
-        <div class="itv-user-bind-form-info">{{bindForm.errorText}}</div>
+          <base-button class="form-code" size="small" type="code" line @clcik="sendCode">{{ codeStatus.statusText }}</base-button>
+        </div>
+        <div class="itv-dialog-form__info">{{bindForm.errorText}}</div>
       </div>
-      <footer slot="footer" class="itv-user-dialog-footer">
+      <footer slot="footer" class="itv-dialog-footer">
         <base-button size="big" style="width: 100%" @click="bindNext">{{bindForm.btnText}}</base-button>
       </footer>
     </base-dialog>
@@ -132,7 +132,7 @@
 
     <!-- 留言弹窗 -->
     <base-message :visible.sync="showMessageDialog"></base-message>
-    
+
   </div>
 </template>
 
@@ -159,11 +159,42 @@
           info: '请输入当前手机号',
           code: '',
           errorText: '请输入当前手机号',
-          btnText: '下一步'
+          btnText: '下一步',
+        },
+        codeStatus: {
+          statusText: "获取验证码",
+          sending: false,
+          interval: undefined,
         }
       }
     },
     methods: {
+
+      /**
+       * 获取验证码
+       */
+      sendCode(){
+        let _seconds = 30;
+        if (this.bindForm.mobile === "") {
+          this.bindForm.errorText = "手机号不能为空";
+          return;
+        }
+        // todo:发送请求
+        this.bindForm.errorText = '';
+        this.codeStatus.sending = true;
+        this.codeStatus.statusText = _seconds + 's';
+        this.codeStatus.interval = setInterval(() => {
+          if (_seconds === 1) {
+            this.codeStatus.sending = false;
+            this.codeStatus.statusText = "获取验证码";
+            clearInterval(this.status.interval);
+            return;
+          }
+          _seconds--;
+          this.codeStatus.statusText = _seconds + "s";
+        }, 1000);
+      },
+
       /**
        * 根据绑定手机操作状态返回状态标志的颜色class
        */
@@ -221,6 +252,7 @@
 </script>
 <style lang="scss">
 @import '../../assets/style/variable.scss';
+
 .itv-user {
   padding-bottom: 80px;
   &-breadcrumbs {
@@ -447,39 +479,11 @@
       font-size: 18px;
       text-align: center;
     }
-    &-form {
-      margin-top: 56px;
-      padding: 0 24px;
-      >p {
-        display: flex;
-        margin-top: 24px;
-        padding: 5px;
-        border-bottom: 1px solid $light-gray;
-        >* {
-          margin: auto 0;
-        }
-        input {
-          margin-left: 16px;
-          flex: 1;
-        }
-      }
-      &-info {
-        margin-top: 8px;
-        height: 18px;
-        font-size: 12px;
-        color: $red;
-        text-align: right;
-      }
-    }
     &-success {
       padding: 24px 0;
       font-size: 18px;
       text-align: center;
     }
-  }
-  &-dialog-footer {
-    padding: 24px 48px 32px;
-    text-align: center;
   }
 }
 </style>

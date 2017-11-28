@@ -24,7 +24,11 @@
       line: {
         type: Boolean,
         default: false
-      }
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
     },
     methods: {
       // 触发click事件，组件上就不用写native了
@@ -38,6 +42,7 @@
           `${prefixCls}`,
           {
             [`${prefixCls}--${this.type}`]: this.type,
+            [`${prefixCls}--disabled`]: this.disabled,
             [`${prefixCls}--${this.size}`]: this.size,
             [`${prefixCls}--line`]: this.line
           }
@@ -47,7 +52,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import '../assets/style/variable';
 
   .itv-base-button {
@@ -71,6 +76,7 @@
     &--small {
       height: 28px;
     }
+
     &--primary,
     &--success,
     &--error,
@@ -148,12 +154,27 @@
       }
     }
     &--line {
-      background: #fff;
+      background: transparent;
       &:hover {
         color: #fff;
         filter: brightness(1);
       }
     }
+    &--line.itv-base-button--disabled {
+      border-color: $gray;
+      color: $gray;
+      cursor: no-drop;
+      background: transparent;
+      &:hover {
+        background: transparent;
+      }
+    }
+
+    &--disabled{
+      border-color: $gray;
+      background: $gray;
+    }
+
     &:active {
       filter: brightness(.9);
       border-style: solid;

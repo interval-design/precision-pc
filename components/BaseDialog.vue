@@ -1,17 +1,19 @@
 <template>
-  <div class="itv-base-dialog" :class="{'itv-base-dialog--show': visible}">
-    <div class="itv-base-dialog-wrap" :style="{width: width}">
-      <header class="itv-base-dialog-header" v-if="!auto">
-        <span class="itv-base-dialog-close itv-icon itv-icon-close" @click="close"></span>
-      </header>
-      <section class="itv-base-dialog-body">
-        <slot></slot>
-      </section>
-      <footer>
-        <slot name="footer"></slot>
-      </footer>
+  <transition name="page">
+    <div class="itv-base-dialog" v-show="visible">
+      <div class="itv-base-dialog-wrap" :style="{width: width}">
+        <header class="itv-base-dialog-header" v-if="!auto">
+          <span class="itv-base-dialog-close itv-icon itv-icon-close" @click="close"></span>
+        </header>
+        <section class="itv-base-dialog-body">
+          <slot></slot>
+        </section>
+        <footer>
+          <slot name="footer"></slot>
+        </footer>
+      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -50,8 +52,7 @@
 <style lang="scss" scoped>
 @import '../assets/style/variable.scss';
 .itv-base-dialog {
-  transform: scale(0);
-  opacity: 0;
+  transform: scale(1);
   position: fixed;
   left: 0;
   right: 0;
@@ -59,14 +60,6 @@
   bottom: 0;
   background: rgba(0, 0, 0, .3);
   z-index: 9999;
-  transition: .2s opacity;
-  &--show {
-    transform: scale(1);
-    opacity: 1;
-    .itv-base-dialog-wrap {
-      transform: translateY(30px);
-    }
-  }
   &-wrap {
     box-sizing: border-box;
     margin: 10vh auto 0;

@@ -102,7 +102,7 @@
   background: #353535;
   color: $white;
   font-size: 12px;
-  &-contact{
+  &-contact {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -113,10 +113,10 @@
     background-size: cover;
     font-size: 22px;
     text-align: center;
-    .tel{
+    .tel {
       font-size: 48px;
       font-weight: 500;
-      img{
+      img {
         width: 37px;
         height: 38px;
         vertical-align: middle;
@@ -190,24 +190,24 @@
   margin: auto;
 }
 
-.itv-breadcrumbs{
+.itv-breadcrumbs {
   line-height: 36px;
   font-size: 12px;
   color: $font-sub;
-  &-item{
-    i{
+  &-item {
+    i {
       display: inline-block;
-      margin:0 5px;
+      margin: 0 5px;
     }
   }
-  a{
-    &:hover{
+  a {
+    &:hover {
       text-decoration: underline;
     }
   }
 }
 
-.itv-banner{
+.itv-banner {
   position: relative;
   text-align: left;
   &-cnt {
@@ -216,12 +216,12 @@
     left: 0;
     letter-spacing: 1.85px;
     z-index: 10;
-    &__title{
+    &__title {
       font-size: 48px;
       padding: 0;
       margin-bottom: 24px;
     }
-    &__desc{
+    &__desc {
       font-size: 14px;
       color: $font-sub;
       width: 400px;
@@ -236,80 +236,120 @@
   line-height: 42px;
 }
 
-.itv-card{
+.itv-card {
   padding: 48px;
   border-radius: 5px;
   background: $white;
 }
 
-.itv-buy{
+.itv-buy {
   height: 300px;
   padding: 48px 0;
   background: $light-blue;
   display: flex;
   justify-content: center;
   align-items: center;
-  &—form{
+  &—form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 56px;
     height: 100%;
-    &__title{
+    &__title {
       font-size: 18px;
       color: $blue;
       text-align: right;
       margin-bottom: 24px;
     }
   }
-  .qr{
+  .qr {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-left: 1px solid $border;
-    &-desc{
+    &-desc {
       margin-left: 24px;
     }
-    h3{
+    h3 {
       font-size: 18px;
       margin-bottom: 16px;
     }
-    p{
+    p {
       color: $font-sub;
     }
   }
 }
 
-.itv-input-group{
+.itv-input-group {
   border: 1px solid $blue;
-  &__input{
+  &__input {
     height: 100%;
     padding: 0 16px;
     text-align: center;
   }
-  &__button{
+  &__button {
     border-radius: 0 !important;
-    border:0 !important;
+    border: 0 !important;
   }
 }
 
-.itv-link{
+.itv-link {
   color: $blue;
   &:hover {
     filter: brightness(1.1);
   }
 }
 
-.itv-flex-justify--sb{
+.itv-flex-justify--sb {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.itv-dialog {
+  &-title {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  &-form {
+    margin-top: 56px;
+    padding: 0 16px;
+    &__item {
+      display: flex;
+      margin-top: 24px;
+      padding: 5px;
+      border-bottom: 1px solid $light-gray;
+      align-items: center;
+      &:focus{
+        border-bottom: 1px solid $blue;
+      }
+      input {
+        padding: 0 16px;
+        flex: 1;
+      }
+      .form-code {
+        padding: 0 8px;
+      }
+    }
+    &__info {
+      margin-top: 8px;
+      height: 18px;
+      font-size: 12px;
+      color: $red;
+      text-align: right;
+    }
+  }
+  &-footer {
+    padding: 24px 48px 32px;
+    text-align: center;
+  }
+}
+
 .page-enter-active, .page-leave-active {
   transition: opacity .5s;
 }
+
 .page-enter, .page-leave-active {
   opacity: 0;
 }

@@ -239,7 +239,6 @@
         ]
       }
     },
-    layout: 'full',
     data() {
       return {
         code:'',

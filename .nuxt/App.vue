@@ -18,9 +18,7 @@ import '../node_modules/swiper/dist/css/swiper.css'
 
 let layouts = {
 
-  "_default": () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m),
-
-  "_full": () => import('../layouts/full.vue'  /* webpackChunkName: "layouts/full" */).then(m => m.default || m)
+  "_default": () => import('../layouts/default.vue'  /* webpackChunkName: "layouts/default" */).then(m => m.default || m)
 
 }
 

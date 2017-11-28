@@ -4,9 +4,6 @@ module.exports = {
     {src: '~assets/style/animate.scss', lang: 'scss'},
     {src:'swiper/dist/css/swiper.css'}
   ],
-  /*
-  ** Headers of the page
-  */
   head: {
     title: 'precision-pc',
     meta: [
@@ -19,13 +16,18 @@ module.exports = {
       {rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/animate.css@3.5.1'}
     ]
   },
-  /*
-  ** Customize the progress bar color
-  */
   loading: {color: '#3C90EF'},
-  /*
-  ** Build configuration
-  */
+  router: {
+    middleware: 'chage-page'
+  },
+  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
+  plugins: [
+    { src: '~plugins/custom.js'},
+    { src: '~plugins/vue-awesome-swiper.js', ssr: false },
+    { src: '~plugins/vue-area-linkage.js', ssr: false }
+
+  ],
+  // proxy: [["/api", { target: "" }]]
   build: {
     /*
     ** Run ESLint on save
@@ -56,12 +58,4 @@ module.exports = {
     ],
     vendor: ["axios",'vue-awesome-swiper']
   },
-  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
-  // proxy: [["/api", { target: "" }]]
-  plugins: [
-    { src: '~plugins/custom.js'},
-    { src: '~plugins/vue-awesome-swiper.js', ssr: false },
-    { src: '~plugins/vue-area-linkage.js', ssr: false }
-    
-  ],
 }

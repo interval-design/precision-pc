@@ -1,5 +1,5 @@
 <template>
-  <div class="itv-layout-default itv-wrapper">
+  <div class="itv-layout-default itv-wrapper" :class="{'full':full}">
     <nav class="itv-nav">
       <div class="itv-nav-bar">
         <h1>
@@ -76,6 +76,11 @@
       <nuxt class="itv-container"/>
     </transition>
     <footer class="itv-footer">
+      <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology' && full">
+        <p>想成为我们的合作伙伴？</p>
+        <p class="tel"><img src="../assets/pic-footer-phone.png" alt="icon-phone">021-59234123</p>
+        <p>期待与您合作</p>
+      </div>
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
           <img class="logo" src="../assets/logo-white.png" alt="logo-white">
@@ -147,8 +152,12 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
   export default {
     name: 'LayoutDefault',
+    computed: {
+      full () { return this.$store.state.layoutsFull }
+    },
     data() {
       return {
         active: null,
@@ -201,4 +210,5 @@
   }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+</style>

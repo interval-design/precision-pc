@@ -178,7 +178,6 @@
         ]
       }
     },
-    layout: 'full',
     mounted() {
       this.$nextTick(() => {
         let _section = this.$refs.microbiology.children;

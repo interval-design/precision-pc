@@ -145,7 +145,6 @@
         ]
       }
     },
-    layout: 'full',
     computed:{
       bannerColor(){
         return {

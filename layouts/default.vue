@@ -11,7 +11,8 @@
           <li class="item" :class="{active:$route.name == 'index'}">
             <nuxt-link to="/">首页</nuxt-link>
           </li>
-          <li class="item" :class="{active:$route.name.indexOf('research') > -1 }" @mouseover="active = 1" @mouseleave="active = null">
+          <li class="item" :class="{active:$route.name.indexOf('research') > -1 }" @mouseover="active = 1"
+              @mouseleave="active = null">
             研究与技术
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 1">
@@ -24,7 +25,8 @@
               </ul>
             </transition>
           </li>
-          <li class="item" :class="{active:$route.name.indexOf('service') > -1 }" @mouseover="active = 2" @mouseleave="active = null">
+          <li class="item" :class="{active:$route.name.indexOf('service') > -1 }" @mouseover="active = 2"
+              @mouseleave="active = null">
             产品与服务
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 2">
@@ -40,7 +42,8 @@
               </ul>
             </transition>
           </li>
-          <li class="item" :class="{active:$route.name.indexOf('about') > -1 }" @mouseover="active = 3" @mouseleave="active = null">
+          <li class="item" :class="{active:$route.name.indexOf('about') > -1 }" @mouseover="active = 3"
+              @mouseleave="active = null">
             关于普瑞森
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 3">
@@ -56,19 +59,19 @@
               </ul>
             </transition>
           </li>
-          <template>
+          <template v-if="user == null">
             <li class="item login">
-              <span @click="login">登录</span>
+              <span @click="openLoginDialog">登录</span>
             </li>
             <li class="item">
-              <base-button line size="small" @click="register">注册</base-button>
+              <base-button line size="small" @click="openLoginDialog">注册</base-button>
             </li>
           </template>
-          <!--<li class="item login">-->
-            <!--<nuxt-link to="/user">-->
-              <!--<img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">-->
-            <!--</nuxt-link>-->
-          <!--</li>-->
+          <li class="item login" v-else>
+            <nuxt-link to="/user">
+              <img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">
+            </nuxt-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -127,25 +130,36 @@
         </div>
       </div>
       <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>
-    </footer>
+    </footer>s
     <base-dialog :visible.sync="loginDialog" class="itv-login">
       <div class="itv-dialog-title">
         <img src="../assets/logo2.png" alt="logo">
       </div>
       <div class="itv-dialog-form">
+        <div id="login_container"></div>
         <div class="itv-dialog-form__item" :class="{'active':focus == 1}">
           <span class="itv-icon" :class="focus == 1 ? 'itv-icon-phone--done':'itv-icon-phone'"></span>
-          <input type="text" placeholder="手机号" v-model.number="loginForm.mobile" @focus="focus = 1">
+          <input type="text" placeholder="手机号" v-model="loginForm.mobile" @focus="focus = 1">
         </div>
         <div class="itv-dialog-form__item" :class="{'active':focus == 2}">
-          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-time--done':'itv-icon-time'"></span>
-          <input type="text" placeholder="输入验证码" v-model.number="loginForm.code" @focus="focus = 2">
-          <base-button class="form-code" size="small" line :disabled="codeStatus.sending" @click="sendCode">{{ codeStatus.statusText }}</base-button>
+          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-phone--done':'itv-icon-phone'"></span>
+          <input type="text" placeholder="验证码" v-model="loginForm.captchaCode" @focus="focus = 2">
+          <div class="itv-captcha-group">
+            <img class="img" :src="'data:img/jpg;base64,' + loginForm.captchaImage" alt="captchaImage">
+            <span class="refresh" @click="getCaptcha">刷新</span>
+          </div>
+        </div>
+        <div class="itv-dialog-form__item" :class="{'active':focus == 3}">
+          <span class="itv-icon" :class="focus == 3 ? 'itv-icon-time--done':'itv-icon-time'"></span>
+          <input type="text" placeholder="输入验证码" v-model="loginForm.code" @focus="focus = 3">
+          <base-button class="form-code" size="small" line :disabled="codeStatus.sending || loginForm.captchaCode == ''"
+                       @click="sendCode">{{ codeStatus.statusText }}
+          </base-button>
         </div>
         <div class="itv-dialog-form__info">{{ loginForm.errorText }}</div>
       </div>
       <footer slot="footer" class="itv-dialog-footer">
-        <base-button size="big" style="width: 100%" @click="">{{ action }}</base-button>
+        <base-button size="big" style="width: 100%" @click="submitLogin">{{ action }}</base-button>
         <template v-if="action == '登录'">
           <p class="divide">使用第三方授权登录</p>
           <div class="third-party">
@@ -158,96 +172,162 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
+  import {mapState} from 'vuex'
+  import ApiLogin from '../api/login';
+  import Cookie from 'tiny-cookie';
+
   export default {
     name: 'LayoutDefault',
     computed: {
-      full () { return this.$store.state.layoutsFull }
+      ...mapState({
+        full: state => state.layoutsFull,
+        user: state => state.user
+      }),
     },
-    directives: {
-      focus: {
-        componentUpdated: function(el, binding) {
-          if (binding.value) el.focus();
-          else el.blur();
-        },
+    created() {
+      this.getCaptcha();
+      // todo:微信授权登录没条件调试，等最后再搞
+//      this.weixin = new WxLogin({
+//        id:"login_container",
+//        appid: "",
+//        scope: "snsapi_login",
+//        redirect_uri: encodeURI('http://precision.interval.im/extensions/wx/user/login/'),
+//        state: "",
+//        style: "",
+//        href: ""
+//      });
+    },
+    mounted() {
+      if (this.$cookie.get('_prs_user')) {
+        this.$store.dispatch('setUser', res => {})
       }
     },
     data() {
       return {
         active: null,
-        loginDialog:false,
-        loginForm:{
-          mobile:'',
-          code:'',
-          errorText:'',
+        loginDialog: false,
+        loginForm: {
+          mobile: '',
+          code: '',
+          captchaCode: '',
+          errorText: '',
+          captchaImage: null,
+          captchaToken: null
         },
         codeStatus: {
           statusText: "获取验证码",
           sending: false,
           interval: undefined,
         },
-        action:'',
-        focus:1,
+        action: '登录',
+        focus: 1,
+        weixin:null,
       }
     },
-    methods:{
+    methods: {
+
+      /**
+       * 获取图形验证码
+       */
+      getCaptcha() {
+        ApiLogin.getCaptcha({
+          width: 100,
+          height: 50
+        }).then(res => {
+          let _data = res.data.data;
+          if (res.data.code === 0) {
+            this.loginForm.captchaImage = _data.image;
+            this.loginForm.captchaToken = _data.token;
+          }
+        })
+      },
+
+      /**
+       * 打开登录弹窗
+       */
+      openLoginDialog() {
+        this.action = '登录';
+        this.loginDialog = true;
+      },
+
       /**
        * 获取验证码
        */
-      sendCode(){
+      sendCode() {
         let _seconds = 30;
         if (this.loginForm.mobile === "") {
           this.loginForm.errorText = "手机号不能为空";
           return;
         }
-        this.loginForm.errorText = '';
-        this.codeStatus.sending = true;
-        this.codeStatus.statusText = _seconds + 's';
-        this.codeStatus.interval = setInterval(() => {
-          if (_seconds === 1) {
-            this.codeStatus.sending = false;
-            this.codeStatus.statusText = "获取验证码";
-            clearInterval(this.status.interval);
-            return;
+        ApiLogin.sendSmsLogin({
+          mobile: this.loginForm.mobile,
+          captcha_token: this.loginForm.captchaToken,
+          captcha_code: this.loginForm.captchaCode
+        }).then(res => {
+          if (res.data.code === 0) {
+            this.loginForm.errorText = '';
+            this.codeStatus.sending = true;
+            this.codeStatus.statusText = _seconds + 's';
+            this.codeStatus.interval = setInterval(() => {
+              if (_seconds === 1) {
+                this.codeStatus.sending = false;
+                this.codeStatus.statusText = "获取验证码";
+                clearInterval(this.status.interval);
+                return;
+              }
+              _seconds--;
+              this.codeStatus.statusText = _seconds + "s";
+            }, 1000);
           }
-          _seconds--;
-          this.codeStatus.statusText = _seconds + "s";
-        }, 1000);
+          else {
+            this.loginForm.errorText = res.data.message;
+          }
+        });
       },
 
-      login(){
-        this.action = '登录';
-        this.loginDialog = true;
+      /**
+       * 提交登录
+       */
+      submitLogin() {
+        ApiLogin.login({
+          mobile: this.loginForm.mobile,
+          code: this.loginForm.code
+        }).then(res => {
+          let _data = res.data.data;
+          if (res.data.code === 0) {
+            this.$store.commit('SET_USER', _data.user);
+            Cookie.setRaw('_prs_user', _data.token,{ expires: '30D' });
+            this.loginDialog = false;
+          } else {
+            this.loginForm.errorText = res.data.message;
+          }
+        });
       },
-
-      register(){
-        this.action = '绑定';
-        this.loginDialog = true;
-      }
     }
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   @import "../assets/style/variable";
-  .itv-login{
-    .divide{
+
+  .itv-login {
+    .divide {
       position: relative;
       margin: 40px 0 32px;
       color: $font-sub;
       font-size: 12px;
-      &:before,&:after{
+      &:before, &:after {
         position: absolute;
         content: "";
-        width:80px;
+        width: 80px;
         height: 2px;
-        top:50%;
+        top: 50%;
         background: $border;
       }
-      &:before{
+      &:before {
         left: 0;
       }
-      &:after{
+      &:after {
         right: 0;
       }
     }

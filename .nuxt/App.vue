@@ -25,7 +25,7 @@ let layouts = {
 let resolvedLayouts = {}
 
 export default {
-  head: {"title":"precision-pc","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"普瑞森"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"stylesheet","type":"text/css","href":"https://cdn.jsdelivr.net/npm/animate.css@3.5.1"}],"style":[],"script":[]},
+  head: {"title":"precision-pc","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"普瑞森"}],"link":[{"rel":"icon","type":"image/x-icon","href":"/favicon.ico"},{"rel":"stylesheet","type":"text/css","href":"https://cdn.jsdelivr.net/npm/animate.css@3.5.1"}],"script":[{"src":"http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"}],"style":[]},
   data: () => ({
     layout: null,
     layoutName: ''

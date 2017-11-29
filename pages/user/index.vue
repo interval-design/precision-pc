@@ -108,7 +108,15 @@
       <div class="itv-dialog-form">
         <div class="itv-dialog-form__item"  :class="{'active':focus == 1}">
           <span class="itv-icon" :class="'itv-icon-phone'+ (focus === 1 ? '--done': '')"></span>
-          <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.phone" @focus="focus = 1">
+          <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.mobile" @focus="focus = 1">
+        </div>
+        <div class="itv-dialog-form__item" :class="{'active':focus == 2}">
+          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-phone--done':'itv-icon-phone'"></span>
+          <input type="text" placeholder="验证码" v-model.number="bindForm.captchaCode" @focus="focus = 2">
+          <div class="itv-captcha-group">
+            <img class="img" :src="'data:img/jpg;base64,' + bindForm.captchaImage" alt="captchaImage">
+            <span class="refresh" @click="getCaptcha">刷新</span>
+          </div>
         </div>
         <div class="itv-dialog-form__item"  :class="{'active':focus == 2}">
           <span class="itv-icon" :class="'itv-icon-time'+ (focus === 2 ? '--done': '')"></span>
@@ -137,6 +145,8 @@
 </template>
 
 <script>
+  import ApiLogin from '../../api/login';
+
   export default {
     name: 'User',
     head() {
@@ -147,6 +157,14 @@
         ]
       }
     },
+    fetch ({ store, redirect }) {
+      if (!store.state.user) {
+        return redirect('/')
+      }
+    },
+    created(){
+      this.getCaptcha();
+    },
     data () {
       return {
         showMessageDialog: false,
@@ -155,11 +173,14 @@
         bindForm: {
           title: '验证当前手机号',
           status: 1,
-          phone: '',
+          mobile: '',
           info: '请输入当前手机号',
           code: '',
-          errorText: '请输入当前手机号',
+          errorText: '',
           btnText: '下一步',
+          captchaCode:'',
+          captchaImage:null,
+          captchaToken:null
         },
         codeStatus: {
           statusText: "获取验证码",
@@ -172,6 +193,22 @@
     methods: {
 
       /**
+       * 获取图形验证码
+       */
+      getCaptcha(){
+        ApiLogin.getCaptcha({
+          width: 100,
+          height: 50
+        }).then(res=>{
+          let _data = res.data.data;
+          if(res.data.code === 0){
+            this.bindForm.captchaImage = _data.image;
+            this.bindForm.captchaToken = _data.token;
+          }
+        })
+      },
+
+      /**
        * 获取验证码
        */
       sendCode(){
@@ -180,20 +217,30 @@
           this.bindForm.errorText = "手机号不能为空";
           return;
         }
-        // todo:发送请求
-        this.bindForm.errorText = '';
-        this.codeStatus.sending = true;
-        this.codeStatus.statusText = _seconds + 's';
-        this.codeStatus.interval = setInterval(() => {
-          if (_seconds === 1) {
-            this.codeStatus.sending = false;
-            this.codeStatus.statusText = "获取验证码";
-            clearInterval(this.status.interval);
-            return;
+        ApiLogin.sendSmsLogin({
+          mobile: this.loginForm.mobile,
+          captcha_token: this.loginForm.captchaToken,
+          captcha_code: this.loginForm.captchaCode
+        }).then(res => {
+          if (res.data.code === 0) {
+            this.bindForm.errorText = '';
+            this.codeStatus.sending = true;
+            this.codeStatus.statusText = _seconds + 's';
+            this.codeStatus.interval = setInterval(() => {
+              if (_seconds === 1) {
+                this.codeStatus.sending = false;
+                this.codeStatus.statusText = "获取验证码";
+                clearInterval(this.status.interval);
+                return;
+              }
+              _seconds--;
+              this.codeStatus.statusText = _seconds + "s";
+            }, 1000);
           }
-          _seconds--;
-          this.codeStatus.statusText = _seconds + "s";
-        }, 1000);
+          else {
+            this.bindForm.errorText = res.data.message;
+          }
+        });
       },
 
       /**
@@ -241,11 +288,14 @@
         this.bindForm = {
           title: '验证当前手机号',
           status: 1,
-          phone: '',
+          mobile: '',
           info: '请输入当前手机号',
           code: '',
           errorText: '请输入当前手机号',
-          btnText: '下一步'
+          btnText: '下一步',
+          captchaCode:'',
+          captchaImage:null,
+          captchaToken:null
         }
       }
     }

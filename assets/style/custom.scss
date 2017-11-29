@@ -321,8 +321,10 @@
       padding: 5px;
       border-bottom: 1px solid $light-gray;
       align-items: center;
+      transition: all .3s;
       &.active{
         border-bottom:1px solid $blue;
+        transition: all .3s;
       }
       input {
         padding: 0 16px;
@@ -330,6 +332,7 @@
       }
       .form-code {
         padding: 0 8px;
+        width: 88px;
       }
     }
     &__info {
@@ -343,6 +346,25 @@
   &-footer {
     padding: 24px 48px 32px;
     text-align: center;
+  }
+}
+
+.itv-captcha-group{
+  flex: 1;
+  width: 88px;
+  height: 28px;
+  .img{
+    display: inline-block;
+    width: 76px;
+    height: 100%;
+    object-fit: contain;
+  }
+  .refresh{
+    display: inline-block;
+    font-size: 12px;
+    color: $blue;
+    vertical-align: bottom;
+    cursor: pointer;
   }
 }
 

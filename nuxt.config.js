@@ -14,7 +14,10 @@ module.exports = {
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
       {rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/animate.css@3.5.1'}
-    ]
+    ],
+    script: [
+      { src: 'http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js' }
+    ],
   },
   loading: {color: '#3C90EF'},
   router: {
@@ -23,11 +26,13 @@ module.exports = {
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
   plugins: [
     { src: '~plugins/custom.js'},
+    { src: '~/plugins/axios.js'},
     { src: '~plugins/vue-awesome-swiper.js', ssr: false },
-    { src: '~plugins/vue-area-linkage.js', ssr: false }
+    { src: '~plugins/vue-area-linkage.js', ssr: false },
+    { src: '~plugins/vue-cookie.js',ssr:false}
 
   ],
-  // proxy: [["/api", { target: "" }]]
+  proxy: [["/api", { target: "http://precision.interval.im/" }]],
   build: {
     /*
     ** Run ESLint on save

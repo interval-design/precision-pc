@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>
-    </footer>s
+    </footer>
     <base-dialog :visible.sync="loginDialog" class="itv-login">
       <div class="itv-dialog-title">
         <img src="../assets/logo2.png" alt="logo">

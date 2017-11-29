@@ -7,11 +7,11 @@
           <li class="itv-pay-address-content-list-item" v-for="(item,index) in addressList" :key="index"
               :class="setActiveAddress(item.id)" @click="activeAddress = item.id">
             <header>
-              <span>{{item.name}}</span>
-              <span>{{item.tel}}</span>
+              <span>{{item.consignee}}</span>
+              <span>{{item.phone}}</span>
             </header>
             <div>
-              {{item.address[0]}} {{item.address[1]}} {{item.address[2]}} {{item.detail}}
+              {{item.province}}{{item.city}}{{item.district}}{{item.street}}
             </div>
             <p>
               <a @click="openAddressForm('edit',item)">修改</a>
@@ -40,7 +40,9 @@
             <input type="text" v-model="addressForm.tel">
           </div>
           <div>
+            <span style="margin-right: 8px"></span>
             <base-button @click="editAddress">保存地址</base-button>
+            <p class="itv-pay-address-content-form__warning">{{addressForm.warning}}</p>
           </div>
         </div>
       </div>
@@ -87,6 +89,7 @@
 </template>
 
 <script>
+  import User from '~/api/user.js'
   export default {
     name: 'UserPay',
     head() {
@@ -97,6 +100,9 @@
         ]
       }
     },
+    created() {
+      this.getUserAddresses();
+    },
     data() {
       return {
         showForm: false,
@@ -105,25 +111,11 @@
           address: [],
           detail: '',
           name: '',
-          tel: ''
+          tel: '',
+          warning: ''
         },
         activeAddress: 1,
-        addressList: [
-          {
-            id: 1,
-            address: ['上海市','市辖区','闵行区'],
-            detail: '陈行公路888号6楼603室',
-            name: '张三',
-            tel: '13912345678'
-          },
-          {
-            id: 2,
-            address: ['江苏省','苏州市','姑苏区'],
-            detail: '广济南路219号',
-            name: '李四',
-            tel: '13912345678'
-          },
-        ]
+        addressList: []
       }
     },
     methods: {
@@ -131,6 +123,9 @@
        * 设置选中的地址
        */
       setActiveAddress(id) {
+        if (this.showForm) {
+          return;
+        }
         if (this.activeAddress === id) {
           return 'itv-pay-address-content-list-item--active';
         }
@@ -140,7 +135,11 @@
        * 打开地址表单
        */
       openAddressForm(type, item) {
-
+        if (this.showForm) {
+          // 提醒还没保存
+          this.addressForm.warning = '还没保存';
+          return;
+        }
         this.$refs.select.isSetDefault = false; // 触发一下组件的选择变化
         if (type === 'new') {
           // 重置选中地址状态
@@ -150,16 +149,18 @@
             address: ['北京市','市辖区','朝阳区'],
             detail: '',
             name: '',
-            tel: ''
+            tel: '',
+            warning: ''
           };
         }else {
           this.addressForm = {
             id: item.id,
             type: 'edit',
-            address: item.address,
-            detail: item.detail,
-            name: item.name,
-            tel: item.tel
+            address: [item.province, item.city, item.district],
+            detail: item.street,
+            name: item.consignee,
+            tel: item.phone,
+            warning: ''
           };
         }
         this.showForm = true;
@@ -169,35 +170,77 @@
        * 删除地址
        */
       delAddress(item) {
-        let _item = item;
-        this.addressList = this.addressList.filter(item => {
-          if (item.id !== _item.id) {
-            return true;
+        if (this.showForm) {
+          // 提醒还没保存
+          this.addressForm.warning = '还没保存';
+          return;
+        }
+        User.delUserAddress(item.id).then(
+          res => {
+            console.log('删除成功');
+            this.getUserAddresses();
           }
-        });
+        )
       },
 
       /**
        * 保存地址
        */
       editAddress() {
-        if (this.addressForm.type === 'new') {
-          let newAddress = JSON.parse(JSON.stringify(this.addressForm));
-          newAddress.id = Date.now();
-          this.addressList.push(newAddress);
-        }else {
-          let form = this.addressForm;
-          this.addressList.forEach(item => {
-            if (item.id === form.id) {
-              item.address = form.address,
-              item.detail = form.detail,
-              item.name = form.name,
-              item.tel = form.tel
+        let form = this.addressForm;
+
+        if (form.type === 'new') {
+          // 创建收货地址
+          User.creatUserAddress({
+            province: form.address[0],
+            city: form.address[1],
+            district: form.address[2],
+            street:form.detail,
+            consignee: form.name,
+            phone: form.tel
+          }).then(
+            res => {
+              if (res.data.code === 1401) {
+                this.addressForm.warning = '信息填写不完整';
+              }else {
+                this.showForm = false;
+                this.getUserAddresses();
+              }
+              
             }
-          });
+          )
+        }else {
+          // 编辑收货地址
+          User.editUserAddress(form.id, {
+            province: form.address[0],
+            city: form.address[1],
+            district: form.address[2],
+            street:form.detail,
+            consignee: form.name,
+            phone: form.tel
+          }).then(
+            res => {
+              this.showForm = false;
+              this.getUserAddresses();
+            }
+          )
+          
         }
-        this.showForm = false;
+        
+      },
+
+      /**
+       * 列出当前用户的收货地址
+       */
+      getUserAddresses() {
+        User.getUserAddresses().then(
+          res => {
+            this.addressList = res.data.data.addresses;
+          }
+        )
       }
+
+
     }
   }
 </script>
@@ -289,6 +332,13 @@
         }
         .info input {
           width: 182px;
+        }
+        &__warning {
+          margin-left: 24px;
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 30px;
+          color: $red;
         }
       }
     }

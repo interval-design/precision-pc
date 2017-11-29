@@ -157,16 +157,13 @@
         ]
       }
     },
-    fetch ({ store, redirect }) {
-      if (!store.state.user) {
-        return redirect('/')
-      }
-    },
     created(){
       this.getCaptcha();
+      this.user = this.store;
     },
     data () {
       return {
+        user: null,
         showMessageDialog: false,
         showPhoneBindDialog: false,
         showAlert: false,

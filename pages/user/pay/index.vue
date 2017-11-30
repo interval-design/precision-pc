@@ -85,6 +85,9 @@
         </span>
       </div>
     </div>
+
+    <!-- 删除地址的弹出框 -->
+    <base-confirm v-show="showConfirm" :options="comfirmOption" ref="confirm"></base-confirm>
   </div>
 </template>
 
@@ -114,8 +117,10 @@
           tel: '',
           warning: ''
         },
-        activeAddress: 1,
-        addressList: []
+        activeAddress: 0,
+        addressList: [],
+        comfirmOption: {},
+        showConfirm: false
       }
     },
     methods: {
@@ -175,12 +180,22 @@
           this.addressForm.warning = '还没保存';
           return;
         }
-        User.delUserAddress(item.id).then(
-          res => {
-            console.log('删除成功');
-            this.getUserAddresses();
-          }
-        )
+
+        // 提示是否删除
+        this.comfirmOption = {
+          text: '此操作将永久删除改该地址，是否继续？'
+        }
+        this.showConfirm = true;
+        this.$refs.confirm.confirm().then(() => {
+          User.delUserAddress(item.id).then(
+            res => {
+              this.getUserAddresses();
+              this.showConfirm = false;
+            }
+          )
+        }).catch(() => {
+          this.showConfirm = false;
+        })
       },
 
       /**
@@ -224,9 +239,7 @@
               this.getUserAddresses();
             }
           )
-          
         }
-        
       },
 
       /**
@@ -236,6 +249,7 @@
         User.getUserAddresses().then(
           res => {
             this.addressList = res.data.data.addresses;
+            this.activeAddress = this.addressList[0] ? this.addressList[0].id : 0;
           }
         )
       }

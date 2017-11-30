@@ -9,16 +9,16 @@
     </header>
     <ul class="itv-research-list">
       <li class="itv-research-list-item" v-for="item in articleList" :key="item.id"
-          @click="$router.push({name: 'research-dynamic-id',params:{id:1}})">
+          @click="$router.push({name: 'research-dynamic-id',params:{id: item.id}})">
         <div class="itv-research-list-item__img">
-          <img :src="item.img">
+          <img :src="item.image">
         </div>
         <div class="itv-research-list-item__content">
           <h3>{{item.title}}</h3>
-          <p class="itv-research-list-item__content-profile">{{item.profile}}</p>
+          <p class="itv-research-list-item__content-profile">{{item.summary}}</p>
           <p class="itv-research-list-item__content-info">
-            <span>{{item.author}}</span>
-            <span>{{item.time}}</span>
+            <span>{{item.author || '佚名'}}</span>
+            <span>{{item.iso_create_time | time}}</span>
           </p>
         </div>
       </li>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+  import Article from '../../../api/article.js'
   export default {
     name: 'ResearchDynamic',
     head() {
@@ -38,31 +39,37 @@
         ]
       }
     },
+    created() {
+      this.getArticles();
+    },
     data() {
       return {
-        articleList: [
-          {
-            img: 'https://i2.wp.com/www.cleatech.com/wp-content/uploads/2017/07/lab_equipment.png?ssl=1',
-            title: '测试文章1111',
-            profile: '这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试',
-            author: 'interval',
-            time: '2017-10-10'
-          },
-          {
-            img: 'https://i2.wp.com/www.cleatech.com/wp-content/uploads/2017/07/lab_equipment.png?ssl=1',
-            title: '测试文章2222',
-            profile: '这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试',
-            author: '普瑞森',
-            time: '2017-11-20'
-          },
-          {
-            img: 'https://i2.wp.com/www.cleatech.com/wp-content/uploads/2017/07/lab_equipment.png?ssl=1',
-            title: '测试文章333',
-            profile: '这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测试文章这是测试测试测这是测试测试测试文章这是测试测试',
-            author: '普瑞森',
-            time: '2017-12-6'
+        articleList: []
+      }
+    },
+    methods: {
+      getArticles() {
+        Article.getArticles({
+          params: {
+            channel: 1,
+            order_by: '-weight',
+            page: '',
+            per_page: ''
           }
-        ]
+        }).then(
+          res => {
+            this.articleList = res.data.data.articles;
+          }
+        )
+      }
+    },
+    filters: {
+      time(val) {
+        val = new Date(val);
+        let year = val.getFullYear();
+        let month = val.getMonth()+1;
+        let day = val.getDate();
+        return `${year}-${month}-${day}`;
       }
     }
   }

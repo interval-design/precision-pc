@@ -21,6 +21,7 @@
           </div>
         </div>
       </div>
+      <img class="itv-banner-img" src="../../assets/index/banner-1.jpg" alt="banner">
     </section>
     <section class="section section-2 bg--white">
       <div class="itv-content">
@@ -39,10 +40,10 @@
               <p>儿童肠道菌群失调是引起儿童消化不良、食欲不振肥胖 营养不良、发育迟缓等成长问题的重要原因。</p>
             </div>
           </div>
-          <img src="../../assets/child/pic-section2-1.png" alt="pic-1">
+          <img width="323px"  src="../../assets/child/pic-section2-1.png" srcset="../../assets/child/pic-section2-1.png 2x" alt="pic-1">
         </div>
         <div class="section-2-item">
-          <img src="../../assets/child/pic-section2-2.png" alt="pic-2">
+          <img width="514px" src="../../assets/child/pic-section2-2.png" srcset="../../assets/child/pic-section2-2.png 2x" alt="pic-2">
           <div class="desc">
             <h2 class="desc__title">疾病预防</h2>
             <div class="desc__bd">
@@ -59,15 +60,15 @@
               <p>能了解儿童肠道免疫环境情况 / 能指导有益菌摄取，增强免疫力 / 能监测儿童是否受到服用抗生素的威胁。</p>
             </div>
           </div>
-          <img src="../../assets/child/pic-section2-3.png" alt="pic-3">
+          <img width="459px" src="../../assets/child/pic-section2-3.png" srcset="../../assets/child/pic-section2-3.png 2x" alt="pic-3">
         </div>
         <div class="section-2-item center">
-          <img src="../../assets/child/pic-section2-4.png" alt="pic-3">
+          <img width="372px" src="../../assets/child/pic-section2-4.png" srcset="../../assets/child/pic-section2-4.png 2x" alt="pic-3">
           <div class="desc">
             <p>宝宝出生前，生活在无菌的子宫中</p>
             <p>出生后，外界微生物开始在宝宝肠道内定植宝宝肠道菌群逐步发展，到3岁左右接近成人状态。</p>
           </div>
-          <img src="../../assets/child/pic-section2-5.png" alt="pic-3">
+          <img width="443px"  src="../../assets/child/pic-section2-5.png" srcset="../../assets/child/pic-section2-5.png 2x" alt="pic-3">
           <p class="desc-sub">这些都会影响儿童肠道菌群，从而影响肠道健康，我们的儿童肠道检测报告，会帮助您规避可能存在的健康风险</p>
         </div>
       </div>
@@ -94,7 +95,7 @@
           <div class="desc">
             <h2 class="desc__title">世界领先的基因检测平台</h2>
             <div class="desc__bd">
-              <p>GutCheckTM 肠道微生物基因检测平台 / illumine Miseq 高通量测序仪</p>
+              <p>GutCheck™肠道微生物基因检测平台 / illumina Miseq 高通量测序仪</p>
               <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
             </div>
             <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
@@ -121,7 +122,7 @@
           服务流程
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../../assets/pic-process.png" alt="pic-section9">
+        <img width="1036" src="../../assets/pic-process.png" srcset="../../assets/pic-process.png 2x" alt="pic-section9">
       </div>
     </section>
     <section class="section">
@@ -131,7 +132,7 @@
           普瑞森基因儿童倡导检测包含项目明细
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../../assets/child/pic-section5.png" alt="pic-section-10">
+        <img width="962px" src="../../assets/child/pic-section5.png" srcset="../../assets/child/pic-section5.png 2x" alt="pic-section-10">
       </div>
     </section>
     <section class="section">
@@ -141,7 +142,7 @@
           示例报告
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../../assets/pic-report-demo.png" alt="pic-section-11">
+        <img width="944px" src="../../assets/pic-report-demo.png" srcset="../../assets/pic-report-demo.png 2x" alt="pic-section-11">
       </div>
     </section>
     <section class="itv-buy">
@@ -197,11 +198,13 @@
     }
     .itv-banner {
       background: #dfe4e7;
-      .itv-content {
-        height: 500px;
-        background: url("../../assets/index/banner-1.jpg") no-repeat;
-        background-position: top;
-        background-size: contain;
+      height: 500px;
+      &-img{
+        position: absolute;
+        top:0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
       }
       &-cnt {
         top:25%;
@@ -274,7 +277,7 @@
         align-items: center;
       }
       &-item.center{
-        height: 550px;
+        height: 650px;
         flex-direction: column;
         .desc{
           text-align: center;

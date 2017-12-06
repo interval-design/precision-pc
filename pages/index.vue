@@ -1,16 +1,18 @@
 <template>
   <div class="itv-view-index">
-    <section class="itv-banner" :class="bannerColor">
-      <div class="itv-content">
-        <div v-swiper:banner="bannerOption">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide n1">
+    <section class="itv-banner">
+      <div v-swiper:banner="bannerOption">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide n1">
+            <div class="itv-content">
               <div class="itv-banner-cnt">
                 <h2 class="itv-banner-cnt__title">儿童肠道检测</h2>
                 <p class="itv-banner-cnt__desc">检测3000+种微生物自称的菌群及其丰富程度，全面评估儿童的倡导健康</p>
-                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-child'})">了解更多</base-Button>
+                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-child'})">了解更多
+                </base-Button>
               </div>
             </div>
+            <img class="itv-banner-img" src="../assets/index/banner-1.jpg">
           </div>
         </div>
       </div>
@@ -19,23 +21,35 @@
       <div class="itv-content">
         <div class="section-2__desc">
           <h3 class="desc__title">你的肠道健康他们都知道</h3>
-          <p class="desc__bd">您的肠道内住着大约8888种数以亿计的微生物。其中888种有益菌，8888万种有害菌。最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
-          <base-button class="itv-view-index--btn" size="big" @click="$router.push({name:'research-microbiology'})">了解微生物组学</base-button>
+          <p class="desc__bd">
+            您的肠道内住着大约8888种数以亿计的微生物。其中888种有益菌，8888万种有害菌。最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
+          <base-button class="itv-view-index--btn" size="big" @click="$router.push({name:'research-microbiology'})">
+            了解微生物组学
+          </base-button>
         </div>
-        <img class="section-2__banner" src="../assets/index/banner-2.png" alt="banner">
       </div>
+      <img class="section-2__banner" src="../assets/index/banner-2.jpg" alt="banner">
     </section>
     <section class="section section-3">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
-          苗条菌和肥胖菌
+          {{ bacteriaTitle }}
           <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
         </h3>
         <div v-swiper:mySwiper="swiperOption">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="item in 3">
-              <img src="../assets/index/icon-section3.png" alt="">
+            <div class="swiper-slide">
+              <img src="../assets/index/icon-section3.png" srcset="../assets/index/icon-section3.png 2x" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="../assets/index/icon-section3-2.png" srcset="../assets/index/icon-section3-2.png 2x" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="../assets/index/icon-section3-3.png" srcset="../assets/index/icon-section3-3.png 2x" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="../assets/index/icon-section3-4.png" srcset="../assets/index/icon-section3-4.png 2x" alt="">
             </div>
           </div>
           <div class="swiper-button-prev" slot="button-prev"></div>
@@ -75,7 +89,7 @@
           <div class="desc">
             <h2 class="desc__title">世界领先的基因检测平台</h2>
             <div class="desc__bd">
-              <p>GutCheckTM 肠道微生物基因检测平台 / illumine Miseq 高通量测序仪</p>
+              <p>GutCheck™肠道微生物基因检测平台 / illumina Miseq 高通量测序仪</p>
               <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
             </div>
             <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
@@ -118,7 +132,7 @@
           用户故事
           <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/index/pic-section7.png" alt="">
+        <img width="1059px" src="../assets/index/pic-section7.png" srcset="../assets/index/pic-section7.png 2x" alt="pic-section7">
       </div>
     </section>
     <section class="section section-8">
@@ -141,22 +155,16 @@
       return {
         title: '首页 - 普瑞森基因',
         meta: [
-          { hid: 'index', name: 'description', content: '首页' }
+          {hid: 'index', name: 'description', content: '首页'}
         ]
-      }
-    },
-    computed:{
-      bannerColor(){
-        return {
-          'n1':this.bannerActive == 0,
-        }
       }
     },
     data() {
       return {
-        bannerActive:0,
+        bannerActive: 0,
+        bacteriaTitle: '',
         bannerOption: {
-          effect : 'fade',
+          effect: 'fade',
           fade: {
             crossFade: true,
           },
@@ -168,12 +176,25 @@
         swiperOption: {
           loop: true,
           autoplay: 5000,
-//          slidesPerView: 3,
           paginationClickable: true,
-//          spaceBetween: 70,
-//          slidesOffsetBefore:87,
           nextButton: '.swiper-button-next',
           prevButton: '.swiper-button-prev',
+          onSlideChangeStart: swiper => {
+            switch (swiper.realIndex) {
+              case 0:
+                this.bacteriaTitle = '肥胖菌';
+                break;
+              case 1:
+                this.bacteriaTitle = '疾病相关细菌';
+                break;
+              case 2:
+                this.bacteriaTitle = '有害菌';
+                break;
+              case 3:
+                this.bacteriaTitle = '有益菌';
+                break;
+            }
+          }
         }
       }
     },
@@ -187,26 +208,19 @@
     .itv-view-index--btn {
       padding: 0 24px;
     }
-    .itv-banner{
-      &-cnt__desc{
+    .itv-banner {
+      &-cnt__desc {
         font-size: 16px;
       }
-      .swiper-slide{
+      .swiper-slide {
         height: 660px;
-        img{
-          width: 100%;
-          object-fit: cover;
-        }
-        &.n1{
-          background: url("../assets/index/banner-1.jpg") no-repeat;
-          background-position: -200px;
-        }
       }
-      &.n1{
-        background: #dfe4e7;
-      }
-      &.n2{
-        background: $white;
+      &-img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
       }
     }
     .section {
@@ -239,11 +253,12 @@
     .section-2 {
       height: 450px;
       text-align: left;
-      padding:0;
+      padding: 0;
       &__banner {
         position: absolute;
-        left: -200px;
+        left: 50%;
         top: 0;
+        transform: translateX(-55%);
       }
       &__desc {
         position: absolute;
@@ -263,6 +278,9 @@
       .swiper-slide {
         &:last-child {
           margin: 0 !important;
+        }
+        img{
+          width: 95%;
         }
       }
       .swiper-button-prev {

@@ -4,7 +4,7 @@
       <div class="itv-nav-bar">
         <h1>
           <nuxt-link to="/">
-            <img src="../assets/logo.png" alt="logo">
+            <img width="182px" src="../assets/logo.png" srcset="../assets/logo.png 2x" alt="logo">
           </nuxt-link>
         </h1>
         <ul class="itv-nav-bar-menu">
@@ -86,7 +86,7 @@
       </div>
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
-          <img class="logo" src="../assets/logo-white.png" alt="logo-white">
+          <img width="182px" class="logo" src="../assets/logo-white.png" srcset="../assets/logo-white.png 2x" alt="logo-white">
           <p>联系电话：021-24123123</p>
           <p>公司邮箱：puruisen123@123.com</p>
         </div>

@@ -18,7 +18,7 @@
       <section id="one" class="section section-1">
         <div class="bg--white">
           <div class="itv-content section-head">
-            <img class="section__banner" src="../../assets/index/banner-2.png" alt="banner">
+            <img class="section__banner" src="../../assets/index/banner-2.jpg" alt="banner">
             <div class="section__desc">
               <h1 class="desc__title highlight">你的肠道健康他们都知道</h1>
               <div class="desc__bd">

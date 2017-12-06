@@ -16,19 +16,29 @@
             <p>文案文案文案文案文案文案文案文案文案文案</p>
           </div>
         </div>
+        <img class="itv-banner-img" src="../../assets/ecosystem/banner.jpg" alt="">
       </div>
     </section>
     <section class="section section-2">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          苗条菌和肥胖菌
+          {{ bacteriaTitle }}
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
         <div v-swiper:mySwiper="swiperOption">
           <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="item in 3">
-              <img src="../../assets/index/icon-section3.png" alt="">
+            <div class="swiper-slide">
+              <img src="../../assets/index/icon-section3.png" srcset="../../assets/index/icon-section3.png 2x" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="../../assets/index/icon-section3-2.png" srcset="../../assets/index/icon-section3-2.png 2x" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="../../assets/index/icon-section3-3.png" srcset="../../assets/index/icon-section3-3.png 2x" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img src="../../assets/index/icon-section3-4.png" srcset="../../assets/index/icon-section3-4.png 2x" alt="">
             </div>
           </div>
           <div class="swiper-button-prev" slot="button-prev"></div>
@@ -86,7 +96,7 @@
           <div class="desc">
             <h2 class="desc__title">世界领先的基因检测平台</h2>
             <div class="desc__bd">
-              <p>GutCheckTM 肠道微生物基因检测平台 / illumine Miseq 高通量测序仪</p>
+              <p>GutCheck™肠道微生物基因检测平台 / illumina Miseq 高通量测序仪</p>
               <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
             </div>
             <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
@@ -113,7 +123,7 @@
           服务流程
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../../assets/pic-process.png" alt="pic-section9">
+        <img width="1036" src="../../assets/pic-process.png" srcset="../../assets/pic-process.png 2x" alt="pic-section9">
       </div>
     </section>
     <section class="section">
@@ -123,7 +133,7 @@
           普瑞森基因肠道微生态检测包含项目明细
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../../assets/ecosystem/pic-section6.png" alt="pic-section-10">
+        <img width="962px" src="../../assets/ecosystem/pic-section6.png" srcset="../../assets/ecosystem/pic-section6.png 2x" alt="pic-section-10">
       </div>
     </section>
     <section class="section">
@@ -133,7 +143,7 @@
           示例报告
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../../assets/pic-report-demo.png" alt="pic-section-11">
+        <img width="944px" src="../../assets/pic-report-demo.png" srcset="../../assets/pic-report-demo.png 2x" alt="pic-section-11">
       </div>
     </section>
     <section class="itv-buy">
@@ -169,6 +179,7 @@
     },
     data() {
       return {
+        bacteriaTitle: '',
         code: '',
         swiperOption: {
           loop: true,
@@ -176,6 +187,22 @@
           paginationClickable: true,
           nextButton: '.swiper-button-next',
           prevButton: '.swiper-button-prev',
+          onSlideChangeStart: swiper => {
+            switch (swiper.realIndex) {
+              case 0:
+                this.bacteriaTitle = '肥胖菌';
+                break;
+              case 1:
+                this.bacteriaTitle = '疾病相关细菌';
+                break;
+              case 2:
+                this.bacteriaTitle = '有害菌';
+                break;
+              case 3:
+                this.bacteriaTitle = '有益菌';
+                break;
+            }
+          }
         }
       }
     },
@@ -195,11 +222,13 @@
       background: $white;
     }
     .itv-banner {
-      .itv-content {
-        height: 500px;
-        background: url("../../assets/ecosystem/banner.jpg") no-repeat;
-        background-position: top;
-        background-size: contain;
+      height: 500px;
+      &-img{
+        position: absolute;
+        top:0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
       }
     }
     .section {
@@ -243,6 +272,9 @@
       .swiper-slide {
         &:last-child {
           margin: 0 !important;
+        }
+        img{
+          width: 95%;
         }
       }
       .swiper-button-prev {

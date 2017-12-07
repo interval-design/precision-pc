@@ -210,6 +210,7 @@
 .itv-banner {
   position: relative;
   text-align: left;
+  height: 500px;
   &-cnt {
     position: absolute;
     top: 35%;
@@ -227,6 +228,13 @@
       width: 400px;
       margin-bottom: 32px;
     }
+  }
+  &-img{
+    position: absolute;
+    top:0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
   }
 }
 

@@ -268,15 +268,6 @@
       font-size: 12px;
       margin-top: 16px;
     }
-    .itv-banner {
-      height: 500px;
-      &-img{
-        position: absolute;
-        top:0;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    }
     .section {
       position: relative;
       text-align: center;

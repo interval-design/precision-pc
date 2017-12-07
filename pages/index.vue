@@ -28,7 +28,7 @@
           </base-button>
         </div>
       </div>
-      <img class="section-2__banner" src="../assets/index/banner-2.jpg" alt="banner">
+      <img class="section-2__banner itv-banner-img" src="../assets/index/banner-2.jpg" alt="banner">
     </section>
     <section class="section section-3">
       <div class="itv-content">
@@ -162,7 +162,7 @@
     data() {
       return {
         bannerActive: 0,
-        bacteriaTitle: '',
+        bacteriaTitle: '肥胖菌',
         bannerOption: {
           effect: 'fade',
           fade: {
@@ -209,18 +209,12 @@
       padding: 0 24px;
     }
     .itv-banner {
+      height: auto;
       &-cnt__desc {
         font-size: 16px;
       }
       .swiper-slide {
         height: 660px;
-      }
-      &-img {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 100%;
       }
     }
     .section {

@@ -198,14 +198,6 @@
     }
     .itv-banner {
       background: #dfe4e7;
-      height: 500px;
-      &-img{
-        position: absolute;
-        top:0;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 100%;
-      }
       &-cnt {
         top:25%;
         &__desc {

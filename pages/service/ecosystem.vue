@@ -179,7 +179,7 @@
     },
     data() {
       return {
-        bacteriaTitle: '',
+        bacteriaTitle: '肥胖菌',
         code: '',
         swiperOption: {
           loop: true,
@@ -220,16 +220,6 @@
   .itv-view-ecosystem {
     .bg--white {
       background: $white;
-    }
-    .itv-banner {
-      height: 500px;
-      &-img{
-        position: absolute;
-        top:0;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 100%;
-      }
     }
     .section {
       position: relative;

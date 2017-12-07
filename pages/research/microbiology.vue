@@ -18,7 +18,6 @@
       <section id="one" class="section section-1">
         <div class="bg--white">
           <div class="itv-content section-head">
-            <img class="section__banner" src="../../assets/index/banner-2.jpg" alt="banner">
             <div class="section__desc">
               <h1 class="desc__title highlight">你的肠道健康他们都知道</h1>
               <div class="desc__bd">
@@ -27,6 +26,7 @@
                 <p>有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
               </div>
             </div>
+            <img class="itv-banner-img" src="../../assets/index/banner-2.jpg" alt="banner">
           </div>
         </div>
         <div class="itv-plane itv-content bg--white">
@@ -271,12 +271,6 @@
     }
     .itv-banner {
       background: #dfe4e7;
-      .itv-content {
-        height: 500px;
-        background: url("../../assets/index/banner-1.jpg") no-repeat;
-        background-position: top;
-        background-size: contain;
-      }
       &-cnt {
         top: 25%;
         &__desc {
@@ -302,6 +296,9 @@
             }
           }
         }
+      }
+      &-img{
+        transform: translateX(-55%);
       }
     }
     .itv-anchor-link {
@@ -370,6 +367,7 @@
         position: absolute;
         top: 30%;
         right: 0;
+        z-index:10;
         .desc__title {
           font-size: 22px;
         }

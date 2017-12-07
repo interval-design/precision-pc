@@ -13,7 +13,7 @@ import '../assets/style/custom.scss'
 
 import '../assets/style/animate.scss'
 
-import '../node_modules/swiper/dist/css/swiper.css'
+import '/Users/interval_ky/works/precision-pc/node_modules/_swiper@3.4.2@swiper/dist/css/swiper.css'
 
 
 let layouts = {

@@ -48,13 +48,13 @@
             <transition name="slideInDown" mode="out-in">
               <ul class="item__dropdown" v-show="active == 3">
                 <li>
-                  <nuxt-link to="">了解普瑞森</nuxt-link>
+                  <nuxt-link :to="{name:'about-introduction'}">了解普瑞森</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="">普瑞森团队</nuxt-link>
+                  <nuxt-link :to="{name:'about-team'}">普瑞森团队</nuxt-link>
                 </li>
                 <li>
-                  <nuxt-link to="">加入我们</nuxt-link>
+                  <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
                 </li>
               </ul>
             </transition>
@@ -115,13 +115,13 @@
           <ul class="item">
             <li class="title">关于普瑞森</li>
             <li>
-              <nuxt-link to="">了解普瑞森</nuxt-link>
+              <nuxt-link :to="{name:'about-introduction'}">了解普瑞森</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="">普瑞森团队</nuxt-link>
+              <nuxt-link :to="{name:'about-team'}">普瑞森团队</nuxt-link>
             </li>
             <li>
-              <nuxt-link to="">加入我们</nuxt-link>
+              <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
             </li>
           </ul>
         </div>

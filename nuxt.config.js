@@ -27,9 +27,9 @@ module.exports = {
   plugins: [
     { src: '~plugins/custom.js'},
     { src: '~/plugins/axios.js'},
-    { src: '~plugins/vue-awesome-swiper.js', ssr: false },
+    { src: '~plugins/vue-awesome-swiper.js', ssr: false }
     // { src: '~plugins/vue-area-linkage.js'},
-    { src: '~plugins/vue-cookie.js',ssr:false}
+    // { src: '~plugins/vue-cookie.js',ssr:false}
 
   ],
   proxy: [["/api", { target: "http://precision.interval.im/" }]],

@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "nuxt": "^1.0.0-rc11",
-    "vue-awesome-swiper": "^2.6.7",
-    "vue-cookie": "^1.1.4"
+    "tiny-cookie": "^2.1.1",
+    "vue-awesome-swiper": "^2.6.7"
   },
   "devDependencies": {
     "@nuxtjs/axios": "^4.5.0",

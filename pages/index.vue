@@ -125,7 +125,7 @@
         </nuxt-link>
       </div>
     </section>
-    <section class="section section-7">
+    <section class="section section-7" style="display:none">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
@@ -135,7 +135,7 @@
         <img width="1059px" src="../assets/index/pic-section7.png" srcset="../assets/index/pic-section7.png 2x" alt="pic-section7">
       </div>
     </section>
-    <section class="section section-8">
+    <section class="section section-8" style="display:none">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">

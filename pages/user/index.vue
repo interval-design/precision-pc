@@ -158,7 +158,7 @@
       }
     },
     created(){
-      this.getCaptcha();
+//      this.getCaptcha();
     },
     data () {
       return {

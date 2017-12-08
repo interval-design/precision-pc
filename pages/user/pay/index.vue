@@ -104,7 +104,7 @@
       }
     },
     created() {
-      this.getUserAddresses();
+//      this.getUserAddresses();
     },
     data() {
       return {

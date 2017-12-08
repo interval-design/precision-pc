@@ -37,7 +37,7 @@
       }
     },
     created() {
-      this.getArticleDetail(this.$route.params.id);
+//      this.getArticleDetail(this.$route.params.id);
     },
     data() {
       return {

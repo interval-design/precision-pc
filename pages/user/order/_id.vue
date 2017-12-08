@@ -168,7 +168,7 @@
       }
     },
     created() {
-      this.getOrderdetail(this.$route.params.id);
+//      this.getOrderdetail(this.$route.params.id);
     },
     data() {
       return {

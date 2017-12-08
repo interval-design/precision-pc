@@ -63,7 +63,7 @@
             <!-- 暂无功能，合作方要求先加上 -->
             <nuxt-link to="">合作咨询</nuxt-link>
           </li>
-          <template v-if="user == null" style="display: none">
+          <template v-if="null" style="display: none">
             <li class="item login">
               <span @click="openLoginDialog">登录</span>
             </li>
@@ -71,7 +71,7 @@
               <base-button line size="small" @click="openLoginDialog">注册</base-button>
             </li>
           </template>
-          <li class="item login" v-else style="display: none">
+          <li class="item login" style="display: none">
             <nuxt-link to="/user">
               <img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">
             </nuxt-link>

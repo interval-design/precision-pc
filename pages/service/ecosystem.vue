@@ -12,8 +12,8 @@
         <div class="itv-banner-cnt">
           <h2 class="itv-banner-cnt__title">肠道微生态检测</h2>
           <div class="itv-banner-cnt__desc">
-            <p>文案文案文案文案文案文案文案文案文案文案</p>
-            <p>文案文案文案文案文案文案文案文案文案文案</p>
+            <p>肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
+            <!--<p>文案文案文案文案文案文案文案文案文案文案</p>-->
           </div>
         </div>
         <img class="itv-banner-img" src="../../assets/ecosystem/banner.jpg" alt="">
@@ -171,7 +171,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- 邀请码弹窗 -->
     <base-dialog :visible.sync="showDialog" width="1000px">
       <section class="itv-buy itv-code-tips-dialog">

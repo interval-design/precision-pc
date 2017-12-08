@@ -68,7 +68,18 @@
 
 <script>
   export default {
-    name: 'Team'
+    name: 'Team',
+    head() {
+      return {
+        title: '普瑞森团队 - 普瑞森基因',
+        meta: [
+          { hid: 'child', name: 'description', content: '普瑞森团队' }
+        ]
+      }
+    },
+    data() {
+      return {}
+    }
   }
 </script>
 
@@ -97,7 +108,7 @@
     flex-wrap: wrap;
     margin-top: 24px;
     padding: 0 109px 0 135px;
-    
+
     &-item {
       margin-top: 64px;
       width: 362px;

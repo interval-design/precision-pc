@@ -109,7 +109,18 @@
 
 <script>
   export default {
-    name: 'JoinUs'
+    name: 'JoinUs',
+    head() {
+      return {
+        title: '加入普瑞森 - 普瑞森基因',
+        meta: [
+          { hid: 'child', name: 'description', content: '普瑞森团队' }
+        ]
+      }
+    },
+    data() {
+      return {}
+    }
   }
 </script>
 

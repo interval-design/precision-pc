@@ -135,7 +135,7 @@
           <img src="../assets/qrcode-text.png" alt="qr-code">
         </div>
       </div>
-      <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>
+      <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 苏ICP备16065635号-1</div>
     </footer>
     <base-dialog :visible.sync="loginDialog" class="itv-login">
       <div class="itv-dialog-title">
@@ -191,7 +191,7 @@
       }),
     },
     created() {
-      this.getCaptcha();
+//      this.getCaptcha();
       // todo:微信授权登录没条件调试，等最后再搞
 //      this.weixin = new WxLogin({
 //        id:"login_container",

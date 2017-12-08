@@ -21,7 +21,7 @@ module.exports = {
   },
   loading: {color: '#3C90EF'},
   router: {
-    middleware: 'chage-page'
+    middleware: 'change-page'
   },
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
   plugins: [

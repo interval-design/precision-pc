@@ -170,7 +170,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- 邀请码弹窗 -->
     <base-dialog :visible.sync="showDialog" width="1000px">
       <section class="itv-buy itv-code-tips-dialog">
@@ -200,7 +200,7 @@
         </div>
       </div>
     </base-dialog>
-    
+
     <!-- 悬浮菜单 -->
     <float-menu @open="openCodeDialog"></float-menu>
   </div>
@@ -232,7 +232,7 @@
         }
         // this.$router.push({name: 'user-pay'});
       },
-      
+
       // 打开邀请码弹窗
       openCodeDialog() {
         this.showDialog = true;

@@ -101,7 +101,18 @@
 
 <script>
   export default {
-    name: 'Introduction'
+    name: 'Introduction',
+    head() {
+      return {
+        title: '关于普瑞森 - 普瑞森基因',
+        meta: [
+          { hid: 'child', name: 'description', content: '苏州普瑞森基因科技有限公司是一家领先的基因分子诊断技术研发企业，专注于人体肠道微生态健康和微生物基因大数据分析领域。' }
+        ]
+      }
+    },
+    data() {
+      return {}
+    }
   }
 </script>
 

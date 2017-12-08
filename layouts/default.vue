@@ -199,9 +199,9 @@
 //      });
     },
     mounted() {
-      if (this.$cookie.get('_prs_user')) {
-        this.$store.dispatch('setUser', res => {})
-      }
+//      if (this.$cookie.get('_prs_user')) {
+//        this.$store.dispatch('setUser', res => {})
+//      }
     },
     data() {
       return {

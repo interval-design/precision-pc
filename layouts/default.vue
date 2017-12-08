@@ -59,6 +59,10 @@
               </ul>
             </transition>
           </li>
+          <li class="item">
+            <!-- 暂无功能，合作方要求先加上 -->
+            <nuxt-link to="/">合作咨询</nuxt-link>
+          </li>
           <template v-if="user == null">
             <li class="item login">
               <span @click="openLoginDialog">登录</span>
@@ -76,20 +80,21 @@
       </div>
     </nav>
     <transition name="page">
-      <!-- 这里我暂时改成 router-view 了，用nuxt是无效的，后面可以考虑在store里设置 -->
-      <router-view class="itv-container" v-on:openUserDialog="openLoginDialog"/>
+      <!-- 这里我暂时改成 router-view 了，用nuxt是无效的 -->
+      <router-view class="itv-container" @openUserDialog="openLoginDialog"/>
     </transition>
     <footer class="itv-footer">
-      <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology' && full">
+      <!-- 已去除部分 2017-12-8 -->
+      <!-- <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology' && full">
         <p>想成为我们的合作伙伴？</p>
-        <p class="tel"><img src="../assets/pic-footer-phone.png" alt="icon-phone">021-59234123</p>
+        <p class="tel"><img src="../assets/pic-footer-phone.png" alt="icon-phone">400-822-6270</p>
         <p>期待与您合作</p>
-      </div>
+      </div> -->
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
           <img width="182px" class="logo" src="../assets/logo-white.png" srcset="../assets/logo-white.png 2x" alt="logo-white">
-          <p>联系电话：021-24123123</p>
-          <p>公司邮箱：puruisen123@123.com</p>
+          <p>联系电话：400-822-6270</p>
+          <p>公司邮箱：zhuyongliang@precisiongene.cn</p>
         </div>
         <div class="itv-footer-bd-item nav">
           <ul class="item">
@@ -127,7 +132,7 @@
           </ul>
         </div>
         <div class="itv-footer-bd-item qr-code">
-          <img src="../assets/qr-code.jpg" alt="qr-code">
+          <img src="../assets/qrcode-text.png" alt="qr-code">
         </div>
       </div>
       <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>

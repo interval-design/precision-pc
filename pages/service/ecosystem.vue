@@ -148,14 +148,22 @@
     </section>
     <section class="itv-buy">
       <div class="itv-buy—form">
-        <p class="itv-buy—form__title">输入邀请码体验检测服务</p>
+        <p class="itv-buy—form__title">
+          输入邀请码体验检测服务
+          <span class="itv-icon itv-icon-question">
+            <span class="itv-icon-question-img">
+              <span class="itv-icon-question-img-triangle"></span>
+              <img src="../../assets/code-tips.png" alt="code-tips">
+            </span>
+          </span>
+        </p>
         <div class="itv-input-group">
           <input class="itv-input-group__input" type="text" v-model="code" placeholder="输入邀请码">
           <base-button class="itv-input-group__button" @click="submit">体验服务</base-button>
         </div>
       </div>
       <div class="itv-buy—form qr">
-        <img src="../../assets/qr-code.jpg" alt="qr">
+        <img src="../../assets/qrcode-text.png" alt="qr">
         <div class="qr-desc">
           <h3>如何获取邀请码</h3>
           <p>扫描关注微信公众号</p>
@@ -163,6 +171,39 @@
         </div>
       </div>
     </section>
+    
+    <!-- 邀请码弹窗 -->
+    <base-dialog :visible.sync="showDialog" width="1000px">
+      <section class="itv-buy itv-code-tips-dialog">
+        <div class="itv-buy—form">
+          <p class="itv-buy—form__title">输入邀请码体验检测服务</p>
+          <div class="itv-input-group">
+            <input class="itv-input-group__input" type="text" v-model="code" placeholder="输入邀请码">
+            <base-button class="itv-input-group__button" @click="submit">体验服务</base-button>
+          </div>
+        </div>
+        <div class="itv-buy—form qr">
+          <img src="../../assets/qrcode-text.png" alt="qr">
+          <div class="qr-desc">
+            <h3>如何获取邀请码</h3>
+            <p>扫描关注微信公众号</p>
+            <p>参与公众号内的讲座获取邀请码</p>
+          </div>
+        </div>
+      </section>
+      <div class="itv-code-tips">
+        <h4 class="itv-code-tips-title" @click="showDialogImg=!showDialogImg">
+          如何找到邀请码？
+          <span class="itv-icon" :class="'itv-icon-arrow-'+ (showDialogImg?'up':'down')"></span>
+        </h4>
+        <div class="itv-code-tips-img" v-show="showDialogImg">
+          <img src="../../assets/code-tips.png" alt="code-tips">
+        </div>
+      </div>
+    </base-dialog>
+
+    <!-- 悬浮菜单 -->
+    <float-menu @open="openCodeDialog"></float-menu>
   </div>
 </template>
 
@@ -179,6 +220,8 @@
     },
     data() {
       return {
+        showDialog: false,
+        showDialogImg: false,
         bacteriaTitle: '肥胖菌',
         code: '',
         swiperOption: {
@@ -213,6 +256,11 @@
           this.$emit('openUserDialog');
         }
         // this.$router.push({name: 'user-pay'});
+      },
+
+      // 打开邀请码弹窗
+      openCodeDialog() {
+        this.showDialog = true;
       }
     }
   }

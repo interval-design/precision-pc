@@ -6,7 +6,7 @@
         <p class="itv-pay-status-info">恭喜您支付成功！</p>
         <p><base-button line @click="$router.push({path: '/'})">返回首页</base-button></p>
         <p class="itv-pay-status-qrcode">
-          <img src="../../../assets/qr-code.jpg">
+          <img src="../../../assets/qrcode-text.png">
         </p>
         <p class="itv-pay-status-qrcode-info">
           推荐您关注普瑞森公众号，方便跟踪订单信息和第一时间查看报告

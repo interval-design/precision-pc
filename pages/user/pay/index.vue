@@ -27,7 +27,7 @@
         <div class="itv-pay-address-content-form" v-show="showForm">
           <div>
             <span>所在地区：</span>
-            <!--<area-select :level='2' type='text' v-model='addressForm.address' ref="select" style="margin-left: -8px"></area-select>-->
+            <area-select :level='2' type='text' v-model='addressForm.address' ref="select" style="margin-left: -8px"></area-select>
           </div>
           <div>
             <span>详细地址：</span>

@@ -39,9 +39,24 @@
         ]
       }
     },
-    created() {
-      this.getArticles();
+    asyncData({params},callback){
+      Article.getArticles({
+        params: {
+          channel: 1,
+          order_by: '-weight',
+          page: '',
+          per_page: ''
+        }
+      }).then(
+        res => {
+          callback(null,{articleList:res.data.data.articles});
+//          this.articleList = res.data.data.articles;
+        }
+      )
     },
+//    created() {
+//      this.getArticles();
+//    },
     data() {
       return {
         articleList: []

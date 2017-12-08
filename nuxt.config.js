@@ -28,7 +28,7 @@ module.exports = {
     { src: '~plugins/custom.js'},
     { src: '~/plugins/axios.js'},
     { src: '~plugins/vue-awesome-swiper.js', ssr: false },
-    // { src: '~plugins/vue-area-linkage.js', ssr: false },
+    // { src: '~plugins/vue-area-linkage.js'},
     { src: '~plugins/vue-cookie.js',ssr:false}
 
   ],

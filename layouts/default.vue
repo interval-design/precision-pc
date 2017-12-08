@@ -19,9 +19,9 @@
                 <li>
                   <nuxt-link :to="{name:'research-microbiology'}">微生物组学</nuxt-link>
                 </li>
-                <li>
-                  <nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>
-                </li>
+                <!--<li>-->
+                  <!--<nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>-->
+                <!--</li>-->
               </ul>
             </transition>
           </li>
@@ -59,19 +59,19 @@
               </ul>
             </transition>
           </li>
-          <template v-if="user == null">
-            <li class="item login">
-              <span @click="openLoginDialog">登录</span>
-            </li>
-            <li class="item">
-              <base-button line size="small" @click="openLoginDialog">注册</base-button>
-            </li>
-          </template>
-          <li class="item login" v-else>
-            <nuxt-link to="/user">
-              <img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">
-            </nuxt-link>
-          </li>
+          <!--<template v-if="user == null">-->
+            <!--<li class="item login">-->
+              <!--<span @click="openLoginDialog">登录</span>-->
+            <!--</li>-->
+            <!--<li class="item">-->
+              <!--<base-button line size="small" @click="openLoginDialog">注册</base-button>-->
+            <!--</li>-->
+          <!--</template>-->
+          <!--<li class="item login" v-else>-->
+            <!--<nuxt-link to="/user">-->
+              <!--<img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">-->
+            <!--</nuxt-link>-->
+          <!--</li>-->
         </ul>
       </div>
     </nav>

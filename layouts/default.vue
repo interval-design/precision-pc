@@ -186,7 +186,7 @@
       }),
     },
     created() {
-      this.getCaptcha();
+//      this.getCaptcha();
       // todo:微信授权登录没条件调试，等最后再搞
 //      this.weixin = new WxLogin({
 //        id:"login_container",

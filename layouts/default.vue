@@ -76,7 +76,8 @@
       </div>
     </nav>
     <transition name="page">
-      <nuxt class="itv-container"/>
+      <!-- 这里我暂时改成 router-view 了，用nuxt是无效的，后面可以考虑在store里设置 -->
+      <router-view class="itv-container" v-on:openUserDialog="openLoginDialog"/>
     </transition>
     <footer class="itv-footer">
       <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology' && full">

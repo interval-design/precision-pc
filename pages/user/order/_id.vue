@@ -84,34 +84,14 @@
             </tr>
           </thead>
           <tbody class="itv-order-finished-table-body">
-            <tr>
-              <td>肠癌早筛测试报告</td>
-              <td>2017-12-12 12:12</td>
-              <td>张三</td>
-              <td>男</td>
-              <td>40</td>
+            <tr v-for="order in orderDetail.sub_orders" :key="order.id" v-if="order.status === 4">
+              <td>{{order.product_name}}</td>
+              <td>{{order.iso_report_time | toDate}}</td>
+              <td>{{order.person_name}}</td>
+              <td>{{order.person_sex}}</td>
+              <td>{{order.person_age}}</td>
               <td>
-                <base-button size="small" line>查看完整报告</base-button>
-              </td>
-            </tr>
-            <tr>
-              <td>肠癌早筛测试报告</td>
-              <td>2017-12-12 12:12</td>
-              <td>李四</td>
-              <td>女</td>
-              <td>67</td>
-              <td>
-                <base-button size="small" line>查看完整报告</base-button>
-              </td>
-            </tr>
-            <tr>
-              <td>肠癌早筛测试报告</td>
-              <td>2017-12-12 12:12</td>
-              <td>王五</td>
-              <td>男</td>
-              <td>28</td>
-              <td>
-                <base-button size="small" line>查看完整报告</base-button>
+                <base-button size="small" line @click="openReport(order.report_full_link)">查看完整报告</base-button>
               </td>
             </tr>
           </tbody>
@@ -121,7 +101,7 @@
         <h2 class="itv-order-main-item-title">订单信息</h2>
         <div class="itv-order-info-table">
           <header class="itv-table-header itv-order-info-table-title">
-            <span>订单号：8888888888888</span>
+            <span>订单号：{{orderDetail.code}}</span>
             <span>
               <span class="itv-icon itv-icon-message" style="margin-right: 8px;"></span>
               <a @click="showMessageDialog = true">给客服留言</a>
@@ -130,42 +110,37 @@
           <div class="itv-order-info-table-content">
             <ul class="itv-order-info-table-content-list">
               <li class="itv-order-info-table-content-list-item">
-                <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
-                <p style="width: 250px">肠癌早筛测试服务</p>
-                <p style="width: 50px">x1</p>
-                <p style="width: 100px" class="itv-order-info-table-content-list-item-price">￥999</p>
-                <p style="width: 200px; font-size: 18px;">总金额：<span class="itv-order-info-table-content-list-item-price">￥9999</span></p>
-              </li>
-              <li class="itv-order-info-table-content-list-item">
-                <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
-                <p style="width: 250px">肠癌早筛测试服务</p>
-                <p style="width: 50px">x1</p>
-                <p style="width: 100px" class="itv-order-info-table-content-list-item-price">￥999</p>
-                <p style="width: 200px; font-size: 18px;">总金额：<span class="itv-order-info-table-content-list-item-price">￥9999</span></p>
+                <img src="../../../assets/pic-product-1.png" v-if="orderDetail.product === 1">
+                <img src="../../../assets/pic-product-2.png" v-if="orderDetail.product === 2">
+                <img src="../../../assets/pic-product-3.png" v-if="orderDetail.product === 3">
+                <p style="width: 250px">{{orderDetail.product_name}}</p>
+                <p style="width: 50px">x{{orderDetail.quantity}}</p>
+                <p style="width: 100px" class="itv-order-info-table-content-list-item-price">￥{{orderDetail.product_price/100}}</p>
+                <p style="width: 200px; font-size: 18px;">总金额：<span class="itv-order-info-table-content-list-item-price">￥{{orderPrice}}</span></p>
               </li>
             </ul>
             <ul class="itv-order-info-table-content-info">
               <li>
                 <p class="itv-order-info-table-content-info-title">收件人信息</p>
-                <p><i style="width: 56px">收件人：</i><span>张三</span></p>
-                <p><i style="width: 56px">电话：</i><span>12345678907</span></p>
-                <p><i style="width: 56px">地址：</i><span>广东省广州市越秀区吉祥路1号-f1004距离市中心约5955米</span></p>
+                <p><i style="width: 56px">收件人：</i><span>{{orderDetail.consignee}}</span></p>
+                <p><i style="width: 56px">电话：</i><span>{{orderDetail.phone}}</span></p>
+                <p><i style="width: 56px">地址：</i><span>{{orderDetail.address}}</span></p>
               </li>
               <li>
                 <p class="itv-order-info-table-content-info-title">支付信息</p>
                 <p><i style="width: 72px">支付方式：</i><span>微信支付</span></p>
-                <p><i style="width: 72px">支付时间：</i><span>2017-11-11 12:12</span></p>
-                <p><i style="width: 72px">应付金额：</i><span>￥99998</span></p>
-                <p><i style="width: 72px">优惠金额：</i><span>￥9</span></p>
-                <p><i style="width: 72px">实付金额：</i><span>￥998</span></p>
+                <p><i style="width: 72px">支付时间：</i><span>{{orderDetail.iso_pay_time | toDate}}</span></p>
+                <p><i style="width: 72px">应付金额：</i><span>￥{{orderPrice}}</span></p>
+                <p><i style="width: 72px">优惠金额：</i><span>{{'￥' && orderDetail.discount || '-'}}</span></p>
+                <p><i style="width: 72px">实付金额：</i><span>{{'￥' && orderDetail.price || '-'}}</span></p>
               </li>
               <li>
                 <p class="itv-order-info-table-content-info-title">试剂盒运单信息</p>
                 <p><i style="width: 72px">快递公司：</i><span>顺丰快递</span></p>
-                <p><i style="width: 72px">运单号：</i><span>12345678907</span></p>
-                <p><i style="width: 72px">寄出时间：</i><span>2017-11-11 12:12</span></p>
+                <p><i style="width: 72px">运单号：</i><span>{{trackingToStr}}</span></p>
+                <p><i style="width: 72px">寄出时间：</i><span>{{orderDetail.iso_send_time | toDate}}</span></p>
                 <p>
-                  <base-button size="small" type="info" line>运单快捷查询</base-button>
+                  <base-button size="small" type="info" line @click="billTracking(orderDetail.tracking_nos)">运单快捷查询</base-button>
                 </p>
               </li>
             </ul>
@@ -181,6 +156,7 @@
 </template>
 
 <script>
+  import ApiUser from '../../../api/user.js';
   export default {
     name: 'Order',
     head() {
@@ -191,16 +167,84 @@
         ]
       }
     },
+    created() {
+      this.getOrderdetail(this.$route.params.id);
+    },
     data() {
       return {
-        showMessageDialog: false
+        showMessageDialog: false,
+        orderDetail: {}
+      }
+    },
+    methods: {
+      /**
+       * 获取订单详情
+       */
+      getOrderdetail(orderId) {
+        ApiUser.getOrderdetail(orderId).then(
+          res => {
+            if (res.data.code === 0) {
+              this.orderDetail = res.data.data.order;
+            }
+          }
+        )
+      },
+
+      /**
+       * 跳转到报告页面
+       */
+      openReport(url) {
+        window.open(url);
+      },
+
+      /**
+       * 追踪快递单号
+       * bills {Array} 单号数组
+       */
+      billTracking(bills) {
+        window.open(`http://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/${bills.join(',')}`);
+      }
+    },
+    computed: {
+      /**
+       * 订单总价
+       */
+      orderPrice() {
+        return (this.orderDetail.product_price/100) * this.orderDetail.quantity;
+      },
+
+      /**
+       * 运单数组转字符串
+       */
+      trackingToStr() {
+        if (this.orderDetail.tracking_nos) {
+          return this.orderDetail.tracking_nos.join(',');
+        }else {
+          return '-';
+        }
+      }
+
+    },
+    filters: {
+      toDate(val) {
+        if (!val) {
+          return '-';
+        };
+        var time = new Date(val);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var day = time.getDate();
+        var hour = time.getHours();
+        var min = time.getMinutes();
+        var sec = time.getSeconds();
+        return `${year}-${month}-${day} ${hour}:${min}`;
       }
     }
   }
 </script>
 
 <style lang="scss">
-@import '../../assets/style/variable.scss';
+@import '../../../assets/style/variable.scss';
 .itv-order {
   width: 1100px;
   padding-bottom: 80px;

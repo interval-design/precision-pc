@@ -208,7 +208,11 @@
     },
     methods: {
       submit() {
-        this.$router.push({name: 'user-pay'});
+        // 未登录状态体验服务会弹登录框
+        if (!this.$store.state.user) {
+          this.$emit('openUserDialog');
+        }
+        // this.$router.push({name: 'user-pay'});
       }
     }
   }

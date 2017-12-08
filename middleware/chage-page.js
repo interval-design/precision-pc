@@ -5,7 +5,7 @@
 
 export default function ({ route, store, redirect }, next) {
   // 判断页面是否需要登录访问
-  const limitAccessPages = ['user','user-paper','user-pay','user-order'];
+  const limitAccessPages = ['user','user-report','user-pay','user-order'];
   const limit = limitAccessPages.includes(route.name);
   store.dispatch('setUser', res => {}).then(res => {
     if (limit && !store.state.user) {

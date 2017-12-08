@@ -150,7 +150,7 @@
         <p class="itv-buy—form__title">输入邀请码体验检测服务</p>
         <div class="itv-input-group">
           <input class="itv-input-group__input" type="text" v-model="code" placeholder="输入邀请码">
-          <base-button class="itv-input-group__button" @click="submit">体验服务</base-button>
+          <base-button class="itv-input-group__button" v-on:click="submit">体验服务</base-button>
         </div>
       </div>
       <div class="itv-buy—form qr">
@@ -183,7 +183,11 @@
     },
     methods: {
       submit() {
-        this.$router.push({name: 'user-pay'});
+        // 未登录状态体验服务会弹登录框
+        if (!this.$store.state.user) {
+          this.$emit('openUserDialog');
+        }
+        // this.$router.push({name: 'user-pay'});
       }
     }
   }

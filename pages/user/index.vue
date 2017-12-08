@@ -1,65 +1,62 @@
 <template>
-  <div class="itv-user">
+  <div class="itv-user" v-if="user">
     <header class="itv-breadcrumbs">
       <span>个人中心</span>
     </header>
     <div class="itv-user-content">
       <aside class="itv-user-aside">
         <div class="itv-user-aside-portrait">
-          <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
+          <img src="../../assets/default-avatar.png">
         </div>
         <p class="itv-user-aside-text">
-          <span class="itv-icon itv-icon-weixin"></span>我的微信名
+          <span class="itv-icon itv-icon-weixin"></span>微信还没接入
         </p>
         <p class="itv-user-aside-text">
-          <span class="itv-icon itv-icon-phone--done"></span>12345678907
+          <span class="itv-icon itv-icon-phone--done"></span>{{user.mobile}}
           <a @click="showPhoneBindDialog = true">改绑</a>
         </p>
         <div class="itv-user-aside-btn">
-          <base-button line @click="$router.push({path: '/user/paper'})">查看全部报告</base-button>
+          <base-button line @click="$router.push({path: '/user/report'})">查看全部报告</base-button>
         </div>
       </aside>
       <section class="itv-user-main">
         <h2 class="itv-user-main-title">我的订单</h2>
-        <div class="itv-user-main-table">
+        <div class="itv-user-main-table" v-for="order in orderList" :key="order.id">
           <div class="itv-user-main-table-item">
             <header class="itv-table-header itv-user-main-table-item__header">
-              <span>下单时间：2017-11-11 12:32</span>
-              <span>订单号：1234567890</span>
+              <span>下单时间：{{order.iso_create_time | toDate}}</span>
+              <span>订单号：{{order.code}}</span>
               <span style="flex: 1"></span>
               <span>用户下单</span>
             </header>
             <div class="itv-user-main-table-item__content">
               <ul class="itv-user-main-table-item__content-list">
                 <li class="itv-user-main-table-item__content-list-item">
-                  <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4"
+                  <img src="../../assets/pic-product-1.png" v-if="order.product === 1"
                        class="itv-user-main-table-item__content-list-item__img">
-                  <p style="width: 160px">肠癌早筛测试服务</p>
-                  <p style="width: 40px">x1</p>
-                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">￥999999</p>
-                  <p style="width: 100px; color: #919191"><span class="itv-icon itv-icon-time"></span>报告未出</p>
-                </li>
-                <li class="itv-user-main-table-item__content-list-item">
-                  <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4"
+                  <img src="../../assets/pic-product-2.png" v-if="order.product === 2"
                        class="itv-user-main-table-item__content-list-item__img">
-                  <p style="width: 160px">肠癌早筛测试服务</p>
-                  <p style="width: 40px">x1</p>
-                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">￥999999</p>
-                  <p style="width: 100px">
-                    <span class="itv-icon itv-icon-paper"></span>
-                    <a href="javascript:;">查看报告</a>
-                  </p>
+                  <img src="../../assets/pic-product-3.png" v-if="order.product === 3"
+                       class="itv-user-main-table-item__content-list-item__img">
+                  <p style="width: 160px">{{order.product_name}}</p>
+                  <p style="width: 40px">x{{order.quantity}}</p>
+                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">￥{{order.product_price/100}}</p>
+                  <p v-if="order.status !== 4" style="width: 100px; color: #919191"><span class="itv-icon itv-icon-time"></span>报告未出</p>
+                  <p v-else style="width: 100px"><span class="itv-icon itv-icon-paper"></span><a href="javascript:;">查看报告</a></p>
                 </li>
               </ul>
               <div class="itv-user-main-table-item__content-order">
                 <p><span class="itv-icon itv-icon-order"></span>运单号</p>
                 <p class="itv-user-main-table-item__content-order-number">
-                  1234567890
-                  <span class="itv-user-main-table-item__content-order-number-tip">
+                  <ul v-if="order.tracking_nos.length>0">
+                    <li v-for="nos in order.tracking_nos" :key="nos">{{nos}}</li>
+                  </ul>
+                  <span v-else>暂无</span>
+                  <span class="itv-user-main-table-item__content-order-number-tip" v-if="order.tracking_nos.length>0">
                     <span class="itv-user-main-table-item__content-order-number-tip__triangle"></span>
                     <span class="itv-user-main-table-item__content-order-number-tip__content">
                       <i>快递公司：顺丰快递</i>
-                      <base-button type="info" line>运单快捷查询</base-button>
+                      <base-button type="info" line @click="billTracking(order.tracking_nos)">运单快捷查询</base-button>
                     </span>
                   </span>
                 </p>
@@ -70,11 +67,13 @@
                      给客服留言<i class="itv-user-main-table-item__content-message-Badge">99</i>
                   </a>
                 </p>
-                <p><a @click="$router.push({path: '/user/order'})">订单详情</a></p>
+                <p><a @click="$router.push({path: `/user/order/${order.id}?`})">订单详情</a></p>
               </div>
             </div>
             <footer class="itv-user-main-table-item__footer">
-              <span class="itv-user-main-table-item__footer-price">总金额：<i>￥1998</i></span>
+              <span class="itv-user-main-table-item__footer-price">总金额：
+                <i>￥{{(order.product_price/100)*order.quantity}}</i>
+              </span>
               <base-button size="small" type="error" @click="$router.push({path: '/user/pay'})">去付款</base-button>
             </footer>
           </div>
@@ -118,9 +117,9 @@
             <span class="refresh" @click="getCaptcha">刷新</span>
           </div>
         </div>
-        <div class="itv-dialog-form__item"  :class="{'active':focus == 2}">
-          <span class="itv-icon" :class="'itv-icon-time'+ (focus === 2 ? '--done': '')"></span>
-          <input type="text" placeholder="输入验证码" v-model.number="bindForm.code" @focus="focus = 2">
+        <div class="itv-dialog-form__item"  :class="{'active':focus == 3}">
+          <span class="itv-icon" :class="'itv-icon-time'+ (focus === 3 ? '--done': '')"></span>
+          <input type="text" placeholder="输入验证码" v-model.number="bindForm.code" @focus="focus = 3">
           <base-button class="form-code" size="small" line @clcik="sendCode">{{ codeStatus.statusText }}</base-button>
         </div>
         <div class="itv-dialog-form__info">{{bindForm.errorText}}</div>
@@ -146,6 +145,7 @@
 
 <script>
   import ApiLogin from '../../api/login';
+  import ApiUser from '../../api/user.js';
 
   export default {
     name: 'User',
@@ -159,11 +159,11 @@
     },
     created(){
       this.getCaptcha();
-      this.user = this.store;
     },
     data () {
       return {
         user: null,
+        orderList: [],
         showMessageDialog: false,
         showPhoneBindDialog: false,
         showAlert: false,
@@ -294,6 +294,47 @@
           captchaImage:null,
           captchaToken:null
         }
+      },
+
+      /**
+       * 列出当前用户的订单
+       */
+      getUserOrders() {
+        ApiUser.getUserOrders().then(
+          res => {
+            if (res.data.code === 0) {
+              this.orderList = res.data.data.orders;
+            }
+          }
+        )
+      },
+
+      /**
+       * 追踪快递单号
+       * bills {Array} 单号数组
+       */
+      billTracking(bills) {
+        window.open(`http://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/${bills.join(',')}`);
+      }
+    },
+    watch: {
+      '$store.state.user'(newVal,oldVal) {
+        if (newVal) {
+          this.user = this.$store.state.user;
+          this.getUserOrders();
+        }
+      }
+    },
+    filters: {
+      toDate(val) {
+        var time = new Date(val);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var day = time.getDate();
+        var hour = time.getHours();
+        var min = time.getMinutes();
+        var sec = time.getSeconds();
+        return `${year}-${month}-${day} ${hour}:${min}`;
       }
     }
   }
@@ -348,9 +389,12 @@
     }
     &-table {
       box-sizing: border-box;
-      margin-top: 16px;
       border: 1px solid $border;
       background: $white;
+      margin-top: 24px;
+      &:nth-of-type(1) {
+        margin-top: 16px;
+      }
       &-item {
         &__header {
           display: flex;

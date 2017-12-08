@@ -25,14 +25,6 @@ export default {
   },
 
   /**
-   * 获取当前用户详情
-   * @returns {*}
-   */
-  getCurrentUser(params){
-    return axios.get('/api/current_user/',params);
-  },
-
-  /**
    * 登录
    * @param params
    * @returns {*}

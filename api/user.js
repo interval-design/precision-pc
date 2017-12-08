@@ -6,6 +6,14 @@
 import axios from 'axios'
 
 export default {
+    /**
+   * 获取当前用户详情
+   * @returns {*}
+   */
+  getCurrentUser(params){
+    return axios.get('/api/current_user/',params);
+  },
+  
   /**
    * 列出当前用户的收货地址
    * @param {Object} params 
@@ -38,5 +46,39 @@ export default {
    */
   delUserAddress(addressId, params) {
     return axios.delete(`/api/addresses/${addressId}/`, params);
+  },
+
+  /**
+   * 列出当前用户的订单
+   * @param {Object} params 
+   */
+  getUserOrders(params) {
+    return axios.get('/api/current_user/orders/', params);
+  },
+
+  /**
+   * 获取订单详情
+   * @param {int} orderId 
+   * @param {Object} params 
+   */
+  getOrderdetail(orderId, params) {
+    return axios.get(`/api/orders/${orderId}/`, params);
+  },
+
+  /**
+   * 列出当前用户的报告
+   * @param {Object} params 
+   */
+  getUserReports(params) {
+    return axios.get('/api/current_user/reports/');
+  },
+
+  /**
+   * 更新报告查看次数
+   * @param {int} subOrderId 
+   * @param {Object} params 
+   */
+  updateReportViews(subOrderId, params) {
+    return axios.put(`/api/sub_orders/${subOrderId}/report_views/`, params);
   }
 }

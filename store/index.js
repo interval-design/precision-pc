@@ -4,7 +4,7 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
-import ApiLogin from '../api/login'
+import ApiUser from '../api/user'
 
 Vue.use(Vuex);
 
@@ -33,7 +33,7 @@ const store = () => new Vuex.Store({
      */
     setUser({commit}, callback){
       return new Promise((resolve, reject)=>{
-        ApiLogin.getCurrentUser().then((res) => {
+        ApiUser.getCurrentUser().then((res) => {
           let _data = res.data.data;
           if (res.data.code === 0) {
             commit('SET_USER', _data.user);

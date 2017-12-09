@@ -27,7 +27,7 @@
               <span>下单时间：{{order.iso_create_time | toDate}}</span>
               <span>订单号：{{order.code}}</span>
               <span style="flex: 1"></span>
-              <span>用户下单</span>
+              <span>{{orderStatus(order.status)}}</span>
             </header>
             <div class="itv-user-main-table-item__content">
               <ul class="itv-user-main-table-item__content-list">
@@ -74,7 +74,8 @@
               <span class="itv-user-main-table-item__footer-price">总金额：
                 <i>￥{{(order.product_price/100)*order.quantity}}</i>
               </span>
-              <base-button size="small" type="error" @click="$router.push({path: '/user/pay'})">去付款</base-button>
+              <!-- 需要付款才显示这个按钮 -->
+              <base-button v-if="order.status === 0" size="small" type="error" @click="$router.push({path: '/user/pay'})">去付款</base-button>
             </footer>
           </div>
         </div>
@@ -300,7 +301,11 @@
        * 列出当前用户的订单
        */
       getUserOrders() {
-        ApiUser.getUserOrders().then(
+        ApiUser.getUserOrders({
+          params: {
+            order_by: '-id'
+          }
+        }).then(
           res => {
             if (res.data.code === 0) {
               this.orderList = res.data.data.orders;
@@ -315,6 +320,14 @@
        */
       billTracking(bills) {
         window.open(`http://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/${bills.join(',')}`);
+      },
+
+      /**
+       * 根据订单状态码返回订单状态文字
+       */
+      orderStatus(statusCode) {
+        var status = ['用户下单','付款成功','试剂盒已寄出','样本检测中','已出报告'];
+        return status[statusCode];
       }
     },
     watch: {
@@ -326,14 +339,26 @@
       }
     },
     filters: {
+      /**
+       * 日期格式化
+       */
       toDate(val) {
+        if (!val) {
+          return '-';
+        };
+        /**
+         * 数字补零
+         */
+        var addZero = (num) => {
+          return (num<10? '0':'') + num;
+        } 
         var time = new Date(val);
         var year = time.getFullYear();
         var month = time.getMonth()+1;
         var day = time.getDate();
-        var hour = time.getHours();
-        var min = time.getMinutes();
-        var sec = time.getSeconds();
+        var hour = addZero(time.getHours());
+        var min = addZero(time.getMinutes());
+        var sec = addZero(time.getSeconds());
         return `${year}-${month}-${day} ${hour}:${min}`;
       }
     }

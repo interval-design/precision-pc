@@ -16,56 +16,88 @@
         <div class="itv-order-main-item-content itv-order-status-content">
           <ul class="itv-order-status-content-status">
             <li>
-              <span class="itv-icon itv-icon-order-status-a"></span>
+              <span class="itv-icon itv-icon-order-status-a--done"></span>
               <div>
                 <p>用户下单</p>
-                <p>2017-11-11 12:12</p>
+                <p>{{orderDetail.iso_create_time | toDate}}</p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon itv-icon-arrow-right"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status>=1? '--done':'')"></span>
             </li>
             <li>
-              <span class="itv-icon itv-icon-order-status-b"></span>
+              <span class="itv-icon" 
+                    :class="'itv-icon-order-status-b'+(orderDetail.status>=1? '--done':'')"></span>
               <div>
                 <p>付款成功</p>
-                <p>2017-11-11 12:12</p>
+                <p v-if="orderDetail.status>=1">{{orderDetail.iso_pay_time | toDate}}</p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon itv-icon-arrow-right"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status>=2? '--done':'')"></span>
             </li>
             <li>
-              <span class="itv-icon itv-icon-order-status-c"></span>
+              <span class="itv-icon" 
+                    :class="'itv-icon-order-status-c'+(orderDetail.status>=2? '--done':'')"></span>
               <div>
                 <p>试剂盒已寄出</p>
-                <p>2017-11-11 12:12</p>
+                <p v-if="orderDetail.status>=2">{{orderDetail.iso_send_time | toDate}}</p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon itv-icon-arrow-right"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status>=3? '--done':'')"></span>
             </li>
             <li>
-              <span class="itv-icon itv-icon-order-status-d"></span>
+              <span class="itv-icon" 
+                    :class="'itv-icon-order-status-d'+(orderDetail.status>=3? '--done':'')"></span>
               <div>
                 <p>样本检测中</p>
-                <p>2017-11-11 12:12</p>
+                <p v-if="orderDetail.status>=3">{{orderDetail.iso_receive_time | toDate}}</p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon itv-icon-arrow-right"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(showAnalyzeTime? '--done':'')"></span>
             </li>
             <li>
-              <span class="itv-icon itv-icon-order-status-e"></span>
+              <span class="itv-icon itv-icon-order-status-d_2"
+                    :class="'itv-icon-order-status-d'+(showAnalyzeTime? '--done':'')"></span>
+              <div>
+                <p>正在分析实验数据</p>
+                <p v-if="showAnalyzeTime">{{getAnalyzeTime(orderDetail.iso_receive_time) | toDate}}</p>
+              </div>
+            </li>
+            <li class="itv-order-status-content-status-line">
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status===4? '--done':'')"></span>
+            </li>
+            <li>
+              <span class="itv-icon" 
+                    :class="'itv-icon-order-status-e'+(orderDetail.status===4? '--done':'')"></span>
               <div>
                 <p>已出报告</p>
-                <p>2017-11-11 12:12</p>
+                <p v-if="orderDetail.status ===4">{{orderDetail.iso_finish_time | toDate}}</p>
               </div>
             </li>
           </ul>
-          <div class="itv-order-status-content-info">
+          <div class="itv-order-status-content-info" v-if="orderDetail.status === 0">
             <span style="margin-right: 24px">请在30分钟内付款，否则订单将自动关闭</span>
             <base-button size="small" type="error" @click="$router.push({path: '/user/pay'})">付款</base-button>
+            剩余时间 {{countDown}}
+          </div>
+          <div class="itv-order-status-content-info" v-if="orderDetail.status === 1">
+            您已付款成功，我们会尽快寄出试剂盒
+          </div>
+          <div class="itv-order-status-content-info" v-if="orderDetail.status === 2">
+            <p>试剂盒已寄出，正马不停蹄奔向您，请您注意签收哦~</p>
+            <p>运单号：22222222222222（顺丰快递）</p>
+          </div>
+          <div class="itv-order-status-content-info" v-if="orderDetail.status === 3 && !showAnalyzeTime">
+            实验室正在为您检测样本...
+          </div>
+          <div class="itv-order-status-content-info" v-if="orderDetail.status === 3 && showAnalyzeTime">
+            实验室正将您的检测数据与普瑞森基因数据库进行数据对比，请您耐心等待...
+          </div>
+          <div class="itv-order-status-content-info" v-if="orderDetail.status === 4">
+            您的检测报告已出，您可以点击下方报告查看完整报告
           </div>
         </div>
       </div>
@@ -97,6 +129,7 @@
           </tbody>
         </table>
       </div>
+      <!-- 订单信息 -->
       <div class="itv-order-info">
         <h2 class="itv-order-main-item-title">订单信息</h2>
         <div class="itv-order-info-table">
@@ -169,11 +202,25 @@
     },
     created() {
       this.getOrderdetail(this.$route.params.id);
+
+      // 未付款倒计时
+      this.countDownTimer = setInterval(()=>{
+        if (this.orderDetail.status !== 0) {
+          this.updateCountDown();
+        }else {
+          clearInterval(this.countDownTimer);
+        }
+      },500)
+    },
+    destroyed() {
+      clearInterval(this.countDownTimer);
     },
     data() {
       return {
         showMessageDialog: false,
-        orderDetail: {}
+        orderDetail: {},
+        countDown: '',
+        countDownTimer: null
       }
     },
     methods: {
@@ -203,7 +250,45 @@
        */
       billTracking(bills) {
         window.open(`http://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/${bills.join(',')}`);
+      },
+
+      /**
+       * 获取分析时间(检测时间+7天)
+       * receiveTime {str} 收到试剂盒时间即开始检测的时间
+       */
+      getAnalyzeTime(receiveTime) {
+        var time = new Date(receiveTime).getTime();
+        return (time + 7*24*60*60*1000 + 0.9527*60*60*1000);
+      },
+
+      /**
+       * 关闭订单
+       */
+      closeOrder() {
+
+      },
+
+      /**
+       * 订单关闭倒计时
+       */
+      updateCountDown() {
+        var time = new Date(this.orderDetail.iso_create_time).getTime()+30*60*1000 - Date.now();
+        
+        if (time <= 0) {
+          this.closeOrder();
+          return;
+        }
+        var min = Math.floor(time/(60*1000));
+        var sec = Math.floor((time - min*60*1000)/1000);
+        var addZero = (num) => {
+          return (num<10? '0':'') + num;
+        } 
+        this.countDown = addZero(min) + ' : ' + addZero(sec);
+
+
+        
       }
+
     },
     computed: {
       /**
@@ -222,21 +307,39 @@
         }else {
           return '-';
         }
-      }
+      },
 
+      /**
+       * 是否显示分析时间
+       */
+      showAnalyzeTime() {
+        if (!this.orderDetail.iso_receive_time) {
+          return;
+        }
+        return Date.now() > this.getAnalyzeTime(this.orderDetail.iso_receive_time);
+      }
     },
     filters: {
+      /**
+       * 日期格式化
+       */
       toDate(val) {
         if (!val) {
           return '-';
         };
+        /**
+         * 数字补零
+         */
+        var addZero = (num) => {
+          return (num<10? '0':'') + num;
+        } 
         var time = new Date(val);
         var year = time.getFullYear();
         var month = time.getMonth()+1;
         var day = time.getDate();
-        var hour = time.getHours();
-        var min = time.getMinutes();
-        var sec = time.getSeconds();
+        var hour = addZero(time.getHours());
+        var min = addZero(time.getMinutes());
+        var sec = addZero(time.getSeconds());
         return `${year}-${month}-${day} ${hour}:${min}`;
       }
     }
@@ -277,7 +380,7 @@
         }
       }
       .itv-order-status-content-status-line {
-        width: 90px;
+        width: 50px;
         line-height: 60px;
       }
     }

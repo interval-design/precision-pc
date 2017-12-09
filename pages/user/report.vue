@@ -85,17 +85,26 @@
       }
     },
     filters: {
+      /**
+       * 日期格式化
+       */
       toDate(val) {
         if (!val) {
           return '-';
         };
+        /**
+         * 数字补零
+         */
+        var addZero = (num) => {
+          return (num<10? '0':'') + num;
+        } 
         var time = new Date(val);
         var year = time.getFullYear();
         var month = time.getMonth()+1;
         var day = time.getDate();
-        var hour = time.getHours();
-        var min = time.getMinutes();
-        var sec = time.getSeconds();
+        var hour = addZero(time.getHours());
+        var min = addZero(time.getMinutes());
+        var sec = addZero(time.getSeconds());
         return `${year}-${month}-${day} ${hour}:${min}`;
       }
     }

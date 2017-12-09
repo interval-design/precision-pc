@@ -3,21 +3,21 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const _cf33702c = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
-const _0c321ba6 = () => import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */).then(m => m.default || m)
-const _1e66cb3e = () => import('../pages/service/ecosystem.vue' /* webpackChunkName: "pages/service/ecosystem" */).then(m => m.default || m)
-const _78d2b537 = () => import('../pages/about/team.vue' /* webpackChunkName: "pages/about/team" */).then(m => m.default || m)
-const _797107e0 = () => import('../pages/user/report.vue' /* webpackChunkName: "pages/user/report" */).then(m => m.default || m)
-const _45187392 = () => import('../pages/about/join-us.vue' /* webpackChunkName: "pages/about/join-us" */).then(m => m.default || m)
-const _2ddb4df6 = () => import('../pages/research/microbiology.vue' /* webpackChunkName: "pages/research/microbiology" */).then(m => m.default || m)
-const _6f91e0ff = () => import('../pages/user/pay/index.vue' /* webpackChunkName: "pages/user/pay/index" */).then(m => m.default || m)
-const _fa087b18 = () => import('../pages/about/introduction.vue' /* webpackChunkName: "pages/about/introduction" */).then(m => m.default || m)
-const _7751442a = () => import('../pages/service/filter.vue' /* webpackChunkName: "pages/service/filter" */).then(m => m.default || m)
-const _409e03a6 = () => import('../pages/research/dynamic/index.vue' /* webpackChunkName: "pages/research/dynamic/index" */).then(m => m.default || m)
-const _3fde674c = () => import('../pages/service/child.vue' /* webpackChunkName: "pages/service/child" */).then(m => m.default || m)
-const _678a4d95 = () => import('../pages/user/pay/status.vue' /* webpackChunkName: "pages/user/pay/status" */).then(m => m.default || m)
-const _6be0db91 = () => import('../pages/research/dynamic/_id/index.vue' /* webpackChunkName: "pages/research/dynamic/_id/index" */).then(m => m.default || m)
-const _10636e66 = () => import('../pages/user/order/_id.vue' /* webpackChunkName: "pages/user/order/_id" */).then(m => m.default || m)
+const _575a22b4 = () => import('../pages/index.vue' /* webpackChunkName: "pages/index" */).then(m => m.default || m)
+const _2de76b2c = () => import('../pages/user/index.vue' /* webpackChunkName: "pages/user/index" */).then(m => m.default || m)
+const _1279900c = () => import('../pages/service/ecosystem.vue' /* webpackChunkName: "pages/service/ecosystem" */).then(m => m.default || m)
+const _55ace3fb = () => import('../pages/about/team.vue' /* webpackChunkName: "pages/about/team" */).then(m => m.default || m)
+const _fc99b468 = () => import('../pages/user/report.vue' /* webpackChunkName: "pages/user/report" */).then(m => m.default || m)
+const _a0c81e1a = () => import('../pages/about/join-us.vue' /* webpackChunkName: "pages/about/join-us" */).then(m => m.default || m)
+const _2fb207c1 = () => import('../pages/research/microbiology.vue' /* webpackChunkName: "pages/research/microbiology" */).then(m => m.default || m)
+const _3b21e47a = () => import('../pages/user/pay/index.vue' /* webpackChunkName: "pages/user/pay/index" */).then(m => m.default || m)
+const _93a62590 = () => import('../pages/about/introduction.vue' /* webpackChunkName: "pages/about/introduction" */).then(m => m.default || m)
+const _2ba31e24 = () => import('../pages/service/filter.vue' /* webpackChunkName: "pages/service/filter" */).then(m => m.default || m)
+const _6417a72c = () => import('../pages/research/dynamic/index.vue' /* webpackChunkName: "pages/research/dynamic/index" */).then(m => m.default || m)
+const _9b8e11d4 = () => import('../pages/service/child.vue' /* webpackChunkName: "pages/service/child" */).then(m => m.default || m)
+const _5052b951 = () => import('../pages/user/pay/status.vue' /* webpackChunkName: "pages/user/pay/status" */).then(m => m.default || m)
+const _c6a5fb56 = () => import('../pages/research/dynamic/_id/index.vue' /* webpackChunkName: "pages/research/dynamic/_id/index" */).then(m => m.default || m)
+const _6aab7591 = () => import('../pages/user/order/_id.vue' /* webpackChunkName: "pages/user/order/_id" */).then(m => m.default || m)
 
 
 
@@ -55,77 +55,77 @@ export function createRouter () {
     routes: [
 		{
 			path: "/",
-			component: _cf33702c,
+			component: _575a22b4,
 			name: "index"
 		},
 		{
 			path: "/user",
-			component: _0c321ba6,
+			component: _2de76b2c,
 			name: "user"
 		},
 		{
 			path: "/service/ecosystem",
-			component: _1e66cb3e,
+			component: _1279900c,
 			name: "service-ecosystem"
 		},
 		{
 			path: "/about/team",
-			component: _78d2b537,
+			component: _55ace3fb,
 			name: "about-team"
 		},
 		{
 			path: "/user/report",
-			component: _797107e0,
+			component: _fc99b468,
 			name: "user-report"
 		},
 		{
 			path: "/about/join-us",
-			component: _45187392,
+			component: _a0c81e1a,
 			name: "about-join-us"
 		},
 		{
 			path: "/research/microbiology",
-			component: _2ddb4df6,
+			component: _2fb207c1,
 			name: "research-microbiology"
 		},
 		{
 			path: "/user/pay",
-			component: _6f91e0ff,
+			component: _3b21e47a,
 			name: "user-pay"
 		},
 		{
 			path: "/about/introduction",
-			component: _fa087b18,
+			component: _93a62590,
 			name: "about-introduction"
 		},
 		{
 			path: "/service/filter",
-			component: _7751442a,
+			component: _2ba31e24,
 			name: "service-filter"
 		},
 		{
 			path: "/research/dynamic",
-			component: _409e03a6,
+			component: _6417a72c,
 			name: "research-dynamic"
 		},
 		{
 			path: "/service/child",
-			component: _3fde674c,
+			component: _9b8e11d4,
 			name: "service-child"
 		},
 		{
 			path: "/user/pay/status",
-			component: _678a4d95,
+			component: _5052b951,
 			name: "user-pay-status"
 		},
 		{
 			path: "/research/dynamic/:id",
-			component: _6be0db91,
+			component: _c6a5fb56,
 			name: "research-dynamic-id"
 		},
 		{
 			path: "/user/order/:id?",
-			component: _10636e66,
+			component: _6aab7591,
 			name: "user-order-id"
 		}
     ],

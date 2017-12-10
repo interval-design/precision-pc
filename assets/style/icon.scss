@@ -221,4 +221,23 @@
     }
   }
 
+  &-count-add,
+  &-count-minus,
+  &-count-minus__forbid, {
+    width: 24px;
+    height:24px;
+    cursor: pointer;
+  }
+  &-count-add {
+    background-position: -323px -302px;
+  }
+  &-count-minus,
+  &-count-minus__forbid, {
+    background-position: -296px -302px;
+  }
+  &-count-minus__forbid {
+    background-position-y: -326px;
+    cursor: not-allowed;
+  }
+
 }

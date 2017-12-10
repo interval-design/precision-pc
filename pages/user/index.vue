@@ -42,7 +42,10 @@
                   <p style="width: 40px">x{{order.quantity}}</p>
                   <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">￥{{order.product_price/100}}</p>
                   <p v-if="order.status !== 4" style="width: 100px; color: #919191"><span class="itv-icon itv-icon-time"></span>报告未出</p>
-                  <p v-else style="width: 100px"><span class="itv-icon itv-icon-paper"></span><a href="javascript:;">查看报告</a></p>
+                  <p v-else style="width: 100px">
+                    <span class="itv-icon itv-icon-paper"></span>
+                    <a @click="openOrderDialog(order.id)">查看报告</a>
+                  </p>
                 </li>
               </ul>
               <div class="itv-user-main-table-item__content-order">
@@ -138,6 +141,26 @@
       </p>
     </base-dialog>
 
+    <!-- 查看报告弹窗 -->
+    <base-dialog :visible.sync="showReportDialog">
+      <ul class="itv-user-report-list">
+        <li v-for="subOrder in openOrder.sub_orders" :key="subOrder.id"
+            @click="openReport(subOrder.report_full_link)" class="itv-user-report-item">
+          <img v-if="subOrder.product === 1" class="itv-user-report-item__bg"
+               src="../../assets/pic-report-1.png" alt="pic-report-1">
+          <img v-if="subOrder.product === 2" class="itv-user-report-item__bg"
+               src="../../assets/pic-report-1.png" alt="pic-report-2">
+          <img v-if="subOrder.product === 3" class="itv-user-report-item__bg"
+               src="../../assets/pic-report-1.png" alt="pic-report-3">
+          <p class="itv-user-report-item__info">
+            <span>{{subOrder.person_name}}</span>
+            <span>{{subOrder.person_sex}}</span>
+            <span>{{subOrder.person_age}}</span>
+          </p>
+        </li>
+      </ul>
+    </base-dialog>
+
     <!-- 留言弹窗 -->
     <base-message :visible.sync="showMessageDialog"></base-message>
 
@@ -165,9 +188,11 @@
       return {
         user: null,
         orderList: [],
+        openOrder: {},
         showMessageDialog: false,
         showPhoneBindDialog: false,
         showAlert: false,
+        showReportDialog: false,
         bindForm: {
           title: '验证当前手机号',
           status: 1,
@@ -313,6 +338,20 @@
           }
         )
       },
+      
+      /**
+       * 打开查看报告弹窗
+       */
+      openOrderDialog(orderId) {
+        ApiUser.getOrderdetail(orderId).then(
+          res => {
+            if (res.data.code === 0) {
+              this.openOrder = res.data.data.order;
+              this.showReportDialog = true;
+            }
+          }
+        )
+      },
 
       /**
        * 追踪快递单号
@@ -328,7 +367,14 @@
       orderStatus(statusCode) {
         var status = ['用户下单','付款成功','试剂盒已寄出','样本检测中','已出报告'];
         return status[statusCode];
-      }
+      },
+
+      /**
+       * 跳转到报告页面
+       */
+      openReport(url) {
+        window.open(url);
+      },
     },
     watch: {
       '$store.state.user'(newVal,oldVal) {
@@ -600,6 +646,36 @@
       padding: 24px 0;
       font-size: 18px;
       text-align: center;
+    }
+  }
+  &-report {
+    &-list {
+      padding-bottom: 24px;
+    }
+    &-item {
+      position: relative;
+      margin: 24px auto 0;
+      width: 308px;
+      height: 108px;
+      cursor: pointer;
+      &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      &__info {
+        position: relative;
+        padding-top: 64px;
+        color: $white;
+        text-align: center;
+        span {
+          display: inline-block;
+          vertical-align: top;
+          margin: 0 8px;
+        }
+      }
     }
   }
 }

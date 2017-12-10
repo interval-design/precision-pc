@@ -63,7 +63,14 @@
               <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
             </td>
             <td class="itv-pay-order-table-name">肠癌早筛测试服务</td>
-            <td>x1</td>
+            <td>
+              <span class="itv-pay-product-count">
+                <span class="itv-icon" :class="'itv-icon-count-minus'+ (order.num>1? '':'__forbid')"
+                      @click="order.num--"></span>
+                <input class="itv-pay-product-count__num" type="text" v-model.number="order.num">
+                <span class="itv-icon itv-icon-count-add" @click="order.num++"></span>
+              </span>
+            </td>
             <td class="itv-pay-order-table-price">￥999</td>
           </tr>
         </tbody>
@@ -120,7 +127,10 @@
         activeAddress: 0,
         addressList: [],
         comfirmOption: {},
-        showConfirm: false
+        showConfirm: false,
+        order: {
+          num: 1
+        }
       }
     },
     methods: {
@@ -253,8 +263,17 @@
           }
         )
       }
-
-
+    },
+    watch: {
+      'order.num'(newVal,oldVal) {
+        if (isNaN(newVal)) {
+          this.order.num = oldVal;
+          return;
+        }
+        if (newVal<1) {
+          this.order.num = 1;
+        }
+      }
     }
   }
 </script>
@@ -396,6 +415,21 @@
     }
     &-btns {
       margin-top: 32px;
+    }
+  }
+  &-product-count {
+    
+    display: flex;
+    margin: 0 auto;
+    border: 1px solid $border;
+    width: 96px;
+    &__num {
+      border-left: 1px solid $border;
+      border-right: 1px solid $border;
+      width: 48px;
+      line-height: 22px;
+      text-align: center;
+      
     }
   }
 }

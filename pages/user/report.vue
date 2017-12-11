@@ -28,7 +28,7 @@
             <td>{{report.person_sex}}</td>
             <td>{{report.person_age}}</td>
             <td>
-              <base-button size="small" line @click="openReport(report.report_full_link)">查看完整报告</base-button>
+              <base-button size="small" line @click="openReport(report)">查看完整报告</base-button>
             </td>
           </tr>
         </tbody>
@@ -72,9 +72,17 @@
       /**
        * 跳转到报告页面
        */
-      openReport(url) {
-        window.open(url);
-      },
+      openReport(report) {
+        // 更新报告查看次数
+        var newPage = window.open('','_blank');
+        ApiUser.updateReportViews(report.id,{}).then(
+          res => {
+            if (res.data.code === 0) {
+              newPage.location = report.report_full_link;
+            }
+          }
+        )
+      }
     },
     watch: {
       '$store.state.user'(newVal,oldVal) {

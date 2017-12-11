@@ -268,11 +268,11 @@
       'order.num'(newVal,oldVal) {
         if (isNaN(newVal)) {
           this.order.num = oldVal;
-          return;
         }
         if (newVal<1) {
           this.order.num = 1;
         }
+        this.order.num = parseInt(this.order.num);
       }
     }
   }

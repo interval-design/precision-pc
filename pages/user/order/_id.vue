@@ -30,7 +30,10 @@
                     :class="'itv-icon-order-status-b'+(orderDetail.status>=1? '--done':'')"></span>
               <div>
                 <p>付款成功</p>
-                <p v-if="orderDetail.status>=1">{{orderDetail.iso_pay_time | toDate}}</p>
+                <p v-if="orderDetail.status>=1">
+                  <!-- 这里后台下单的话支付时间为null，故此时以下单时间为准 -->
+                  {{orderDetail.iso_pay_time || orderDetail.iso_create_time | toDate}}
+                </p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
@@ -88,7 +91,7 @@
           </div>
           <div class="itv-order-status-content-info" v-if="orderDetail.status === 2">
             <p>试剂盒已寄出，正马不停蹄奔向您，请您注意签收哦~</p>
-            <p>运单号：22222222222222（顺丰快递）</p>
+            <p>运单号：{{trackingToStr}}（顺丰快递）</p>
           </div>
           <div class="itv-order-status-content-info" v-if="orderDetail.status === 3 && !showAnalyzeTime">
             实验室正在为您检测样本...
@@ -123,7 +126,7 @@
               <td>{{order.person_sex}}</td>
               <td>{{order.person_age}}</td>
               <td>
-                <base-button size="small" line @click="openReport(order.report_full_link)">查看完整报告</base-button>
+                <base-button size="small" line @click="openReport(order)">查看完整报告</base-button>
               </td>
             </tr>
           </tbody>
@@ -240,8 +243,16 @@
       /**
        * 跳转到报告页面
        */
-      openReport(url) {
-        window.open(url);
+      openReport(order) {
+        // 更新报告查看次数
+        var newPage = window.open('','_blank');
+        ApiUser.updateReportViews(order.id,{}).then(
+          res => {
+            if (res.data.code === 0) {
+              newPage.location = order.report_full_link;
+            }
+          }
+        )
       },
 
       /**

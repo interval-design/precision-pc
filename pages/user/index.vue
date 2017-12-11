@@ -145,7 +145,7 @@
     <base-dialog :visible.sync="showReportDialog">
       <ul class="itv-user-report-list">
         <li v-for="subOrder in openOrder.sub_orders" :key="subOrder.id"
-            @click="openReport(subOrder.report_full_link)" class="itv-user-report-item">
+            @click="openReport(subOrder)" class="itv-user-report-item">
           <img v-if="subOrder.product === 1" class="itv-user-report-item__bg"
                src="../../assets/pic-report-1.png" alt="pic-report-1">
           <img v-if="subOrder.product === 2" class="itv-user-report-item__bg"
@@ -372,9 +372,17 @@
       /**
        * 跳转到报告页面
        */
-      openReport(url) {
-        window.open(url);
-      },
+      openReport(order) {
+        // 更新报告查看次数
+        var newPage = window.open('','_blank');
+        ApiUser.updateReportViews(order.id,{}).then(
+          res => {
+            if (res.data.code === 0) {
+              newPage.location = order.report_full_link;
+            }
+          }
+        )
+      }
     },
     watch: {
       '$store.state.user'(newVal,oldVal) {

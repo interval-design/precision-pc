@@ -107,12 +107,13 @@
   &-process-line--done {
     padding: 0 20px;
     margin: 0 -20px;
-    width: 80px;
-    height: 14px;
-    background-position: 0 -299px;
+    width: 60px;
+    border-bottom: 2px dashed rgba(141,153,166,1);
+    background: none;
+    height: 0px;
   }
   &-process-line--done {
-    background-position-y: -318px;
+    border-color: $green;
   }
   &-add {
     width: 50px;

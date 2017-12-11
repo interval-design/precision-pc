@@ -59,6 +59,10 @@
               </ul>
             </transition>
           </li>
+          <!--<li class="item">-->
+            <!--&lt;!&ndash; 暂无功能，合作方要求先加上 &ndash;&gt;-->
+            <!--<nuxt-link to="">合作咨询</nuxt-link>-->
+          <!--</li>-->
           <template v-if="null" style="display: none">
             <li class="item login">
               <span @click="openLoginDialog">登录</span>

@@ -7,7 +7,7 @@
             <div class="itv-content">
               <div class="itv-banner-cnt">
                 <h2 class="itv-banner-cnt__title">儿童肠道检测</h2>
-                <p class="itv-banner-cnt__desc">检测3000+种微生物自称的菌群及其丰富程度，全面评估儿童的倡导健康</p>
+                <p class="itv-banner-cnt__desc">检测3000+种微生物自称的菌群及其丰富程度，全面评估儿童的肠道健康</p>
                 <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-child'})">了解更多
                 </base-Button>
               </div>

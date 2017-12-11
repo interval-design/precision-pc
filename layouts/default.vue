@@ -84,12 +84,6 @@
       <router-view class="itv-container" @openUserDialog="openLoginDialog"/>
     </transition>
     <footer class="itv-footer">
-      <!-- 已去除部分 2017-12-8 -->
-      <!-- <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology' && full">
-        <p>想成为我们的合作伙伴？</p>
-        <p class="tel"><img src="../assets/pic-footer-phone.png" alt="icon-phone">400-822-6270</p>
-        <p>期待与您合作</p>
-      </div> -->
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
           <img width="182px" class="logo" src="../assets/logo-white.png" srcset="../assets/logo-white.png 2x" alt="logo-white">

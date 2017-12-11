@@ -11,7 +11,7 @@
       <div class="itv-content">
         <div class="itv-banner-cnt">
           <h2 class="itv-banner-cnt__title">肠癌风险评估</h2>
-          <p class="itv-banner-cnt__desc">我是随便写的一条文字我是随便写的一条文字我是随便写的一条文字我是随便写的一条文字我是随便</p>
+          <p class="itv-banner-cnt__desc">普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议</p>
         </div>
       </div>
       <img class="itv-banner-img" src="../../assets/filter/banner.jpg" alt="banner">
@@ -234,7 +234,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- 邀请码弹窗 -->
     <base-dialog :visible.sync="showDialog" width="1000px">
       <section class="itv-buy itv-code-tips-dialog">

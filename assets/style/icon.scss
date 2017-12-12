@@ -240,5 +240,15 @@
     background-position-y: -326px;
     cursor: not-allowed;
   }
+  &-captcha,
+  &-captcha--done {
+    width: 20px;
+    height: 20px;
+    background: url('../../assets/icon-captcha-1.svg') no-repeat;
+    background-position: 1px 1px;
+  }
+  &-captcha--done {
+    background-image: url('../../assets/icon-captcha-2.svg');
+  }
 
 }

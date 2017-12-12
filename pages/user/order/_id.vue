@@ -23,39 +23,39 @@
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status>=1? '--done':'')"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderStatus(1)? '--done':'')"></span>
             </li>
             <li>
               <span class="itv-icon" 
-                    :class="'itv-icon-order-status-b'+(orderDetail.status>=1? '--done':'')"></span>
+                    :class="'itv-icon-order-status-b'+(orderStatus(1)? '--done':'')"></span>
               <div>
                 <p>付款成功</p>
-                <p v-if="orderDetail.status>=1">
+                <p v-if="orderStatus(1)">
                   <!-- 这里后台下单的话支付时间为null，故此时以下单时间为准 -->
                   {{orderDetail.iso_pay_time || orderDetail.iso_create_time | toDate}}
                 </p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status>=2? '--done':'')"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderStatus(2)? '--done':'')"></span>
             </li>
             <li>
               <span class="itv-icon" 
-                    :class="'itv-icon-order-status-c'+(orderDetail.status>=2? '--done':'')"></span>
+                    :class="'itv-icon-order-status-c'+(orderStatus(2)? '--done':'')"></span>
               <div>
                 <p>试剂盒已寄出</p>
-                <p v-if="orderDetail.status>=2">{{orderDetail.iso_send_time | toDate}}</p>
+                <p v-if="orderStatus(2)">{{orderDetail.iso_send_time | toDate}}</p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status>=3? '--done':'')"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderStatus(3)? '--done':'')"></span>
             </li>
             <li>
               <span class="itv-icon" 
-                    :class="'itv-icon-order-status-d'+(orderDetail.status>=3? '--done':'')"></span>
+                    :class="'itv-icon-order-status-d'+(orderStatus(3)? '--done':'')"></span>
               <div>
                 <p>样本检测中</p>
-                <p v-if="orderDetail.status>=3">{{orderDetail.iso_receive_time | toDate}}</p>
+                <p v-if="orderStatus(3)">{{orderDetail.iso_receive_time | toDate}}</p>
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
@@ -70,11 +70,11 @@
               </div>
             </li>
             <li class="itv-order-status-content-status-line">
-              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderDetail.status===4? '--done':'')"></span>
+              <span class="itv-icon" :class="'itv-icon-arrow-right'+(orderStatus(4)? '--done':'')"></span>
             </li>
             <li>
               <span class="itv-icon" 
-                    :class="'itv-icon-order-status-e'+(orderDetail.status===4? '--done':'')"></span>
+                    :class="'itv-icon-order-status-e'+(orderStatus(4)? '--done':'')"></span>
               <div>
                 <p>已出报告</p>
                 <p v-if="orderDetail.status ===4">{{orderDetail.iso_finish_time | toDate}}</p>
@@ -83,8 +83,8 @@
           </ul>
           <div class="itv-order-status-content-info" v-if="orderDetail.status === 0">
             <span style="margin-right: 24px">请在30分钟内付款，否则订单将自动关闭</span>
-            <base-button size="small" type="error" @click="$router.push({path: '/user/pay'})">付款</base-button>
-            剩余时间 {{countDown}}
+            <base-button size="small" type="error" @click="$router.push({path: '/user/pay/status'})">付款</base-button>
+            <p style="width: 200px;margin: 0 auto; text-align: left">剩余时间 {{countDown}}</p>
           </div>
           <div class="itv-order-status-content-info" v-if="orderDetail.status === 1">
             您已付款成功，我们会尽快寄出试剂盒
@@ -101,6 +101,9 @@
           </div>
           <div class="itv-order-status-content-info" v-if="orderDetail.status === 4">
             您的检测报告已出，您可以点击下方报告查看完整报告
+          </div>
+          <div class="itv-order-status-content-info" v-if="orderDetail.status === 5">
+            订单已关闭
           </div>
         </div>
       </div>
@@ -167,8 +170,8 @@
                 <p><i style="width: 72px">支付方式：</i><span>微信支付</span></p>
                 <p><i style="width: 72px">支付时间：</i><span>{{orderDetail.iso_pay_time | toDate}}</span></p>
                 <p><i style="width: 72px">应付金额：</i><span>￥{{orderPrice}}</span></p>
-                <p><i style="width: 72px">优惠金额：</i><span>{{'￥' && orderDetail.discount || '-'}}</span></p>
-                <p><i style="width: 72px">实付金额：</i><span>{{'￥' && orderDetail.price || '-'}}</span></p>
+                <p><i style="width: 72px">优惠金额：</i><span>{{orderDetail.discount? ('￥'+orderDetail.discount/100):'-'}}</span></p>
+                <p><i style="width: 72px">实付金额：</i><span>{{orderDetail.price? ('￥'+orderDetail.price/100):'-'}}</span></p>
               </li>
               <li>
                 <p class="itv-order-info-table-content-info-title">试剂盒运单信息</p>
@@ -208,7 +211,7 @@
 
       // 未付款倒计时
       this.countDownTimer = setInterval(()=>{
-        if (this.orderDetail.status !== 0) {
+        if (this.orderDetail.status === 0) {
           this.updateCountDown();
         }else {
           clearInterval(this.countDownTimer);
@@ -277,6 +280,15 @@
        */
       closeOrder() {
 
+      },
+
+      /**
+       * 根据当前订单状态判断是否激活图标
+       */
+      orderStatus(statusCode) {
+        if (statusCode<=this.orderDetail.status && this.orderDetail.status !== 5) {
+          return true;
+        }
       },
 
       /**

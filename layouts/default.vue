@@ -73,7 +73,7 @@
           </template>
           <li class="item login" v-else>
             <nuxt-link to="/user">
-              <img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">
+              <img class="avatar" src="../assets/default-avatar.png" alt="avatar">
             </nuxt-link>
           </li>
         </ul>
@@ -142,7 +142,7 @@
           <input type="text" placeholder="手机号" v-model="loginForm.mobile" @focus="focus = 1">
         </div>
         <div class="itv-dialog-form__item" :class="{'active':focus == 2}">
-          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-phone--done':'itv-icon-phone'"></span>
+          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-captcha--done':'itv-icon-captcha'"></span>
           <input type="text" placeholder="验证码" v-model="loginForm.captchaCode" @focus="focus = 2">
           <div class="itv-captcha-group">
             <img class="img" :src="'data:img/jpg;base64,' + loginForm.captchaImage" alt="captchaImage">

@@ -13,7 +13,7 @@
         </p>
         <p class="itv-user-aside-text">
           <span class="itv-icon itv-icon-phone--done"></span>{{user.mobile}}
-          <a @click="showPhoneBindDialog = true">改绑</a>
+          <a @click="openBindDialog">改绑</a>
         </p>
         <div class="itv-user-aside-btn">
           <base-button line @click="$router.push({path: '/user/report'})">查看全部报告</base-button>
@@ -114,7 +114,7 @@
           <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.mobile" @focus="focus = 1">
         </div>
         <div class="itv-dialog-form__item" :class="{'active':focus == 2}">
-          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-phone--done':'itv-icon-phone'"></span>
+          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-captcha--done':'itv-icon-captcha'"></span>
           <input type="text" placeholder="验证码" v-model.number="bindForm.captchaCode" @focus="focus = 2">
           <div class="itv-captcha-group">
             <img class="img" :src="'data:img/jpg;base64,' + bindForm.captchaImage" alt="captchaImage">
@@ -180,9 +180,6 @@
           { hid: 'center', name: 'description', content: '个人中心' }
         ]
       }
-    },
-    created(){
-      this.getCaptcha();
     },
     data () {
       return {
@@ -338,6 +335,15 @@
           }
         )
       },
+
+      /**
+       * 打开改绑弹窗
+       */
+      openBindDialog() {
+        this.bindForm.mobile = this.user.mobile;
+        this.getCaptcha();
+        this.showPhoneBindDialog = true;
+      },
       
       /**
        * 打开查看报告弹窗
@@ -365,7 +371,7 @@
        * 根据订单状态码返回订单状态文字
        */
       orderStatus(statusCode) {
-        var status = ['用户下单','付款成功','试剂盒已寄出','样本检测中','已出报告'];
+        var status = ['用户下单','付款成功','试剂盒已寄出','样本检测中','已出报告','订单已关闭'];
         return status[statusCode];
       },
 

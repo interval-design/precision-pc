@@ -1,7 +1,7 @@
 .itv-icon {
   display: inline-block;
   vertical-align: middle;
-  background: url('../icon-new.svg') no-repeat;
+  background: url('../icon.svg') no-repeat;
   &-weixin,
   &-phone,
   &-phone--done,
@@ -160,15 +160,15 @@
     height: 42px;
   }
   &-buy {
-    background-position: -113px -304px;
+    background-position: -82px -299px;
     &:hover {
-      background-position-y: -353px;
+      filter: brightness(1.1);
     }
   }
   &-top {
-    background-position: -169px -304px;
+    background-position: -130px -299px;
     &:hover {
-      background-position-y: -353px;
+      filter: brightness(1.1);
     }
   }
 

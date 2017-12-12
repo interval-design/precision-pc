@@ -2,7 +2,8 @@ module.exports = {
   css: [
     {src: '~assets/style/custom.scss', lang: 'scss'},
     {src: '~assets/style/animate.scss', lang: 'scss'},
-    {src:'swiper/dist/css/swiper.css'}
+    {src:'swiper/dist/css/swiper.css'},
+    {src: 'animate.css/animate.min.css'}
   ],
   head: {
     title: 'precision-pc',

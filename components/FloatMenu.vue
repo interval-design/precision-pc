@@ -1,18 +1,21 @@
 <template>
-  <transition name="page">
-    <div class="itv-float-menu" v-show="show">
+  <div class="itv-float-menu">
     <div class="itv-float-menu-wrap">
-      <a class="itv-icon itv-icon-buy" @click="$emit('open')"></a>
-      <a class="itv-icon itv-icon-top" @click="toTop"></a>
+      <transition name="custom-classes-transition" enter-active-class="animated zoomInDown">
+        <a class="itv-icon itv-icon-buy" @click="$emit('open')" v-show="show2"></a>
+      </transition>
+      <a class="itv-icon itv-icon-top" @click="toTop" v-show="show"></a>
     </div>
   </div>
-  </transition>
 </template>
 
 <script>
   export default {
     name: 'FloatMenu',
     mounted() {
+      setTimeout(()=>{
+        this.show2 = true;
+      },500);
       var viewportH = window.innerHeight || document.documentElement.clientHeight;
       this.doc = document.body.scrollTop? document.body : document.documentElement;
       window.onscroll = () => {
@@ -26,7 +29,8 @@
     data() {
       return {
         doc: null,
-        show: false
+        show: false,
+        show2: false
       }
     },
     methods: {

@@ -89,7 +89,7 @@
     <base-confirm v-show="showConfirm" :options="comfirmOption" ref="confirm"></base-confirm>
 
     <!-- 支付弹窗 -->
-    <pay-dialog :payDialog.sync="payDialogInfo.show"></pay-dialog>
+    <pay-dialog :payDialog.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
   </div>
 </template>
 
@@ -109,7 +109,7 @@
       return {
         payDialogInfo: {
           show: false,
-          order: null
+          order: {}
         },
         showForm: false,
         addressForm: {

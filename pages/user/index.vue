@@ -86,7 +86,7 @@
     </div>
 
     <!-- 支付弹窗 -->
-    <pay-dialog :payDialog.sync="payDialogInfo.show"></pay-dialog>
+    <pay-dialog :payDialog.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
 
     <!-- 手机绑定弹窗 -->
     <base-dialog :visible.sync="showPhoneBindDialog">
@@ -188,7 +188,7 @@
       return {
         payDialogInfo: {
           show: false,
-          order: null
+          order: {}
         },
         user: null,
         orderList: [],

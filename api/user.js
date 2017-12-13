@@ -99,5 +99,14 @@ export default {
    */
   createOrder(wxCardCode, params) {
     return axios.post(`/api/invite_codes/${wxCardCode}/orders/`, params);
+  },
+
+  /**
+   * 创建交易
+   * @param {int} orderId 
+   * @param {Object} params 
+   */
+  createPayment(orderId, params) {
+    return axios.post(`/api/orders/${orderId}/transactions/`, params);
   }
 }

@@ -163,11 +163,18 @@
         <template v-if="action == '登录'">
           <p class="divide">使用第三方授权登录</p>
           <div class="third-party">
-            <img src="../assets/wechat.png" alt="wechat" @click="">
+            <img src="../assets/wechat.png" alt="wechat" @click="wxLogin">
           </div>
         </template>
       </footer>
     </base-dialog>
+
+    <!-- 二维码弹窗 -->
+    
+    <base-dialog :visible.sync="qrCodeDialog">
+      <div id="qrCode"></div>
+    </base-dialog>
+
   </div>
 </template>
 
@@ -184,18 +191,6 @@
         user: state => state.user
       }),
     },
-    created() {
-      // todo:微信授权登录没条件调试，等最后再搞
-//      this.weixin = new WxLogin({
-//        id:"login_container",
-//        appid: "",
-//        scope: "snsapi_login",
-//        redirect_uri: encodeURI('http://precision.interval.im/extensions/wx/user/login/'),
-//        state: "",
-//        style: "",
-//        href: ""
-//      });
-    },
     mounted() {
       if (this.$cookie.get('_prs_user')) {
         this.$store.dispatch('setUser', res => {})
@@ -205,6 +200,7 @@
       return {
         active: null,
         loginDialog: false,
+        qrCodeDialog: false,
         loginForm: {
           mobile: '',
           code: '',
@@ -272,7 +268,7 @@
               if (_seconds === 1) {
                 this.codeStatus.sending = false;
                 this.codeStatus.statusText = "获取验证码";
-                clearInterval(this.status.interval);
+                clearInterval(this.codeStatus.interval);
                 return;
               }
               _seconds--;
@@ -303,6 +299,24 @@
           }
         });
       },
+
+      /**
+       * 微信授权登录
+       */
+      wxLogin() {
+        var path = this.$route.path;
+        console.log(path);
+        this.qrCodeDialog = true;
+        this.weixin = new WxLogin({
+          id:"qrCode", 
+          appid: "wx9c500d6d1848325c",
+          scope: "snsapi_login",
+          redirect_uri: encodeURI(`http://precision.interval.im/extensions/wx/user/login/`),
+          state: "",
+          style: "",
+          href: ""
+        });
+      }
     }
   }
 </script>
@@ -330,6 +344,15 @@
       &:after {
         right: 0;
       }
+    }
+  }
+  #qrCode{
+    display: flex;
+    justify-content: center;
+  }
+  .third-party {
+    img {
+      cursor: pointer;
     }
   }
 </style>

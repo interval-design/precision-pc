@@ -78,12 +78,15 @@
                 <i>￥{{(order.product_price/100)*order.quantity}}</i>
               </span>
               <!-- 需要付款才显示这个按钮 -->
-              <base-button v-if="order.status === 0" size="small" type="error" @click="$router.push({path: '/user/pay'})">去付款</base-button>
+              <base-button v-if="order.status === 0" size="small" type="error" @click="openPayDialog(order)">去付款</base-button>
             </footer>
           </div>
         </div>
       </section>
     </div>
+
+    <!-- 支付弹窗 -->
+    <pay-dialog :payDialog.sync="payDialogInfo.show"></pay-dialog>
 
     <!-- 手机绑定弹窗 -->
     <base-dialog :visible.sync="showPhoneBindDialog">
@@ -183,6 +186,10 @@
     },
     data () {
       return {
+        payDialogInfo: {
+          show: false,
+          order: null
+        },
         user: null,
         orderList: [],
         openOrder: {},
@@ -388,6 +395,16 @@
             }
           }
         )
+      },
+
+      /**
+       * 打开支付弹窗
+       */
+      openPayDialog(order) {
+        this.payDialogInfo = {
+          show: true,
+          order: order
+        }
       }
     },
     watch: {

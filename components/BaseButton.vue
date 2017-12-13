@@ -148,9 +148,10 @@
       border-color: $gray;
       color: $gray;
       &:hover {
-        color: $white;
-        background: $gray;
-        border-color: $gray;
+        color: $gray;
+        filter: brightness(.9);
+        // background: $gray;
+        // border-color: $gray;
       }
     }
     &--line {

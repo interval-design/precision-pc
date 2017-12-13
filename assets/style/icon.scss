@@ -156,17 +156,17 @@
 
   &-buy,
   &-top {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
   }
   &-buy {
-    background-position: -82px -299px;
+    background-position: -88px -305px;
     &:hover {
       filter: brightness(1.1);
     }
   }
   &-top {
-    background-position: -130px -299px;
+    background-position: -136px -305px;
     &:hover {
       filter: brightness(1.1);
     }
@@ -250,5 +250,10 @@
   &-captcha--done {
     background-image: url('../../assets/icon-captcha-2.svg');
   }
-
+  &-wx-pay {
+    margin: 0 16px;
+    width: 36px;
+    height: 36px;
+    background-position: -88px -350px;
+  }
 }

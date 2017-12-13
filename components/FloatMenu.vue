@@ -67,7 +67,7 @@
     display: flex;
     flex-direction: column;
     a {
-      margin-top: 16px;
+      margin-top: 8px;
     }
   }
 }

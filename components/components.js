@@ -5,6 +5,7 @@ import BaseMessage from './BaseMessage.vue'
 import BaseConfirm from './BaseConfirm.vue'
 import FloatMenu from './FloatMenu.vue'
 import CodeForm from './CodeForm.vue'
+import PayDialog from './PayDialog.vue'
 
 const PRECISION = {
   BaseButton,
@@ -12,7 +13,8 @@ const PRECISION = {
   BaseMessage,
   BaseConfirm,
   FloatMenu,
-  CodeForm
+  CodeForm,
+  PayDialog
 };
 
 export default () =>{

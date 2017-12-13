@@ -78,25 +78,18 @@
         </tbody>
       </table>
     </div>
-    <div class="itv-pay-payment">
-      <div>应付金额：<span class="itv-pay-payment-price">￥{{(order.price-order.discount)*order.num}}</span></div>
-      <div class="itv-pay-payment-btns">
-        <!-- 这里两个button如果不用标签包起来有时会报错，暂没有解决办法，nuxt.js的issues里有人遇到相同问题，待解决https://github.com/nuxt/nuxt.js/issues/1594 -->
-        <span>
-          <base-button size="huge" style="margin-right: 24px" @click="createOrder">
-            <span class="itv-icon itv-icon-zfb"></span>支付宝支付
-          </base-button>
-        </span>
-        <span>
-          <base-button size="huge" type="success" @click="createOrder">
-            <span class="itv-icon itv-icon-wx"></span>微信支付
-          </base-button>
-        </span>
+    <div class="itv-pay-to-order">
+      <div>应付金额：<span class="itv-pay-to-order-price">￥{{(order.price-order.discount)*order.num}}</span></div>
+      <div class="itv-pay-to-order-btn">
+        <base-button size="huge" type="error" @click="createOrder">确认下单</base-button>
       </div>
     </div>
 
     <!-- 删除地址的弹出框 -->
     <base-confirm v-show="showConfirm" :options="comfirmOption" ref="confirm"></base-confirm>
+
+    <!-- 支付弹窗 -->
+    <pay-dialog :payDialog.sync="payDialogInfo.show"></pay-dialog>
   </div>
 </template>
 
@@ -114,6 +107,10 @@
     },
     data() {
       return {
+        payDialogInfo: {
+          show: false,
+          order: null
+        },
         showForm: false,
         addressForm: {
           type: '',
@@ -199,6 +196,7 @@
         this.$refs.confirm.confirm().then(() => {
           ApiUser.delUserAddress(item.id).then(
             res => {
+              this.activeAddress = 0;
               this.getUserAddresses();
               this.showConfirm = false;
             }
@@ -229,6 +227,7 @@
                 this.addressForm.warning = '信息填写不完整';
               }else {
                 this.showForm = false;
+                this.activeAddress = res.data.data.address.id;
                 this.getUserAddresses();
               }
               
@@ -259,7 +258,7 @@
         ApiUser.getUserAddresses().then(
           res => {
             this.addressList = res.data.data.addresses;
-            this.activeAddress = this.addressList[0] ? this.addressList[0].id : 0;
+            this.activeAddress = this.activeAddress ? this.activeAddress: (this.addressList[0] ? this.addressList[0].id : 0);
           }
         )
       },
@@ -314,7 +313,13 @@
           address_id: order.addressId
         }).then(
           res => {
-            this.$router.push({path: '/user/pay/status'});
+            if (res.data.code === 0) {
+              // 下单成功后打开支付弹窗
+              this.payDialogInfo = {
+                show: true,
+                order: res.data.data.order
+              };
+            }
           }
         )
       }
@@ -471,14 +476,14 @@
       }
     }
   }
-  &-payment {
+  &-to-order {
     margin-top: 24px;
     text-align: right;
     &-price {
       font-size: 22px;
       color: $red;
     }
-    &-btns {
+    &-btn {
       margin-top: 32px;
     }
   }
@@ -493,7 +498,6 @@
       width: 48px;
       line-height: 22px;
       text-align: center;
-      
     }
   }
 }

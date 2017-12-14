@@ -1,5 +1,5 @@
 <template>
-  <div class="itv-order">
+  <div class="itv-order" v-if="orderDetail">
     <header class="itv-breadcrumbs">
       <span class="itv-breadcrumbs-item">
          <nuxt-link to="/user">个人中心</nuxt-link>
@@ -83,7 +83,7 @@
           </ul>
           <div class="itv-order-status-content-info" v-if="orderDetail.status === 0">
             <span style="margin-right: 24px">请在30分钟内付款，否则订单将自动关闭</span>
-            <base-button size="small" type="error" @click="$router.push({path: '/user/pay/status'})">付款</base-button>
+            <base-button size="small" type="error" @click="openPayDialog(orderDetail)">付款</base-button>
             <p style="width: 200px;margin: 0 auto; text-align: left">剩余时间 {{countDown}}</p>
           </div>
           <div class="itv-order-status-content-info" v-if="orderDetail.status === 1">
@@ -154,8 +154,8 @@
                 <img src="../../../assets/pic-product-3.png" v-if="orderDetail.product === 3">
                 <p style="width: 250px">{{orderDetail.product_name}}</p>
                 <p style="width: 50px">x{{orderDetail.quantity}}</p>
-                <p style="width: 100px" class="itv-order-info-table-content-list-item-price">￥{{orderDetail.product_price/100}}</p>
-                <p style="width: 200px; font-size: 18px;">总金额：<span class="itv-order-info-table-content-list-item-price">￥{{orderPrice}}</span></p>
+                <p style="width: 100px" class="itv-order-info-table-content-list-item-price">{{orderDetail.product_price | toFix}}</p>
+                <p style="width: 200px; font-size: 18px;">总金额：<span class="itv-order-info-table-content-list-item-price">{{orderPrice | toFix}}</span></p>
               </li>
             </ul>
             <ul class="itv-order-info-table-content-info">
@@ -167,11 +167,11 @@
               </li>
               <li>
                 <p class="itv-order-info-table-content-info-title">支付信息</p>
-                <p><i style="width: 72px">支付方式：</i><span>微信支付</span></p>
+                <p><i style="width: 72px">支付方式：</i><span>{{payChannel(orderDetail)}}</span></p>
                 <p><i style="width: 72px">支付时间：</i><span>{{orderDetail.iso_pay_time | toDate}}</span></p>
-                <p><i style="width: 72px">应付金额：</i><span>￥{{orderPrice}}</span></p>
-                <p><i style="width: 72px">优惠金额：</i><span>{{orderDetail.discount? ('￥'+orderDetail.discount/100):'-'}}</span></p>
-                <p><i style="width: 72px">实付金额：</i><span>{{orderDetail.price? ('￥'+orderDetail.price/100):'-'}}</span></p>
+                <p><i style="width: 72px">应付金额：</i><span>{{orderPrice | toFix}}</span></p>
+                <p><i style="width: 72px">优惠金额：</i><span>{{orderDetail.discount | toFix}}</span></p>
+                <p><i style="width: 72px">实付金额：</i><span>{{orderDetail.price | toFix}}</span></p>
               </li>
               <li>
                 <p class="itv-order-info-table-content-info-title">试剂盒运单信息</p>
@@ -187,6 +187,9 @@
         </div>
       </div>
     </div>
+    
+    <!-- 支付弹窗 -->
+    <pay-dialog :visible.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
 
     <!-- 留言弹窗 -->
     <base-message :visible.sync="showMessageDialog"></base-message>
@@ -226,10 +229,25 @@
         showMessageDialog: false,
         orderDetail: {},
         countDown: '',
-        countDownTimer: null
+        countDownTimer: null,
+        payDialogInfo: {
+          show: false,
+          order: {}
+        },
       }
     },
     methods: {
+      /**
+       * 打开支付弹窗
+       */
+      openPayDialog(order) {
+        this.payDialogInfo = {
+          show: true,
+          order: order
+        }
+      },
+
+
       /**
        * 获取订单详情
        */
@@ -276,13 +294,6 @@
       },
 
       /**
-       * 关闭订单
-       */
-      closeOrder() {
-
-      },
-
-      /**
        * 根据当前订单状态判断是否激活图标
        */
       orderStatus(statusCode) {
@@ -298,7 +309,8 @@
         var time = new Date(this.orderDetail.iso_create_time).getTime()+30*60*1000 - Date.now();
         
         if (time <= 0) {
-          this.closeOrder();
+          // 倒计时结束刷新页面
+          location.reload();
           return;
         }
         var min = Math.floor(time/(60*1000));
@@ -307,10 +319,27 @@
           return (num<10? '0':'') + num;
         } 
         this.countDown = addZero(min) + ' : ' + addZero(sec);
+      },
 
 
-        
-      }
+      /**
+       * 支付渠道
+       */
+      payChannel(orderDetail) {
+        if (!this.orderDetail.transaction) {
+          return '-';
+        }
+        var channel = orderDetail.transaction.channel;
+        if (channel) {
+          if (channel === 'ALI_QRCODE') {
+            return '支付宝支付';
+          }else {
+            return '微信支付';
+          }
+        }else {
+          return '-';
+        }
+      },
 
     },
     computed: {
@@ -318,7 +347,7 @@
        * 订单总价
        */
       orderPrice() {
-        return (this.orderDetail.product_price/100) * this.orderDetail.quantity;
+        return this.orderDetail.product_price * this.orderDetail.quantity;
       },
 
       /**

@@ -73,13 +73,13 @@
                 <span class="itv-icon itv-icon-count-add" @click="order.num++"></span>
               </span>
             </td>
-            <td class="itv-pay-order-table-price">￥{{order.price-order.discount}}</td>
+            <td class="itv-pay-order-table-price">{{(order.price-order.discount) | toFix}}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="itv-pay-to-order">
-      <div>应付金额：<span class="itv-pay-to-order-price">￥{{(order.price-order.discount)*order.num}}</span></div>
+      <div>应付金额：<span class="itv-pay-to-order-price">{{(order.price-order.discount)*order.num | toFix}}</span></div>
       <div class="itv-pay-to-order-btn">
         <base-button size="huge" type="error" @click="createOrder">确认下单</base-button>
       </div>
@@ -89,7 +89,7 @@
     <base-confirm v-show="showConfirm" :options="comfirmOption" ref="confirm"></base-confirm>
 
     <!-- 支付弹窗 -->
-    <pay-dialog :payDialog.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
+    <pay-dialog :visible.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
   </div>
 </template>
 
@@ -291,8 +291,8 @@
                 cardCode: cardCode,
                 name: codeInfo.product.name,
                 productId: codeInfo.product.id,
-                discount: codeInfo.discount/100,
-                price: codeInfo.product.price/100,
+                discount: codeInfo.discount,
+                price: codeInfo.product.price,
                 num: 1
               };
               localStorage.setItem('precision-order',JSON.stringify(this.order));

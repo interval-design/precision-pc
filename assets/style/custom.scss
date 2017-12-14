@@ -427,4 +427,15 @@
   }
 }
 
+// 防止屏幕过小，code弹窗显示不完整
+@media (max-width: 1919px) {
+  .itv-code-center-dialog {
+    display: flex;
+    .itv-base-dialog-wrap {
+      margin: auto !important;
+    }
+  }
+}
+
+
 

@@ -40,7 +40,7 @@
                        class="itv-user-main-table-item__content-list-item__img">
                   <p style="width: 160px">{{order.product_name}}</p>
                   <p style="width: 40px">x{{order.quantity}}</p>
-                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">￥{{order.product_price/100}}</p>
+                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">{{order.product_price | toFix}}</p>
                   <p v-if="order.status !== 4" style="width: 100px; color: #919191"><span class="itv-icon itv-icon-time"></span>报告未出</p>
                   <p v-else style="width: 100px">
                     <span class="itv-icon itv-icon-paper"></span>
@@ -75,7 +75,7 @@
             </div>
             <footer class="itv-user-main-table-item__footer">
               <span class="itv-user-main-table-item__footer-price">总金额：
-                <i>￥{{(order.product_price/100)*order.quantity}}</i>
+                <i>{{(order.product_price*order.quantity) | toFix}}</i>
               </span>
               <!-- 需要付款才显示这个按钮 -->
               <base-button v-if="order.status === 0" size="small" type="error" @click="openPayDialog(order)">去付款</base-button>
@@ -86,7 +86,7 @@
     </div>
 
     <!-- 支付弹窗 -->
-    <pay-dialog :payDialog.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
+    <pay-dialog :visible.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
 
     <!-- 手机绑定弹窗 -->
     <base-dialog :visible.sync="showPhoneBindDialog">

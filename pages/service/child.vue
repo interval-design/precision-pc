@@ -149,7 +149,7 @@
     <code-form @login="openLoginDialog"></code-form>
     
     <!-- 邀请码弹窗 -->
-    <base-dialog :visible.sync="showDialog" width="1000px">
+    <base-dialog :visible.sync="showDialog" width="1000px" class="itv-code-center-dialog">
       <code-form @login="openLoginDialog" class="itv-code-tips"></code-form>
       <div class="itv-code-tips">
         <h4 class="itv-code-tips-title" @click="showDialogImg=!showDialogImg">

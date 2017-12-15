@@ -66,8 +66,12 @@
               </div>
               <div class="itv-user-main-table-item__content-message">
                 <p>
-                  <a @click="showMessageDialog = true" class="itv-user-main-table-item__content-message-text">
-                     给客服留言<i class="itv-user-main-table-item__content-message-Badge">99</i>
+                  <a @click="openMessageDialog(order.id)" class="itv-user-main-table-item__content-message-text">
+                    给客服留言
+                    <i class="itv-user-main-table-item__content-message-Badge"
+                      v-if="order.total_unread_messages>0">
+                      {{order.total_unread_messages>99? 99:order.total_unread_messages}}
+                    </i>
                   </a>
                 </p>
                 <p><a @click="$router.push({path: `/user/order/${order.id}?`})">订单详情</a></p>
@@ -165,7 +169,7 @@
     </base-dialog>
 
     <!-- 留言弹窗 -->
-    <base-message :visible.sync="showMessageDialog"></base-message>
+    <base-message :visible.sync="showMessageDialog" :orderId="messageOrderId"></base-message>
 
   </div>
 </template>
@@ -214,7 +218,8 @@
           sending: false,
           interval: undefined,
         },
-        focus: 1
+        focus: 1,
+        messageOrderId: 0
       }
     },
     methods: {
@@ -405,6 +410,15 @@
           show: true,
           order: order
         }
+      },
+
+      /**
+       * 打开留言弹窗
+       */
+      openMessageDialog(orderId) {
+        this.showMessageDialog = true;
+        this.messageOrderId = orderId;
+        this.getUserOrders();
       }
     },
     watch: {

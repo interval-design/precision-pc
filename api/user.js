@@ -108,5 +108,24 @@ export default {
    */
   createPayment(orderId, params) {
     return axios.post(`/api/orders/${orderId}/transactions/`, params);
+  },
+
+  /**
+   * 根据订单列出留言
+   * @param {int} orderId 
+   * @param {Object} params 
+   */
+  getMessageByOrder(orderId, params) {
+    return axios.get(`/api/orders/${orderId}/messages/`, params);
+  },
+  
+  /**
+   * 创建订单留言
+   * @param {int} orderId 
+   * @param {Object} params 
+   */
+  createMessageByOrder(orderId, params) {
+    return axios.post(`/api/orders/${orderId}/messages/`, params);
   }
+
 }

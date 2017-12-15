@@ -7,10 +7,11 @@
         </header>
         <section class="itv-base-message-body">
           <h3 class="itv-base-message-title">给客服留言</h3>
-          <ul class="itv-base-message-list">
-            <li v-for="item in messageList" :key="item.id" :class="{user: item.type==='user'}">
-              <img :src="item.img">
-              <p>{{item.message}}</p>
+          <ul class="itv-base-message-list" v-show="messageList.length>0">
+            <li v-for="item in messageList" :key="item.id" :class="{user: item.user}"
+                class="itv-base-message-list-item">
+              <img src="../assets/default-avatar.png">
+              <p>{{item.content}}</p>
             </li>
           </ul>
           <div class="itv-base-message-reply">
@@ -26,28 +27,19 @@
 </template>
 
 <script>
+  import ApiUser from '../api/user.js'
   export default {
     name: 'BaseMessage',
-    props: ['visible'],
+    props: ['visible','orderId'],
     mounted() {
       this.list = this.$el.querySelector('.itv-base-message-list');
+      this.getMessage();
     },
     data() {
       return {
         list: null,
         replyVal: '',
-        messageList: [
-          {
-            type: 'user',
-            img: 'https://avatars1.githubusercontent.com/u/25037123?s=200&v=4',
-            message: '我的留言我的留言我的留言我的留言我的留言我的留言我的留言我的留言我的留言'
-          },
-          {
-            type: 'precision',
-            img: 'https://avatars1.githubusercontent.com/u/25037123?s=200&v=4',
-            message: '客服回复2222客服回复2222客服回复2222客服回复'
-          }
-        ]
+        messageList: []
       }
     },
     methods: {
@@ -57,14 +49,16 @@
       },
       // 提交留言
       submit() {
-        this.messageList.push(
-          {
-            type: 'user',
-            img: 'https://avatars1.githubusercontent.com/u/25037123?s=200&v=4',
-            message: this.replyVal
-          },
-        );
-        this.replyVal = '';
+        ApiUser.createMessageByOrder(this.orderId,{
+          content: this.replyVal
+        }).then(
+          res => {
+            if (res.data.code === 0) {
+              this.getMessage();
+              this.replyVal = '';
+            }
+          }
+        )
       },
       // 留言列表滚动至底部
       scrollToBottom() {
@@ -72,7 +66,20 @@
         this.$nextTick(()=>{
           this.list.scrollTop = this.list.scrollHeight;
         });
-      }
+      },
+
+      /**
+       * 根据订单列出留言
+       */
+      getMessage() {
+        ApiUser.getMessageByOrder(this.orderId).then(
+          res => {
+            if (res.data.code === 0) {
+              this.messageList = res.data.data.messages;
+            }
+          }
+        )
+      },
     },
     watch: {
       visible(newVal,oldVal) {
@@ -80,6 +87,10 @@
       },
       messageList() {
         this.scrollToBottom();
+      },
+      // 更换id时就更新消息列表
+      orderId() {
+        this.getMessage();
       }
     }
   }
@@ -137,6 +148,7 @@
       p {
         position: relative;
         padding: 8px;
+        margin-bottom: auto;
         width: 230px;
         border-radius: 2px;
         font-size: 12px;
@@ -145,9 +157,9 @@
         &:before {
           content: "";
           position: absolute;
-          left: -20px;
-          top: 8px;
-          border: 10px solid transparent;
+          left: -12px;
+          top: 6px;
+          border: 6px solid transparent;
           border-right-color: #f7f7f7;
         }
       }
@@ -160,7 +172,7 @@
         p {
           &:before {
             left: auto;
-            right: -20px;
+            right: -12px;
             border-right-color: transparent;
             border-left-color: #f7f7f7;
           }

@@ -142,8 +142,14 @@
           <header class="itv-table-header itv-order-info-table-title">
             <span>订单号：{{orderDetail.code}}</span>
             <span>
-              <span class="itv-icon itv-icon-message" style="margin-right: 8px;"></span>
-              <a @click="showMessageDialog = true">给客服留言</a>
+              <span class="itv-icon itv-icon-message"></span>
+              <a @click="openMessageDialog" class="itv-order-info-table-title-message">
+                给客服留言
+                <i class="itv-order-info-table-title-message-Badge"
+                  v-if="orderDetail.total_unread_messages>0">
+                  {{orderDetail.total_unread_messages>99? 99:orderDetail.total_unread_messages}}
+                </i>
+              </a>
             </span>
           </header>
           <div class="itv-order-info-table-content">
@@ -192,7 +198,7 @@
     <pay-dialog :visible.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
 
     <!-- 留言弹窗 -->
-    <base-message :visible.sync="showMessageDialog"></base-message>
+    <base-message :visible.sync="showMessageDialog" :orderId="$route.params.id"></base-message>
 
   </div>
 </template>
@@ -233,7 +239,7 @@
         payDialogInfo: {
           show: false,
           order: {}
-        },
+        }
       }
     },
     methods: {
@@ -340,6 +346,14 @@
           return '-';
         }
       },
+
+      /**
+       * 打开留言弹窗
+       */
+      openMessageDialog() {
+        this.showMessageDialog = true;
+        this.getOrderdetail(this.$route.params.id);
+      }
 
     },
     computed: {
@@ -517,6 +531,22 @@
         }
       }
     }
+  }
+}
+.itv-order-info-table-title-message {
+  position: relative;
+  &-Badge {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    border-radius: 50%;
+    width: 21px;
+    height: 21px;
+    font-size: 12px;
+    line-height: 21px;
+    text-align: center;
+    background: $red;
+    color: $white;
   }
 }
 </style>

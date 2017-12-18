@@ -210,7 +210,7 @@
           this.anchorActive = _child.length;
           return;
         }
-        if (window.pageYOffset > this.$refs.anchor.offsetTop) {
+        if (this.$refs.anchor && (window.pageYOffset > this.$refs.anchor.offsetTop)) {
           this.anchorFixed = true;
           for (let i = 0; i < _child.length; i++) {
             if (i < _child.length - 1) {
@@ -224,7 +224,7 @@
               }
             }
           }
-        } else if (window.pageYOffset < this.$refs.anchor.offsetTop) {
+        } else if (this.$refs.anchor && (window.pageYOffset < this.$refs.anchor.offsetTop)) {
           this.anchorFixed = false;
         }
       },

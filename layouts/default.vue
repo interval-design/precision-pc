@@ -170,7 +170,7 @@
     </base-dialog>
 
     <!-- 二维码弹窗 -->
-    
+
     <base-dialog :visible.sync="qrCodeDialog">
       <div id="qrCode"></div>
     </base-dialog>
@@ -181,7 +181,7 @@
 <script>
   import {mapState} from 'vuex'
   import ApiLogin from '../api/login';
-  import Cookie from 'tiny-cookie';
+  import * as Cookie from 'tiny-cookie';
 
   export default {
     name: 'LayoutDefault',
@@ -292,6 +292,8 @@
           let _data = res.data.data;
           if (res.data.code === 0) {
             this.$store.commit('SET_USER', _data.user);
+            console.log(_data.token);
+            console.log(Cookie);
             Cookie.setRaw('_prs_user', _data.token,{ expires: '30D' });
             this.loginDialog = false;
           } else {
@@ -308,7 +310,7 @@
         console.log(path);
         this.qrCodeDialog = true;
         this.weixin = new WxLogin({
-          id:"qrCode", 
+          id:"qrCode",
           appid: "wx9c500d6d1848325c",
           scope: "snsapi_login",
           redirect_uri: encodeURI(`http://precision.interval.im/extensions/wx/user/login/`),

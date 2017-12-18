@@ -22,6 +22,7 @@
     "animate.css": "^3.5.2",
     "nuxt": "^1.0.0-rc11",
     "qrcode.vue": "^1.5.1",
+    "tiny-cookie": "^2.1.1",
     "vue-area-linkage": "^1.1.1",
     "vue-awesome-swiper": "^2.6.7",
     "vue-cookie": "^1.1.4"

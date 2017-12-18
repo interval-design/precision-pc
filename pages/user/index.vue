@@ -6,10 +6,11 @@
     <div class="itv-user-content">
       <aside class="itv-user-aside">
         <div class="itv-user-aside-portrait">
-          <img src="../../assets/default-avatar.png">
+          <img v-if="user.wx_user_info.wx_user_info" :src="user.wx_user_info.headimgurl">
+          <img v-else src="../../assets/default-avatar.png">
         </div>
         <p class="itv-user-aside-text">
-          <span class="itv-icon itv-icon-weixin"></span>微信还没接入
+          <span class="itv-icon itv-icon-weixin"></span>{{user.wx_user_info.nickname? user.wx_user_info.nickname:'用户'+user.mobile}}
         </p>
         <p class="itv-user-aside-text">
           <span class="itv-icon itv-icon-phone--done"></span>{{user.mobile}}

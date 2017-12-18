@@ -32,4 +32,12 @@ export default {
   login(params) {
     return axios.put('/api/user/login/', params);
   },
+
+  /**
+   * 微信用户绑定手机
+   * @param {Object} params 
+   */
+  wxBind(params) {
+    return axios.put('/api/user/bind/', params);
+  }
 }

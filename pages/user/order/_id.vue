@@ -215,7 +215,8 @@
         ]
       }
     },
-    created() {
+    
+    mounted() {
       this.getOrderdetail(this.$route.params.id);
 
       // 未付款倒计时

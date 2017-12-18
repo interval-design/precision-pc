@@ -12,8 +12,7 @@
         <div class="itv-banner-cnt">
           <h2 class="itv-banner-cnt__title">肠道微生态检测</h2>
           <div class="itv-banner-cnt__desc">
-            <p>文案文案文案文案文案文案文案文案文案文案</p>
-            <p>文案文案文案文案文案文案文案文案文案文案</p>
+            <p>肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
           </div>
         </div>
         <img class="itv-banner-img" src="../../assets/ecosystem/banner.jpg" alt="">
@@ -54,7 +53,7 @@
             <ul class="desc__bd list">
               <li>三十岁以后肚子一天天圆起来的中年危机</li>
               <li>不想被便秘或腹泻纠缠浪费青春</li>
-              <li>因消化不良而凄恻不好皮肤暗淡</li>
+              <li>因消化不良而气色不好皮肤暗淡</li>
               <li>肠炎？糖尿病？肠易激综合征？请统统远离我！</li>
             </ul>
             <p class="desc__bd">其实肠道微生态检测能帮您评估这些健康风险，并给您建议，帮您避开这些可能存在的健康陷阱</p>

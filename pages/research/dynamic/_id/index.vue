@@ -15,7 +15,7 @@
       <header class="itv-article-main__header">
         <h2>{{article.title}}</h2>
         <p>
-          <span>{{article.author || '佚名'}}</span>
+          <span>{{article.author || '普瑞森'}}</span>
           <span>{{article.iso_create_time | time}}</span>
         </p>
       </header>
@@ -36,7 +36,7 @@
         ]
       }
     },
-    created() {
+    mounted() {
       this.getArticleDetail(this.$route.params.id);
     },
     data() {

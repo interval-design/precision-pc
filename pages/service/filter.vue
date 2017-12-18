@@ -11,7 +11,7 @@
       <div class="itv-content">
         <div class="itv-banner-cnt">
           <h2 class="itv-banner-cnt__title">肠癌风险评估</h2>
-          <p class="itv-banner-cnt__desc">我是随便写的一条文字我是随便写的一条文字我是随便写的一条文字我是随便写的一条文字我是随便</p>
+          <p class="itv-banner-cnt__desc">普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议</p>
         </div>
       </div>
       <img class="itv-banner-img" src="../../assets/filter/banner.jpg" alt="banner">
@@ -96,7 +96,7 @@
               <p>大约有<span class="section-emphasize">1.2亿</span>人属于结直肠癌高危人群。</p>
               <p>其中至少有<span class="section-emphasize">600万</span>人是肠癌或早起肠癌癌前病变。</p>
               <p>2015年中国每<span class="section-emphasize">3分钟</span>就有一个人死于肠癌。</p>
-              <p>美中患者生存率的差异原因主要在于：筛查不及时，发</br>现已经是晚期，治疗率低</p>
+              <p>美中患者生存率的差异原因主要在于：筛查不及时，发<br>现已经是晚期，治疗率低</p>
             </div>
           </div>
           <img width="519px" src="../../assets/filter/pic-section4-2.png" srcset="../../assets/filter/pic-section4-2.png 2x" alt="pic-2">

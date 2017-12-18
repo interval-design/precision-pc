@@ -73,7 +73,8 @@
           </template>
           <li class="item login" v-else>
             <nuxt-link to="/user">
-              <img class="avatar" src="../assets/default-avatar.png" alt="avatar">
+              <img v-if="user.wx_user_info.headimgurl" class="avatar" :src="user.wx_user_info.headimgurl" alt="avatar">
+              <img v-else class="avatar" src="../assets/default-avatar.png" alt="avatar">
             </nuxt-link>
           </li>
         </ul>
@@ -129,7 +130,7 @@
           <img src="../assets/qrcode-text.png" alt="qr-code">
         </div>
       </div>
-      <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>
+      <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 <a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备16065635号-1</a></div>
     </footer>
     <base-dialog :visible.sync="loginDialog" class="itv-login">
       <div class="itv-dialog-title">
@@ -159,7 +160,8 @@
         <div class="itv-dialog-form__info">{{ loginForm.errorText }}</div>
       </div>
       <footer slot="footer" class="itv-dialog-footer">
-        <base-button size="big" style="width: 100%" @click="submitLogin">{{ action }}</base-button>
+        <base-button v-if="action === '登录'" size="big" style="width: 100%" @click="submitLogin">{{ action }}</base-button>
+        <base-button v-else size="big" style="width: 100%" @click="wxBind">{{ action }}</base-button>
         <template v-if="action == '登录'">
           <p class="divide">使用第三方授权登录</p>
           <div class="third-party">
@@ -194,6 +196,9 @@
     mounted() {
       if (this.$cookie.get('_prs_user')) {
         this.$store.dispatch('setUser', res => {})
+      }
+      if (this.$route.query.bind === '0') {
+        this.openLoginDialog();
       }
     },
     data() {
@@ -241,7 +246,11 @@
        * 打开登录弹窗
        */
       openLoginDialog() {
-        this.action = '登录';
+        if (this.$route.query.bind == '0') {
+          this.action = '绑定';
+        }else {
+          this.action = '登录';
+        }
         this.loginDialog = true;
         this.getCaptcha();
       },
@@ -303,18 +312,38 @@
       },
 
       /**
+       * 微信用户绑定手机
+       */
+      wxBind() {
+        ApiLogin.wxBind({
+          mobile: this.loginForm.mobile,
+          code: this.loginForm.code
+        }).then(res => {
+          let _data = res.data.data;
+          if (res.data.code === 0) {
+            this.$store.commit('SET_USER', _data.user);
+            Cookie.setRaw('_prs_user', _data.token,{ expires: '30D' });
+            this.loginDialog = false;
+          } else {
+            this.loginForm.errorText = res.data.message;
+          }
+        })
+      },
+
+      /**
        * 微信授权登录
        */
       wxLogin() {
         var path = this.$route.path;
         console.log(path);
+        this.loginDialog = false;
         this.qrCodeDialog = true;
         this.weixin = new WxLogin({
-          id:"qrCode",
-          appid: "wx9c500d6d1848325c",
+          id:"qrCode", 
+          appid: "wx3fc6282daee79b7d",
           scope: "snsapi_login",
           redirect_uri: encodeURI(`http://precision.interval.im/extensions/wx/user/login/`),
-          state: "",
+          state: path,
           style: "",
           href: ""
         });
@@ -351,6 +380,7 @@
   #qrCode{
     display: flex;
     justify-content: center;
+    padding-bottom: 40px;
   }
   .third-party {
     img {

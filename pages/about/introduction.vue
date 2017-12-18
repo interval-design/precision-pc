@@ -83,7 +83,7 @@
               <img src="../../assets/pic-about-model.png" style="padding-top: 11px">
             </div>
             <p class="itv-introduction-data__pics-title">普瑞森独有技术</p>
-            <p class="itv-introduction-data__pics-content">优化的物种比较数据库16SCSD</br>创新的肠道菌群疾病预测的机器学习模型</p>
+            <p class="itv-introduction-data__pics-content">优化的物种比较数据库16SCSD<br>创新的肠道菌群疾病预测的机器学习模型</p>
           </li>
         </ul>
         <div class="itv-introduction-data__process">
@@ -101,7 +101,15 @@
 
 <script>
   export default {
-    name: 'Introduction'
+    name: 'Introduction',
+    head() {
+      return {
+        title: '了解普瑞森 -普瑞森基因',
+        meta: [
+          { hid: 'Introduction', name: 'description', content: '了解普瑞森' }
+        ]
+      }
+    },
   }
 </script>
 

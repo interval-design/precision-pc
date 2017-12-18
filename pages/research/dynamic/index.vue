@@ -40,7 +40,7 @@
         ]
       }
     },
-    created() {
+    mounted() {
       this.getArticles();
     },
     data() {

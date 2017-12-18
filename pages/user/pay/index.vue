@@ -164,6 +164,7 @@
             tel: '',
             warning: ''
           };
+          this.addressForm.tel = this.$store.state.user.mobile;
         }else {
           this.addressForm = {
             id: item.id,

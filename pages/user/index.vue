@@ -41,7 +41,7 @@
                        class="itv-user-main-table-item__content-list-item__img">
                   <p style="width: 160px">{{order.product_name}}</p>
                   <p style="width: 40px">x{{order.quantity}}</p>
-                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">{{order.product_price | toFix}}</p>
+                  <p class="itv-user-main-table-item__content-list-item__price" style="width: 80px">{{order.price/order.quantity | toFix}}</p>
                   <p v-if="order.status !== 4" style="width: 100px; color: #919191"><span class="itv-icon itv-icon-time"></span>报告未出</p>
                   <p v-else style="width: 100px">
                     <span class="itv-icon itv-icon-paper"></span>
@@ -80,7 +80,7 @@
             </div>
             <footer class="itv-user-main-table-item__footer">
               <span class="itv-user-main-table-item__footer-price">总金额：
-                <i>{{(order.product_price*order.quantity) | toFix}}</i>
+                <i>{{order.price | toFix}}</i>
               </span>
               <!-- 需要付款才显示这个按钮 -->
               <base-button v-if="order.status === 0" size="small" type="error" @click="openPayDialog(order)">去付款</base-button>

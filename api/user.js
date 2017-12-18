@@ -63,7 +63,7 @@ export default {
    * @param {Object} params 
    */
   getOrderdetail(orderId, params) {
-    return axios.get(process.env.BASE_URL + `/api/orders/${orderId}/`, params);
+    return axios.get(`/api/orders/${orderId}/`, params);
   },
 
   /**
@@ -80,7 +80,7 @@ export default {
    * @param {Object} params 
    */
   updateReportViews(subOrderId, params) {
-    return axios.put(process.env.BASE_URL + `/api/sub_orders/${subOrderId}/report_views/`, params);
+    return axios.put(`/api/sub_orders/${subOrderId}/report_views/`, params);
   },
 
 

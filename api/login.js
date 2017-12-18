@@ -12,7 +12,7 @@ export default {
    * @returns {*}
    */
   getCaptcha(params) {
-    return axios.get(process.env.BASE_URL +  '/api/captcha/', {params: params});
+    return axios.get('/api/captcha/', {params: params});
   },
 
   /**
@@ -21,7 +21,7 @@ export default {
    * @returns {*}
    */
   sendSmsLogin(params) {
-    return axios.post(process.env.BASE_URL + '/api/sms/login/',params);
+    return axios.post('/api/sms/login/',params);
   },
 
   /**

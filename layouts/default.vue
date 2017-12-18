@@ -71,12 +71,17 @@
               <base-button line size="small" @click="openLoginDialog">注册</base-button>
             </li>
           </template>
-          <li class="item login" v-else>
-            <nuxt-link to="/user">
-              <img v-if="user.wx_user_info.headimgurl" class="avatar" :src="user.wx_user_info.headimgurl" alt="avatar">
-              <img v-else class="avatar" src="../assets/default-avatar.png" alt="avatar">
-            </nuxt-link>
-          </li>
+          <template v-else>
+            <li class="item login">
+              <nuxt-link to="/user">
+                <img v-if="user.wx_user_info.headimgurl" class="avatar" :src="user.wx_user_info.headimgurl" alt="avatar">
+                <img v-else class="avatar" src="../assets/default-avatar.png" alt="avatar">
+              </nuxt-link>
+            </li>
+            <li class="item" style="padding-left: 0">
+              <span @click="quitLogin">退出</span>
+            </li>
+          </template>
         </ul>
       </div>
     </nav>
@@ -264,7 +269,14 @@
           this.loginForm.errorText = "手机号不能为空";
           return;
         }
-        ApiLogin.sendSmsLogin({
+        // 区分手机登录还是微信绑定手机
+        let _msgType = '';
+        if (this.action === '登录') {
+          _msgType = 'sendSmsLogin';
+        }else {
+          _msgType = 'sendWxBindMsg';
+        }
+        ApiLogin[_msgType]({
           mobile: this.loginForm.mobile,
           captcha_token: this.loginForm.captchaToken,
           captcha_code: this.loginForm.captchaCode
@@ -310,6 +322,15 @@
       },
 
       /**
+       * 退出登录
+       */
+      quitLogin() {
+        Cookie.remove('_prs_user');
+        this.$router.push({path: '/'});
+        window.location.reload();
+      },
+
+      /**
        * 微信用户绑定手机
        */
       wxBind() {
@@ -333,6 +354,7 @@
        */
       wxLogin() {
         var path = this.$route.path;
+        this.loginDialog = false;
         this.qrCodeDialog = true;
         this.weixin = new WxLogin({
           id:"qrCode", 

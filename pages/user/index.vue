@@ -6,7 +6,7 @@
     <div class="itv-user-content">
       <aside class="itv-user-aside">
         <div class="itv-user-aside-portrait">
-          <img v-if="user.wx_user_info.wx_user_info" :src="user.wx_user_info.headimgurl">
+          <img v-if="user.wx_user_info.headimgurl" :src="user.wx_user_info.headimgurl">
           <img v-else src="../../assets/default-avatar.png">
         </div>
         <p class="itv-user-aside-text">
@@ -119,11 +119,11 @@
       <div class="itv-dialog-form">
         <div class="itv-dialog-form__item"  :class="{'active':focus == 1}">
           <span class="itv-icon" :class="'itv-icon-phone'+ (focus === 1 ? '--done': '')"></span>
-          <input type="text" :placeholder="bindForm.info" v-model.number="bindForm.mobile" @focus="focus = 1">
+          <input type="text" :placeholder="bindForm.info" v-model="bindForm.mobile" @focus="focus = 1">
         </div>
         <div class="itv-dialog-form__item" :class="{'active':focus == 2}">
           <span class="itv-icon" :class="focus == 2 ? 'itv-icon-captcha--done':'itv-icon-captcha'"></span>
-          <input type="text" placeholder="验证码" v-model.number="bindForm.captchaCode" @focus="focus = 2">
+          <input type="text" placeholder="验证码" v-model="bindForm.captchaCode" @focus="focus = 2">
           <div class="itv-captcha-group">
             <img class="img" :src="'data:img/jpg;base64,' + bindForm.captchaImage" alt="captchaImage">
             <span class="refresh" @click="getCaptcha">刷新</span>
@@ -131,8 +131,8 @@
         </div>
         <div class="itv-dialog-form__item"  :class="{'active':focus == 3}">
           <span class="itv-icon" :class="'itv-icon-time'+ (focus === 3 ? '--done': '')"></span>
-          <input type="text" placeholder="输入验证码" v-model.number="bindForm.code" @focus="focus = 3">
-          <base-button class="form-code" size="small" line @clcik="sendCode">{{ codeStatus.statusText }}</base-button>
+          <input type="text" placeholder="输入验证码" v-model="bindForm.code" @focus="focus = 3">
+          <base-button class="form-code" size="small" line @click="sendCode">{{ codeStatus.statusText }}</base-button>
         </div>
         <div class="itv-dialog-form__info">{{bindForm.errorText}}</div>
       </div>
@@ -250,10 +250,17 @@
           this.bindForm.errorText = "手机号不能为空";
           return;
         }
-        ApiLogin.sendSmsLogin({
-          mobile: this.loginForm.mobile,
-          captcha_token: this.loginForm.captchaToken,
-          captcha_code: this.loginForm.captchaCode
+        // 区分旧手机还是新手机发送验证码
+        let _msgType = '';
+        if (this.bindForm.status === 1) {
+          _msgType = 'sendBindChaneMsgOld';
+        }else {
+          _msgType = 'sendBindChaneMsgNew';
+        }
+        ApiUser[_msgType]({
+          mobile: this.bindForm.mobile,
+          captcha_token: this.bindForm.captchaToken,
+          captcha_code: this.bindForm.captchaCode
         }).then(res => {
           if (res.data.code === 0) {
             this.bindForm.errorText = '';
@@ -263,7 +270,7 @@
               if (_seconds === 1) {
                 this.codeStatus.sending = false;
                 this.codeStatus.statusText = "获取验证码";
-                clearInterval(this.status.interval);
+                clearInterval(this.codeStatus.interval);
                 return;
               }
               _seconds--;
@@ -294,23 +301,57 @@
        */
       bindNext() {
         if (this.bindForm.status === 1) {
-          this.bindForm.title = '验证新的手机号';
-          this.bindForm.status = 2;
-          this.bindForm.info = '请输入新的手机号';
-          this.bindForm.errorText = '手机号或验证码错误';
-          this.bindForm.btnText = '完成绑定';
+          ApiUser.checkBindChange({
+            code: this.bindForm.code
+          }).then(
+            res => {
+              if (res.data.code === 0) {
+                this.bindForm.title = '验证新的手机号';
+                this.bindForm.mobile = '';
+                this.bindForm.status = 2;
+                this.bindForm.captchaCode = '';
+                this.bindForm.code = '';
+                this.bindForm.info = '请输入新的手机号';
+                this.bindForm.errorText = '';
+                this.bindForm.btnText = '完成绑定';
+                this.focus = 1;
+
+
+                // 重新获取图形二维码
+                this.getCaptcha();
+                // 验证码发送清空
+                this.codeStatus.sending = false;
+                this.codeStatus.statusText = "获取验证码";
+                clearInterval(this.codeStatus.interval);
+              }else {
+                this.bindForm.errorText = res.data.message;
+              }
+            }
+          )
         }else if (this.bindForm.status === 2) {
-          this.bindForm.status = 3;
-          let _this = this;
-          setTimeout(()=>{
-            _this.bindForm.status = 4;
-          },300);
-          setTimeout(()=>{
-            _this.showPhoneBindDialog = false;
-          },500);
-          setTimeout(()=>{
-            _this.showAlert = true;
-          },700);
+          ApiUser.bindChange({
+            mobile: this.bindForm.mobile,
+            code: this.bindForm.code
+          }).then(
+            res => {
+              if (res.data.code === 0) {
+                this.bindForm.status = 3;
+                // 重新加载页面
+                let _this = this;
+                setTimeout(()=>{
+                  _this.bindForm.status = 4;
+                },300);
+                setTimeout(()=>{
+                  _this.showPhoneBindDialog = false;
+                },500);
+                setTimeout(()=>{
+                  _this.showAlert = true;
+                },700);
+              }else {
+                this.bindForm.errorText = res.data.message;
+              }
+            }
+          )
         }
       },
 
@@ -318,18 +359,19 @@
        * 重置绑定手机操作状态
        */
       resetBindForm() {
-        this.bindForm = {
-          title: '验证当前手机号',
-          status: 1,
-          mobile: '',
-          info: '请输入当前手机号',
-          code: '',
-          errorText: '请输入当前手机号',
-          btnText: '下一步',
-          captchaCode:'',
-          captchaImage:null,
-          captchaToken:null
-        }
+        // this.bindForm = {
+        //   title: '验证当前手机号',
+        //   status: 1,
+        //   mobile: '',
+        //   info: '请输入当前手机号',
+        //   code: '',
+        //   errorText: '请输入当前手机号',
+        //   btnText: '下一步',
+        //   captchaCode:'',
+        //   captchaImage:null,
+        //   captchaToken:null
+        // }
+        window.location.reload();
       },
 
       /**

@@ -39,5 +39,13 @@ export default {
    */
   wxBind(params) {
     return axios.put('/api/user/bind/', params);
+  },
+
+  /**
+   * 发送微信用户绑定手机验证码短信
+   * @param {Object} params 
+   */
+  sendWxBindMsg(params) {
+    return axios.post('/api/sms/bind/', params);
   }
 }

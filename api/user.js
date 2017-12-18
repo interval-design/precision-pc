@@ -127,5 +127,37 @@ export default {
    */
   createMessageByOrder(orderId, params) {
     return axios.post(`/api/orders/${orderId}/messages/`, params);
+  },
+
+  /**
+   * 发送用户改绑手机旧手机验证码短信
+   * @param {Object} params 
+   */
+  sendBindChaneMsgOld(params) {
+    return axios.post(`/api/sms/switch/old/`, params);
+  },
+
+  /**
+   * 发送用户改绑手机新手机验证码短信
+   * @param {Object} params 
+   */
+  sendBindChaneMsgNew(params) {
+    return axios.post(`/api/sms/switch/new/`, params);
+  },
+
+  /**
+   * 用户改绑手机验证
+   * @param {Object} params 
+   */
+  checkBindChange(params) {
+    return axios.put(`/api/user/switch/check/`, params)
+  },
+
+  /**
+   * 用户改绑手机
+   * @param {Object} params 
+   */
+  bindChange(params) {
+    return axios.put(`/api/user/switch/`, params)
   }
 }

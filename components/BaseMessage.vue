@@ -16,7 +16,8 @@
                 <span class="itv-base-message-list-item-time-line"></span>
               </div>
               <div class="itv-base-message-list-item-msg">
-                <img src="../assets/default-avatar.png">
+                <img v-if="item.user && $store.state.user.wx_user_info.headimgurl" :src="$store.state.user.wx_user_info.headimgurl">
+                <img v-else src="../assets/default-avatar.png">
                 <p>{{item.content}}</p>
               </div>
             </li>

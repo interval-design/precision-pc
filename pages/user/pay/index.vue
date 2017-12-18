@@ -60,39 +60,41 @@
         <tbody class="itv-pay-order-table-body">
           <tr>
             <td class="itv-pay-order-table-img">
-              <img src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4">
+              <img src="../../../assets/pic-product-1.png" alt="product-1" v-if="order.productId === 1">
+              <img src="../../../assets/pic-product-2.png" alt="product-1" v-if="order.productId === 2">
+              <img src="../../../assets/pic-product-3.png" alt="product-1" v-if="order.productId === 3">
             </td>
-            <td class="itv-pay-order-table-name">肠癌早筛测试服务</td>
-            <td>x1</td>
-            <td class="itv-pay-order-table-price">￥999</td>
+            <td class="itv-pay-order-table-name">{{order.name}}</td>
+            <td>
+              <span class="itv-pay-product-count">
+                <span class="itv-icon" :class="'itv-icon-count-minus'+ (order.num>1? '':'__forbid')"
+                      @click="order.num--"></span>
+                <input class="itv-pay-product-count__num" type="text" v-model.number="order.num">
+                <span class="itv-icon itv-icon-count-add" @click="order.num++"></span>
+              </span>
+            </td>
+            <td class="itv-pay-order-table-price">{{(order.price-order.discount) | toFix}}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="itv-pay-payment">
-      <div>应付金额：<span class="itv-pay-payment-price">￥9999</span></div>
-      <div class="itv-pay-payment-btns">
-        <!-- 这里两个button如果不用标签包起来有时会报错，暂没有解决办法，nuxt.js的issues里有人遇到相同问题，待解决https://github.com/nuxt/nuxt.js/issues/1594 -->
-        <span>
-          <base-button size="huge" style="margin-right: 24px" @click="$router.push({path: '/user/pay/status'})">
-            <span class="itv-icon itv-icon-zfb"></span>支付宝支付
-          </base-button>
-        </span>
-        <span>
-          <base-button size="huge" type="success" @click="$router.push({path: '/user/pay/status'})">
-            <span class="itv-icon itv-icon-wx"></span>微信支付
-          </base-button>
-        </span>
+    <div class="itv-pay-to-order">
+      <div>应付金额：<span class="itv-pay-to-order-price">{{(order.price-order.discount)*order.num | toFix}}</span></div>
+      <div class="itv-pay-to-order-btn">
+        <base-button size="huge" type="error" @click="createOrder">确认下单</base-button>
       </div>
     </div>
 
     <!-- 删除地址的弹出框 -->
     <base-confirm v-show="showConfirm" :options="comfirmOption" ref="confirm"></base-confirm>
+
+    <!-- 支付弹窗 -->
+    <pay-dialog :visible.sync="payDialogInfo.show" :payOrder="payDialogInfo.order"></pay-dialog>
   </div>
 </template>
 
 <script>
-  import User from '~/api/user.js'
+  import ApiUser from '~/api/user.js'
   export default {
     name: 'UserPay',
     head() {
@@ -103,11 +105,12 @@
         ]
       }
     },
-    created() {
-      this.getUserAddresses();
-    },
     data() {
       return {
+        payDialogInfo: {
+          show: false,
+          order: {}
+        },
         showForm: false,
         addressForm: {
           type: '',
@@ -120,7 +123,9 @@
         activeAddress: 0,
         addressList: [],
         comfirmOption: {},
-        showConfirm: false
+        showConfirm: false,
+        order: {},
+        codeInfo: {}
       }
     },
     methods: {
@@ -132,6 +137,8 @@
           return;
         }
         if (this.activeAddress === id) {
+          this.order.addressId = id;
+          localStorage.setItem('precision-order',JSON.stringify(this.order));
           return 'itv-pay-address-content-list-item--active';
         }
       },
@@ -187,8 +194,9 @@
         }
         this.showConfirm = true;
         this.$refs.confirm.confirm().then(() => {
-          User.delUserAddress(item.id).then(
+          ApiUser.delUserAddress(item.id).then(
             res => {
+              this.activeAddress = 0;
               this.getUserAddresses();
               this.showConfirm = false;
             }
@@ -206,7 +214,7 @@
 
         if (form.type === 'new') {
           // 创建收货地址
-          User.creatUserAddress({
+          ApiUser.creatUserAddress({
             province: form.address[0],
             city: form.address[1],
             district: form.address[2],
@@ -219,6 +227,7 @@
                 this.addressForm.warning = '信息填写不完整';
               }else {
                 this.showForm = false;
+                this.activeAddress = res.data.data.address.id;
                 this.getUserAddresses();
               }
               
@@ -226,7 +235,7 @@
           )
         }else {
           // 编辑收货地址
-          User.editUserAddress(form.id, {
+          ApiUser.editUserAddress(form.id, {
             province: form.address[0],
             city: form.address[1],
             district: form.address[2],
@@ -246,15 +255,95 @@
        * 列出当前用户的收货地址
        */
       getUserAddresses() {
-        User.getUserAddresses().then(
+        ApiUser.getUserAddresses().then(
           res => {
             this.addressList = res.data.data.addresses;
-            this.activeAddress = this.addressList[0] ? this.addressList[0].id : 0;
+            this.activeAddress = this.activeAddress ? this.activeAddress: (this.addressList[0] ? this.addressList[0].id : 0);
+          }
+        )
+      },
+      
+      /**
+       * 生成订单初始信息
+       */
+      getOrderDetail() {
+        var order = localStorage.getItem('precision-order');
+        var cardCode = this.$route.params.cardCode;
+        if (order) {
+          this.order = JSON.parse(order);
+          if (cardCode !== this.order.cardCode) {
+            this.getCodeGroup(cardCode);
+          }
+        }else {
+          this.getCodeGroup(cardCode);
+        }
+      },
+
+      /**
+       * 根据微信卡券code获取邀请码组详情
+       */
+      getCodeGroup(cardCode) {
+        ApiUser.getCodeGroup(cardCode).then(
+          res => {
+            if (res.data.code === 0) {
+              let codeInfo = res.data.data.invite_code_group;
+              this.order = {
+                cardCode: cardCode,
+                name: codeInfo.product.name,
+                productId: codeInfo.product.id,
+                discount: codeInfo.discount,
+                price: codeInfo.product.price,
+                num: 1
+              };
+              localStorage.setItem('precision-order',JSON.stringify(this.order));
+            }
+          }
+        )
+      },
+
+      /**
+       * 由微信卡券code创建订单
+       * @param {} type 微信/支付宝
+       */
+      createOrder(type) {
+        var order = this.order;
+        ApiUser.createOrder(order.cardCode,{
+          product_id: order.productId,
+          quantity: order.num,
+          address_id: order.addressId
+        }).then(
+          res => {
+            if (res.data.code === 0) {
+              // 下单成功后打开支付弹窗
+              this.payDialogInfo = {
+                show: true,
+                order: res.data.data.order
+              };
+            }
           }
         )
       }
-
-
+    },
+    watch: {
+      'order.num'(newVal,oldVal) {
+        if (isNaN(newVal)) {
+          this.order.num = oldVal;
+        }
+        if (newVal<1) {
+          this.order.num = 1;
+        }
+        if (newVal>3) {
+          this.order.num = 3;
+        }
+        this.order.num = parseInt(this.order.num);
+        localStorage.setItem('precision-order',JSON.stringify(this.order));
+      },
+      '$store.state.user'(newVal,oldVal) {
+        if (newVal) {
+          this.getUserAddresses();
+          this.getOrderDetail();
+        }
+      }
     }
   }
 </script>
@@ -387,15 +476,28 @@
       }
     }
   }
-  &-payment {
+  &-to-order {
     margin-top: 24px;
     text-align: right;
     &-price {
       font-size: 22px;
       color: $red;
     }
-    &-btns {
+    &-btn {
       margin-top: 32px;
+    }
+  }
+  &-product-count {
+    display: flex;
+    margin: 0 auto;
+    border: 1px solid $border;
+    width: 96px;
+    &__num {
+      border-left: 1px solid $border;
+      border-right: 1px solid $border;
+      width: 48px;
+      line-height: 22px;
+      text-align: center;
     }
   }
 }

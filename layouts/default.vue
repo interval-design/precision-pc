@@ -59,6 +59,10 @@
               </ul>
             </transition>
           </li>
+          <li class="item">
+            <!-- 暂无功能，合作方要求先加上 -->
+            <nuxt-link to="/">合作咨询</nuxt-link>
+          </li>
           <template v-if="user == null">
             <li class="item login">
               <span @click="openLoginDialog">登录</span>
@@ -69,27 +73,22 @@
           </template>
           <li class="item login" v-else>
             <nuxt-link to="/user">
-              <img class="avatar" src="https://avatars1.githubusercontent.com/u/25037123?s=200&v=4" alt="avatar">
+              <img class="avatar" src="../assets/default-avatar.png" alt="avatar">
             </nuxt-link>
           </li>
         </ul>
       </div>
     </nav>
     <transition name="page">
-      <!-- 这里我暂时改成 router-view 了，用nuxt是无效的，后面可以考虑在store里设置 -->
-      <router-view class="itv-container" v-on:openUserDialog="openLoginDialog"/>
+      <!-- 这里我暂时改成 router-view 了，用nuxt是无效的 -->
+      <router-view class="itv-container" @openUserDialog="openLoginDialog"/>
     </transition>
     <footer class="itv-footer">
-      <div class="itv-footer-contact" v-if="$route.name !== 'research-microbiology' && full">
-        <p>想成为我们的合作伙伴？</p>
-        <p class="tel"><img src="../assets/pic-footer-phone.png" alt="icon-phone">021-59234123</p>
-        <p>期待与您合作</p>
-      </div>
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
           <img width="182px" class="logo" src="../assets/logo-white.png" srcset="../assets/logo-white.png 2x" alt="logo-white">
-          <p>联系电话：021-24123123</p>
-          <p>公司邮箱：puruisen123@123.com</p>
+          <p>联系电话：400-822-6270</p>
+          <p>公司邮箱：zhuyongliang@precisiongene.cn</p>
         </div>
         <div class="itv-footer-bd-item nav">
           <ul class="item">
@@ -127,7 +126,7 @@
           </ul>
         </div>
         <div class="itv-footer-bd-item qr-code">
-          <img src="../assets/qr-code.jpg" alt="qr-code">
+          <img src="../assets/qrcode-text.png" alt="qr-code">
         </div>
       </div>
       <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 沪ICP备15021426号</div>
@@ -143,7 +142,7 @@
           <input type="text" placeholder="手机号" v-model="loginForm.mobile" @focus="focus = 1">
         </div>
         <div class="itv-dialog-form__item" :class="{'active':focus == 2}">
-          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-phone--done':'itv-icon-phone'"></span>
+          <span class="itv-icon" :class="focus == 2 ? 'itv-icon-captcha--done':'itv-icon-captcha'"></span>
           <input type="text" placeholder="验证码" v-model="loginForm.captchaCode" @focus="focus = 2">
           <div class="itv-captcha-group">
             <img class="img" :src="'data:img/jpg;base64,' + loginForm.captchaImage" alt="captchaImage">
@@ -164,11 +163,18 @@
         <template v-if="action == '登录'">
           <p class="divide">使用第三方授权登录</p>
           <div class="third-party">
-            <img src="../assets/wechat.png" alt="wechat" @click="">
+            <img src="../assets/wechat.png" alt="wechat" @click="wxLogin">
           </div>
         </template>
       </footer>
     </base-dialog>
+
+    <!-- 二维码弹窗 -->
+    
+    <base-dialog :visible.sync="qrCodeDialog">
+      <div id="qrCode"></div>
+    </base-dialog>
+
   </div>
 </template>
 
@@ -185,19 +191,6 @@
         user: state => state.user
       }),
     },
-    created() {
-      this.getCaptcha();
-      // todo:微信授权登录没条件调试，等最后再搞
-//      this.weixin = new WxLogin({
-//        id:"login_container",
-//        appid: "",
-//        scope: "snsapi_login",
-//        redirect_uri: encodeURI('http://precision.interval.im/extensions/wx/user/login/'),
-//        state: "",
-//        style: "",
-//        href: ""
-//      });
-    },
     mounted() {
       if (this.$cookie.get('_prs_user')) {
         this.$store.dispatch('setUser', res => {})
@@ -207,6 +200,7 @@
       return {
         active: null,
         loginDialog: false,
+        qrCodeDialog: false,
         loginForm: {
           mobile: '',
           code: '',
@@ -249,6 +243,7 @@
       openLoginDialog() {
         this.action = '登录';
         this.loginDialog = true;
+        this.getCaptcha();
       },
 
       /**
@@ -273,7 +268,7 @@
               if (_seconds === 1) {
                 this.codeStatus.sending = false;
                 this.codeStatus.statusText = "获取验证码";
-                clearInterval(this.status.interval);
+                clearInterval(this.codeStatus.interval);
                 return;
               }
               _seconds--;
@@ -304,6 +299,24 @@
           }
         });
       },
+
+      /**
+       * 微信授权登录
+       */
+      wxLogin() {
+        var path = this.$route.path;
+        console.log(path);
+        this.qrCodeDialog = true;
+        this.weixin = new WxLogin({
+          id:"qrCode", 
+          appid: "wx9c500d6d1848325c",
+          scope: "snsapi_login",
+          redirect_uri: encodeURI(`http://precision.interval.im/extensions/wx/user/login/`),
+          state: "",
+          style: "",
+          href: ""
+        });
+      }
     }
   }
 </script>
@@ -331,6 +344,15 @@
       &:after {
         right: 0;
       }
+    }
+  }
+  #qrCode{
+    display: flex;
+    justify-content: center;
+  }
+  .third-party {
+    img {
+      cursor: pointer;
     }
   }
 </style>

@@ -52,7 +52,6 @@
 <style lang="scss" scoped>
 @import '../assets/style/variable.scss';
 .itv-base-dialog {
-  transform: scale(1);
   position: fixed;
   left: 0;
   right: 0;
@@ -67,8 +66,6 @@
     border-radius: 2px;
     width: 400px;
     background: #fff;
-    transition: .2s ease;
-    transform: translateY(0);
   }
   &-header {
     position: relative;

@@ -28,7 +28,7 @@
             <td>{{report.person_sex}}</td>
             <td>{{report.person_age}}</td>
             <td>
-              <base-button size="small" line @click="openReport(report.report_full_link)">查看完整报告</base-button>
+              <base-button size="small" line @click="openReport(report)">查看完整报告</base-button>
             </td>
           </tr>
         </tbody>
@@ -72,9 +72,17 @@
       /**
        * 跳转到报告页面
        */
-      openReport(url) {
-        window.open(url);
-      },
+      openReport(report) {
+        // 更新报告查看次数
+        var newPage = window.open('','_blank');
+        ApiUser.updateReportViews(report.id,{}).then(
+          res => {
+            if (res.data.code === 0) {
+              newPage.location = report.report_full_link;
+            }
+          }
+        )
+      }
     },
     watch: {
       '$store.state.user'(newVal,oldVal) {
@@ -85,17 +93,26 @@
       }
     },
     filters: {
+      /**
+       * 日期格式化
+       */
       toDate(val) {
         if (!val) {
           return '-';
         };
+        /**
+         * 数字补零
+         */
+        var addZero = (num) => {
+          return (num<10? '0':'') + num;
+        } 
         var time = new Date(val);
         var year = time.getFullYear();
         var month = time.getMonth()+1;
         var day = time.getDate();
-        var hour = time.getHours();
-        var min = time.getMinutes();
-        var sec = time.getSeconds();
+        var hour = addZero(time.getHours());
+        var min = addZero(time.getMinutes());
+        var sec = addZero(time.getSeconds());
         return `${year}-${month}-${day} ${hour}:${min}`;
       }
     }

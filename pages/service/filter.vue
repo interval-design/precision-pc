@@ -209,23 +209,25 @@
         <img width="944px" src="../../assets/pic-report-demo.png" srcset="../../assets/pic-report-demo.png 2x" alt="pic-section-11">
       </div>
     </section>
-    <section class="itv-buy">
-      <div class="itv-buy—form">
-        <p class="itv-buy—form__title">输入邀请码体验检测服务</p>
-        <div class="itv-input-group">
-          <input class="itv-input-group__input" type="text" v-model="code" placeholder="输入邀请码">
-          <base-button class="itv-input-group__button" @click="submit">体验服务</base-button>
+    <!-- 邀请码输入窗 -->
+    <code-form @login="openLoginDialog"></code-form>
+    
+    <!-- 邀请码弹窗 -->
+    <base-dialog :visible.sync="showDialog" width="1000px">
+      <code-form @login="openLoginDialog" class="itv-code-tips"></code-form>
+      <div class="itv-code-tips">
+        <h4 class="itv-code-tips-title" @click="showDialogImg=!showDialogImg">
+          如何找到邀请码？
+          <span class="itv-icon" :class="'itv-icon-arrow-'+ (showDialogImg?'up':'down')"></span>
+        </h4>
+        <div class="itv-code-tips-img" v-show="showDialogImg">
+          <img src="../../assets/code-tips.png" alt="code-tips">
         </div>
       </div>
-      <div class="itv-buy—form qr">
-        <img src="../../assets/qr-code.jpg" alt="qr">
-        <div class="qr-desc">
-          <h3>如何获取邀请码</h3>
-          <p>扫描关注微信公众号</p>
-          <p>参与公众号内的讲座获取邀请码</p>
-        </div>
-      </div>
-    </section>
+    </base-dialog>
+
+    <!-- 悬浮菜单 -->
+    <float-menu @open="openCodeDialog"></float-menu>
   </div>
 </template>
 
@@ -243,15 +245,19 @@
     data() {
       return {
         code:'',
+        showDialog: false,
+        showDialogImg: false
       }
     },
     methods:{
-      submit(){
-        // 未登录状态体验服务会弹登录框
-        if (!this.$store.state.user) {
-          this.$emit('openUserDialog');
-        }
-        // this.$router.push({name:'user-pay'});
+      // 触发邀请码体验服务
+      openLoginDialog() {
+        this.$emit('openUserDialog');
+      },
+
+      // 打开邀请码弹窗
+      openCodeDialog() {
+        this.showDialog = true;
       }
     }
   }

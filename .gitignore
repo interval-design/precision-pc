@@ -1,6 +1,8 @@
 # dependencies
 node_modules
 .idea
+.nuxt
+.nuxt/
 
 # logs
 npm-debug.log

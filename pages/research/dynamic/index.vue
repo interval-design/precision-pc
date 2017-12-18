@@ -7,7 +7,7 @@
       </span>
       <span>科研动态</span>
     </header>
-    <ul class="itv-research-list">
+    <ul class="itv-research-list" v-if="articleList.length>0">
       <li class="itv-research-list-item" v-for="item in articleList" :key="item.id"
           @click="$router.push({name: 'research-dynamic-id',params:{id: item.id}})">
         <div class="itv-research-list-item__img">
@@ -23,6 +23,7 @@
         </div>
       </li>
     </ul>
+    <p v-else>暂无动态</p>
 
   </div>
 </template>

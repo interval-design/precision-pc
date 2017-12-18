@@ -63,7 +63,7 @@
         position: relative;
         float: left;
         display: inline-block;
-        padding: 0 24px;
+        padding: 0 32px;
         height: 100%;
         cursor: pointer;
         &:hover {
@@ -73,6 +73,7 @@
           color: $font;
         }
         &__dropdown {
+          padding: 0 8px;
           position: absolute;
           top: 50px;
           left: 0;
@@ -80,6 +81,7 @@
           background: $white;
           line-height: normal;
           color: $font-sub;
+          box-shadow: 0 2px 4px 0 rgba(242,242,242,1);
           li {
             padding: 8px;
             text-align: center;
@@ -161,6 +163,9 @@
     }
     &-item.qr-code {
       text-align: right;
+      img {
+        width: 116px;
+      }
     }
   }
   &-copy {
@@ -269,6 +274,11 @@
       text-align: right;
       margin-bottom: 24px;
     }
+    &__info {
+      height: 21px;
+      text-indent: 2em;
+      color: $red;
+    }
   }
   .qr {
     display: flex;
@@ -276,6 +286,9 @@
     align-items: center;
     justify-content: space-between;
     border-left: 1px solid $border;
+    img {
+      width: 100px;
+    }
     &-desc {
       margin-left: 24px;
     }
@@ -390,5 +403,39 @@
     height: 450px;
   }
 }
+.itv-code-tips {
+  padding-bottom: 24px;
+  text-align: center;
+  background: $white;
+  &-dialog {
+    background: $white !important;
+    height: auto;
+  }
+  &-title {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+    color: $blue;
+    cursor: pointer;
+  }
+  &-img {
+    margin-top: 24px;
+    img {
+      width: 940px;
+      height: 311px;
+    }
+  }
+}
+
+// 防止屏幕过小，code弹窗显示不完整
+@media (max-width: 1919px) {
+  .itv-code-center-dialog {
+    display: flex;
+    .itv-base-dialog-wrap {
+      margin: auto !important;
+    }
+  }
+}
+
 
 

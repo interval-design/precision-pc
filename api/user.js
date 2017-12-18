@@ -80,5 +80,52 @@ export default {
    */
   updateReportViews(subOrderId, params) {
     return axios.put(`/api/sub_orders/${subOrderId}/report_views/`, params);
+  },
+
+
+  /**
+   * 根据微信卡券code获取邀请码组详情
+   * @param {int} wxCardCode 
+   * @param {Object} params 
+   */
+  getCodeGroup(wxCardCode, params) {
+    return axios.get(`/api/invite_codes/${wxCardCode}/invite_code_group/`, params);
+  },
+
+  /**
+   * 由微信卡券code创建订单
+   * @param {int} wxCardCode 
+   * @param {Object} params 
+   */
+  createOrder(wxCardCode, params) {
+    return axios.post(`/api/invite_codes/${wxCardCode}/orders/`, params);
+  },
+
+  /**
+   * 创建交易
+   * @param {int} orderId 
+   * @param {Object} params 
+   */
+  createPayment(orderId, params) {
+    return axios.post(`/api/orders/${orderId}/transactions/`, params);
+  },
+
+  /**
+   * 根据订单列出留言
+   * @param {int} orderId 
+   * @param {Object} params 
+   */
+  getMessageByOrder(orderId, params) {
+    return axios.get(`/api/orders/${orderId}/messages/`, params);
+  },
+  
+  /**
+   * 创建订单留言
+   * @param {int} orderId 
+   * @param {Object} params 
+   */
+  createMessageByOrder(orderId, params) {
+    return axios.post(`/api/orders/${orderId}/messages/`, params);
   }
+
 }

@@ -40,10 +40,12 @@
               <p>儿童肠道菌群失调是引起儿童消化不良、食欲不振肥胖 营养不良、发育迟缓等成长问题的重要原因。</p>
             </div>
           </div>
-          <img width="323px"  src="../../assets/child/pic-section2-1.png" srcset="../../assets/child/pic-section2-1.png 2x" alt="pic-1">
+          <img width="323px" src="../../assets/child/pic-section2-1.png"
+               srcset="../../assets/child/pic-section2-1.png 2x" alt="pic-1">
         </div>
         <div class="section-2-item">
-          <img width="514px" src="../../assets/child/pic-section2-2.png" srcset="../../assets/child/pic-section2-2.png 2x" alt="pic-2">
+          <img width="514px" src="../../assets/child/pic-section2-2.png"
+               srcset="../../assets/child/pic-section2-2.png 2x" alt="pic-2">
           <div class="desc">
             <h2 class="desc__title">疾病预防</h2>
             <div class="desc__bd">
@@ -60,94 +62,38 @@
               <p>能了解儿童肠道免疫环境情况 / 能指导有益菌摄取，增强免疫力 / 能监测儿童是否受到服用抗生素的威胁。</p>
             </div>
           </div>
-          <img width="459px" src="../../assets/child/pic-section2-3.png" srcset="../../assets/child/pic-section2-3.png 2x" alt="pic-3">
+          <img width="459px" src="../../assets/child/pic-section2-3.png"
+               srcset="../../assets/child/pic-section2-3.png 2x" alt="pic-3">
         </div>
         <div class="section-2-item center">
-          <img width="372px" src="../../assets/child/pic-section2-4.png" srcset="../../assets/child/pic-section2-4.png 2x" alt="pic-3">
+          <img width="372px" src="../../assets/child/pic-section2-4.png"
+               srcset="../../assets/child/pic-section2-4.png 2x" alt="pic-3">
           <div class="desc">
             <p>宝宝出生前，生活在无菌的子宫中</p>
             <p>出生后，外界微生物开始在宝宝肠道内定植宝宝肠道菌群逐步发展，到3岁左右接近成人状态。</p>
           </div>
-          <img width="443px"  src="../../assets/child/pic-section2-5.png" srcset="../../assets/child/pic-section2-5.png 2x" alt="pic-3">
+          <img width="443px" src="../../assets/child/pic-section2-5.png"
+               srcset="../../assets/child/pic-section2-5.png 2x" alt="pic-3">
           <p class="desc-sub">这些都会影响儿童肠道菌群，从而影响肠道健康，我们的儿童肠道检测报告，会帮助您规避可能存在的健康风险</p>
         </div>
       </div>
     </section>
-    <section class="section section-3">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          普瑞森基因用心和技术对待每一项检测
-          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <div class="section-3-item">
-          <div class="desc">
-            <h2 class="desc__title">实验室级规范检测</h2>
-            <div class="desc__bd">
-              <p>143 位学者 / 按流程标准操作 SOP</p>
-              <p>严格的无菌检测环境 / 用心追求精准的检测结果</p>
-            </div>
-          </div>
-          <img src="../../assets/pic-flow-1.png" alt="pic-1">
+    <common-page>
+      <section class="section">
+        <div class="itv-content">
+          <h3 class="section-title">
+            <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
+            普瑞森基因儿童倡导检测包含项目明细
+            <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
+          </h3>
+          <img width="962px" src="../../assets/child/pic-section5.png" srcset="../../assets/child/pic-section5.png 2x"
+               alt="pic-section-10">
         </div>
-        <div class="section-3-item">
-          <img src="../../assets/pic-flow-2.png" alt="pic-2">
-          <div class="desc">
-            <h2 class="desc__title">世界领先的基因检测平台</h2>
-            <div class="desc__bd">
-              <p>GutCheck™肠道微生物基因检测平台 / illumina Miseq 高通量测序仪</p>
-              <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
-            </div>
-            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
-          </div>
-        </div>
-        <div class="section-3-item">
-          <div class="desc">
-            <h2 class="desc__title">中国人的肠道微生物信息数据库</h2>
-            <div class="desc__bd">
-              <p>XX年数据积累，国内独家的基因大数据库 / 近三千个病人肠道微生物的测序数据</p>
-              <p>因突变、疾病、药物数据千万条 / 上万篇肠道微生物与疾病的英文文献</p>
-              <p>自主的测序数据分析计算机程序 / 肠道微生物组成与疾病关系的数学模型、基因大数据库</p>
-            </div>
-            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#three'}">继续了解普瑞森大数据平台 ></nuxt-link>
-          </div>
-          <img src="../../assets/pic-flow-3.png" alt="pic-3">
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          服务流程
-          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img width="1036" src="../../assets/pic-process.png" srcset="../../assets/pic-process.png 2x" alt="pic-section9">
-      </div>
-    </section>
-    <section class="section">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          普瑞森基因儿童倡导检测包含项目明细
-          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img width="962px" src="../../assets/child/pic-section5.png" srcset="../../assets/child/pic-section5.png 2x" alt="pic-section-10">
-      </div>
-    </section>
-    <section class="section">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          示例报告
-          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img width="944px" src="../../assets/pic-report-demo.png" srcset="../../assets/pic-report-demo.png 2x" alt="pic-section-11">
-      </div>
-    </section>
+      </section>
+    </common-page>
     <!-- 邀请码输入窗 -->
     <code-form @login="openLoginDialog"></code-form>
-    
+
     <!-- 邀请码弹窗 -->
     <base-dialog :visible.sync="showDialog" width="1000px" class="itv-code-center-dialog">
       <code-form @login="openLoginDialog" class="itv-code-tips"></code-form>
@@ -161,7 +107,7 @@
         </div>
       </div>
     </base-dialog>
-    
+
     <!-- 悬浮菜单 -->
     <float-menu @open="openCodeDialog"></float-menu>
   </div>
@@ -169,13 +115,16 @@
 
 <script>
   import ApiUser from '../../api/user.js';
+  import CommonPage from '../../components/CommonPage';
+
   export default {
     name: 'ServiceChild',
+    components: {CommonPage},
     head() {
       return {
         title: '儿童肠道检测 -普瑞森基因',
         meta: [
-          { hid: 'child', name: 'description', content: '儿童肠道检测' }
+          {hid: 'child', name: 'description', content: '儿童肠道检测'}
         ]
       }
     },
@@ -191,7 +140,7 @@
       openLoginDialog() {
         this.$emit('openUserDialog');
       },
-      
+
       // 打开邀请码弹窗
       openCodeDialog() {
         this.showDialog = true;
@@ -210,7 +159,7 @@
     .itv-banner {
       background: #dfe4e7;
       &-cnt {
-        top:25%;
+        top: 25%;
         &__desc {
           width: 480px;
           font-size: 14px;
@@ -221,9 +170,9 @@
             h3 {
               font-size: 18px;
               color: $font-sub;
-              margin-bottom:8px;
+              margin-bottom: 8px;
             }
-            &:after{
+            &:after {
               position: absolute;
               content: '';
               left: 0;
@@ -255,7 +204,7 @@
           margin-left: 32px;
           vertical-align: middle;
         }
-        .content{
+        .content {
           display: inline-block;
           vertical-align: middle;
         }
@@ -269,8 +218,7 @@
         max-width: 350px;
       }
     }
-    .section-2,
-    .section-3 {
+    .section-2{
       &-item {
         position: relative;
         height: 400px;
@@ -279,13 +227,13 @@
         justify-content: space-around;
         align-items: center;
       }
-      &-item.center{
+      &-item.center {
         height: 650px;
         flex-direction: column;
-        .desc{
+        .desc {
           text-align: center;
         }
-        .desc-sub{
+        .desc-sub {
           color: $font-sub;
         }
       }

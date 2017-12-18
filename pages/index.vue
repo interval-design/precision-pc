@@ -67,48 +67,7 @@
         <img src="../assets/index/pic-section4.png" alt="" style="width: 970px;height: 458px">
       </div>
     </section>
-    <section class="section section-5">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
-          普瑞森基因用心和技术对待每一项检测
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <div class="section-5-item">
-          <div class="desc">
-            <h2 class="desc__title">实验室级规范检测</h2>
-            <div class="desc__bd">
-              <p>143 位学者 / 按流程标准操作 SOP</p>
-              <p>严格的无菌检测环境 / 用心追求精准的检测结果</p>
-            </div>
-          </div>
-          <img src="../assets/pic-flow-1.png" alt="pic-1">
-        </div>
-        <div class="section-5-item">
-          <img src="../assets/pic-flow-2.png" alt="pic-2">
-          <div class="desc">
-            <h2 class="desc__title">世界领先的基因检测平台</h2>
-            <div class="desc__bd">
-              <p>GutCheck™肠道微生物基因检测平台 / illumina Miseq 高通量测序仪</p>
-              <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
-            </div>
-            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
-          </div>
-        </div>
-        <div class="section-5-item">
-          <div class="desc">
-            <h2 class="desc__title">中国人的肠道微生物信息数据库</h2>
-            <div class="desc__bd">
-              <p>XX年数据积累，国内独家的基因大数据库 / 近三千个病人肠道微生物的测序数据</p>
-              <p>因突变、疾病、药物数据千万条 / 上万篇肠道微生物与疾病的英文文献</p>
-              <p>自主的测序数据分析计算机程序 / 肠道微生物组成与疾病关系的数学模型、基因大数据库</p>
-            </div>
-            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#three'}">继续了解普瑞森大数据平台 ></nuxt-link>
-          </div>
-          <img src="../assets/pic-flow-3.png" alt="pic-3">
-        </div>
-      </div>
-    </section>
+    <common-page></common-page>
     <section class="section section-6">
       <div class="itv-content itv-flex-justify--sb">
         <nuxt-link :to="{name:'service-filter'}" class="itv-card itv-flex-justify--sb">
@@ -149,8 +108,10 @@
 </template>
 
 <script>
+import CommonPage from '../components/CommonPage';
   export default {
     name: 'Index',
+    components:{CommonPage},
     head() {
       return {
         title: '首页 - 普瑞森基因',

@@ -1,37 +1,42 @@
 module.exports = {
   css: [
-    {src: '~assets/style/custom.scss', lang: 'scss'},
-    {src: '~assets/style/animate.scss', lang: 'scss'},
-    {src:'swiper/dist/css/swiper.css'},
-    {src: 'animate.css/animate.min.css'}
+    { src: "~assets/style/custom.scss", lang: "scss" },
+    { src: "~assets/style/animate.scss", lang: "scss" },
+    { src: "swiper/dist/css/swiper.css" },
+    { src: "animate.css/animate.min.css" }
   ],
   head: {
-    title: 'precision-pc',
     meta: [
-      {charset: 'utf-8'},
-      {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: '普瑞森'}
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "普瑞森" }
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
-      {rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/animate.css@3.5.1'}
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        type: "text/css",
+        href: "https://cdn.jsdelivr.net/npm/animate.css@3.5.1"
+      }
     ],
     script: [
-      { src: 'http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js' }
-    ],
+      { src: "http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js" }
+    ]
   },
-  loading: {color: '#3C90EF'},
+  loading: { color: "#3C90EF" },
   router: {
-    middleware: 'chage-page'
+    middleware: "chage-page"
   },
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
+  env: {
+    BASE_URL: "http://precision.interval.im"
+  },
   plugins: [
-    { src: '~plugins/custom.js'},
-    { src: '~/plugins/axios.js'},
-    { src: '~plugins/vue-awesome-swiper.js', ssr: false },
-    { src: '~plugins/vue-area-linkage.js', ssr: false },
-    { src: '~plugins/vue-cookie.js',ssr:false}
-
+    { src: "~plugins/custom.js" },
+    { src: "~/plugins/axios.js" },
+    { src: "~plugins/vue-awesome-swiper.js", ssr: false },
+    { src: "~plugins/vue-area-linkage.js", ssr: false },
+    { src: "~plugins/vue-cookie.js", ssr: false }
   ],
   proxy: [["/api", { target: "http://precision.interval.im/" }]],
   build: {
@@ -51,17 +56,17 @@ module.exports = {
     loaders: [
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
+        loader: "url-loader",
         options: {
           limit: 10000,
-          name: 'img/[name].[hash:7].[ext]'
+          name: "img/[name].[hash:7].[ext]"
         }
       },
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
+        loaders: ["style", "css", "sass"]
       }
     ],
-    vendor: ["axios",'vue-awesome-swiper']
-  },
-}
+    vendor: ["axios", "vue-awesome-swiper"]
+  }
+};

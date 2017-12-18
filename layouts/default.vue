@@ -301,8 +301,6 @@
           let _data = res.data.data;
           if (res.data.code === 0) {
             this.$store.commit('SET_USER', _data.user);
-            console.log(_data.token);
-            console.log(Cookie);
             Cookie.setRaw('_prs_user', _data.token,{ expires: '30D' });
             this.loginDialog = false;
           } else {
@@ -335,8 +333,6 @@
        */
       wxLogin() {
         var path = this.$route.path;
-        console.log(path);
-        this.loginDialog = false;
         this.qrCodeDialog = true;
         this.weixin = new WxLogin({
           id:"qrCode", 

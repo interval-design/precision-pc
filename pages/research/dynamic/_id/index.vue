@@ -25,48 +25,39 @@
 </template>
 
 <script>
-  import Article from '../../../../api/article.js'
-  export default {
-    name: 'ResearchDynamicDetails',
-    head() {
-      return {
-        title: '文章详情 -普瑞森基因',
-        meta: [
-          { hid: 'dynamicDetails', name: 'description', content: '文章详情' }
-        ]
-      }
-    },
-    mounted() {
-      this.getArticleDetail(this.$route.params.id);
-    },
-    data() {
-      return {
-        article: {}
-      }
-    },
-    methods: {
-      getArticleDetail(ArticleId) {
-        Article.getArticleDetail(ArticleId).then(
-          res => {
-            this.article = res.data.data.article;
-          }
-        )
-      }
-    },
-    filters: {
-      time(val) {
-        val = new Date(val);
-        let year = val.getFullYear();
-        let month = val.getMonth()+1;
-        let day = val.getDate();
-        return `${year}-${month}-${day}`;
-      }
+import Article from "../../../../api/article.js";
+export default {
+  name: "ResearchDynamicDetails",
+  asyncData({ params }) {
+    return Article.getArticleDetail(params.id).then(res => {
+      return { article: res.data.data.article };
+    });
+  },
+  head() {
+    return {
+      title:`${this.article.title} - 普瑞森基因`,
+      meta: [{ hid: "dynamicDetails", name: "description", content: `${this.article.title}` }]
+    };
+  },
+  data() {
+    return {
+      article: {}
+    };
+  },
+  filters: {
+    time(val) {
+      val = new Date(val);
+      let year = val.getFullYear();
+      let month = val.getMonth() + 1;
+      let day = val.getDate();
+      return `${year}-${month}-${day}`;
     }
   }
+};
 </script>
 
 <style lang="scss">
-@import '../../../../assets/style/variable';
+@import "../../../../assets/style/variable";
 .itv-article {
   padding-bottom: 80px;
   &-main {

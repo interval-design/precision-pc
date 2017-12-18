@@ -204,217 +204,220 @@
 </template>
 
 <script>
-  import ApiUser from '../../../api/user.js';
-  export default {
-    name: 'Order',
-    head() {
-      return {
-        title: '订单详情 - 普瑞森基因',
-        meta: [
-          { hid: 'order', name: 'description', content: '订单详情' }
-        ]
-      }
-    },
-    
-    mounted() {
-      this.getOrderdetail(this.$route.params.id);
+import ApiUser from "../../../api/user.js";
+import axios from "axios";
 
-      // 未付款倒计时
-      this.countDownTimer = setInterval(()=>{
-        if (this.orderDetail.status === 0) {
-          this.updateCountDown();
-        }else {
-          clearInterval(this.countDownTimer);
-        }
-      },500)
-    },
-    destroyed() {
-      clearInterval(this.countDownTimer);
-    },
-    data() {
-      return {
-        showMessageDialog: false,
-        orderDetail: {},
-        countDown: '',
-        countDownTimer: null,
-        payDialogInfo: {
-          show: false,
-          order: {}
-        }
+export default {
+  name: "Order",
+  head() {
+    return {
+      title: "订单详情 - 普瑞森基因",
+      meta: [{ hid: "order", name: "description", content: "订单详情" }]
+    };
+  },
+  mounted() {
+    this.getOrderdetail(this.$route.params.id);
+    // 未付款倒计时
+    this.countDownTimer = setInterval(() => {
+      if (this.orderDetail.status === 0) {
+        this.updateCountDown();
+      } else {
+        clearInterval(this.countDownTimer);
       }
-    },
-    methods: {
-      /**
+    }, 500);
+  },
+  destroyed() {
+    clearInterval(this.countDownTimer);
+  },
+  data() {
+    return {
+      showMessageDialog: false,
+      orderDetail: {},
+      countDown: "",
+      countDownTimer: null,
+      payDialogInfo: {
+        show: false,
+        order: {}
+      }
+    };
+  },
+  methods: {
+    /**
        * 打开支付弹窗
        */
-      openPayDialog(order) {
-        this.payDialogInfo = {
-          show: true,
-          order: order
-        }
-      },
+    openPayDialog(order) {
+      this.payDialogInfo = {
+        show: true,
+        order: order
+      };
+    },
 
-
-      /**
+    /**
        * 获取订单详情
        */
-      getOrderdetail(orderId) {
-        ApiUser.getOrderdetail(orderId).then(
-          res => {
-            if (res.data.code === 0) {
-              this.orderDetail = res.data.data.order;
-            }
-          }
-        )
-      },
+    getOrderdetail(orderId) {
+      ApiUser.getOrderdetail(orderId).then(res => {
+        if (res.data.code === 0) {
+          this.orderDetail = res.data.data.order;
+        }
+      });
+    },
 
-      /**
+    /**
        * 跳转到报告页面
        */
-      openReport(order) {
-        // 更新报告查看次数
-        var newPage = window.open('','_blank');
-        ApiUser.updateReportViews(order.id,{}).then(
-          res => {
-            if (res.data.code === 0) {
-              newPage.location = order.report_full_link;
-            }
-          }
-        )
-      },
+    openReport(order) {
+      // 更新报告查看次数
+      var newPage = window.open("", "_blank");
+      ApiUser.updateReportViews(order.id, {}).then(res => {
+        if (res.data.code === 0) {
+          newPage.location = order.report_full_link;
+        }
+      });
+    },
 
-      /**
+    /**
        * 追踪快递单号
        * bills {Array} 单号数组
        */
-      billTracking(bills) {
-        window.open(`http://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/${bills.join(',')}`);
-      },
+    billTracking(bills) {
+      window.open(
+        `http://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/${bills.join(
+          ","
+        )}`
+      );
+    },
 
-      /**
+    /**
        * 获取分析时间(检测时间+7天)
        * receiveTime {str} 收到试剂盒时间即开始检测的时间
        */
-      getAnalyzeTime(receiveTime) {
-        var time = new Date(receiveTime).getTime();
-        return (time + 7*24*60*60*1000 + 0.9527*60*60*1000);
-      },
+    getAnalyzeTime(receiveTime) {
+      var time = new Date(receiveTime).getTime();
+      return time + 7 * 24 * 60 * 60 * 1000 + 0.9527 * 60 * 60 * 1000;
+    },
 
-      /**
+    /**
        * 根据当前订单状态判断是否激活图标
        */
-      orderStatus(statusCode) {
-        if (statusCode<=this.orderDetail.status && this.orderDetail.status !== 5) {
-          return true;
-        }
-      },
+    orderStatus(statusCode) {
+      if (
+        statusCode <= this.orderDetail.status &&
+        this.orderDetail.status !== 5
+      ) {
+        return true;
+      }
+    },
 
-      /**
+    /**
        * 订单关闭倒计时
        */
-      updateCountDown() {
-        var time = new Date(this.orderDetail.iso_create_time).getTime()+30*60*1000 - Date.now();
-        
-        if (time <= 0) {
-          // 倒计时结束刷新页面
-          location.reload();
-          return;
-        }
-        var min = Math.floor(time/(60*1000));
-        var sec = Math.floor((time - min*60*1000)/1000);
-        var addZero = (num) => {
-          return (num<10? '0':'') + num;
-        } 
-        this.countDown = addZero(min) + ' : ' + addZero(sec);
-      },
+    updateCountDown() {
+      var time =
+        new Date(this.orderDetail.iso_create_time).getTime() +
+        30 * 60 * 1000 -
+        Date.now();
 
+      if (time <= 0) {
+        // 倒计时结束刷新页面
+        location.reload();
+        return;
+      }
+      var min = Math.floor(time / (60 * 1000));
+      var sec = Math.floor((time - min * 60 * 1000) / 1000);
+      var addZero = num => {
+        return (num < 10 ? "0" : "") + num;
+      };
+      this.countDown = addZero(min) + " : " + addZero(sec);
+    },
 
-      /**
+    /**
        * 支付渠道
        */
-      payChannel(orderDetail) {
-        if (!this.orderDetail.transaction) {
-          return '-';
+    payChannel(orderDetail) {
+      if (!this.orderDetail.transaction) {
+        return "-";
+      }
+      var channel = orderDetail.transaction.channel;
+      if (channel) {
+        if (channel === "ALI_QRCODE") {
+          return "支付宝支付";
+        } else {
+          return "微信支付";
         }
-        var channel = orderDetail.transaction.channel;
-        if (channel) {
-          if (channel === 'ALI_QRCODE') {
-            return '支付宝支付';
-          }else {
-            return '微信支付';
-          }
-        }else {
-          return '-';
-        }
-      },
+      } else {
+        return "-";
+      }
+    },
 
-      /**
+    /**
        * 打开留言弹窗
        */
-      openMessageDialog() {
-        this.showMessageDialog = true;
-        this.getOrderdetail(this.$route.params.id);
-      }
-
-    },
-    computed: {
-      /**
+    openMessageDialog() {
+      this.showMessageDialog = true;
+      this.getOrderdetail(this.$route.params.id);
+    }
+  },
+  computed: {
+    /**
        * 订单总价
        */
-      orderPrice() {
-        return this.orderDetail.product_price * this.orderDetail.quantity;
-      },
+    orderPrice() {
+      return this.orderDetail.product_price * this.orderDetail.quantity;
+    },
 
-      /**
+    /**
        * 运单数组转字符串
        */
-      trackingToStr() {
-        if (this.orderDetail.tracking_nos) {
-          return this.orderDetail.tracking_nos.join(',');
-        }else {
-          return '-';
-        }
-      },
-
-      /**
-       * 是否显示分析时间
-       */
-      showAnalyzeTime() {
-        if (!this.orderDetail.iso_receive_time) {
-          return;
-        }
-        return Date.now() > this.getAnalyzeTime(this.orderDetail.iso_receive_time);
+    trackingToStr() {
+      if (this.orderDetail.tracking_nos) {
+        return this.orderDetail.tracking_nos.join(",");
+      } else {
+        return "-";
       }
     },
-    filters: {
-      /**
+
+    /**
+       * 是否显示分析时间
+       */
+    showAnalyzeTime() {
+      if (!this.orderDetail.iso_receive_time) {
+        return;
+      }
+      return (
+        Date.now() > this.getAnalyzeTime(this.orderDetail.iso_receive_time)
+      );
+    }
+  },
+  filters: {
+    /**
        * 日期格式化
        */
-      toDate(val) {
-        if (!val) {
-          return '-';
-        };
-        /**
+    toDate(val) {
+      if (!val) {
+        return "-";
+      }
+      /**
          * 数字补零
          */
-        var addZero = (num) => {
-          return (num<10? '0':'') + num;
-        } 
-        var time = new Date(val);
-        var year = time.getFullYear();
-        var month = time.getMonth()+1;
-        var day = time.getDate();
-        var hour = addZero(time.getHours());
-        var min = addZero(time.getMinutes());
-        var sec = addZero(time.getSeconds());
-        return `${year}-${month}-${day} ${hour}:${min}`;
-      }
+      var addZero = num => {
+        return (num < 10 ? "0" : "") + num;
+      };
+      var time = new Date(val);
+      var year = time.getFullYear();
+      var month = time.getMonth() + 1;
+      var day = time.getDate();
+      var hour = addZero(time.getHours());
+      var min = addZero(time.getMinutes());
+      var sec = addZero(time.getSeconds());
+      return `${year}-${month}-${day} ${hour}:${min}`;
     }
   }
+};
 </script>
 
 <style lang="scss">
-@import '../../../assets/style/variable.scss';
+@import "../../../assets/style/variable.scss";
 .itv-order {
   width: 1100px;
   padding-bottom: 80px;
@@ -437,9 +440,9 @@
       display: flex;
       justify-content: space-between;
       text-align: center;
-      >li {
+      > li {
         width: 120px;
-        >div {
+        > div {
           margin-top: 16px;
           p {
             line-height: 24px;
@@ -493,7 +496,7 @@
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
-            >* {
+            > * {
               margin: auto 0;
             }
             img {
@@ -508,7 +511,7 @@
         &-info {
           display: flex;
           border-top: 1px solid $border;
-          >li {
+          > li {
             flex: 1;
             padding: 16px 40px;
             border-right: 1px solid $border;
@@ -523,7 +526,7 @@
               margin-top: 0;
             }
           }
-          >li:last-child {
+          > li:last-child {
             border: none;
           }
           &-title {

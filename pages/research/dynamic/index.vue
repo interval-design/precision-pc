@@ -7,7 +7,7 @@
       </span>
       <span>科研动态</span>
     </header>
-    <ul class="itv-research-list" v-if="articleList.length>0">
+    <ul class="itv-research-list" v-if="articleList">
       <li class="itv-research-list-item" v-for="item in articleList" :key="item.id"
           @click="$router.push({name: 'research-dynamic-id',params:{id: item.id}})">
         <div class="itv-research-list-item__img">
@@ -24,60 +24,45 @@
       </li>
     </ul>
     <p v-else>暂无动态</p>
-
   </div>
 </template>
 
 <script>
-  import Article from '../../../api/article.js'
-  export default {
-    name: 'ResearchDynamic',
-    head() {
-      return {
-        title: '科研动态 -普瑞森基因',
-        meta: [
-          { hid: 'dynamic', name: 'description', content: '科研动态' }
-        ]
+import Article from "../../../api/article.js";
+export default {
+  name: "ResearchDynamic",
+  asyncData() {
+    return Article.getArticles({
+      params: {
+        channel: 1,
+        order_by: "-weight",
+        page: "",
+        per_page: ""
       }
-    },
-    mounted() {
-      this.getArticles();
-    },
-    data() {
-      return {
-        articleList: []
-      }
-    },
-    methods: {
-      getArticles() {
-        Article.getArticles({
-          params: {
-            channel: 1,
-            order_by: '-weight',
-            page: '',
-            per_page: ''
-          }
-        }).then(
-          res => {
-            this.articleList = res.data.data.articles;
-          }
-        )
-      }
-    },
-    filters: {
-      time(val) {
-        val = new Date(val);
-        let year = val.getFullYear();
-        let month = val.getMonth()+1;
-        let day = val.getDate();
-        return `${year}-${month}-${day}`;
-      }
+    }).then(res => {
+      return { articleList: res.data.data.articles };
+    });
+  },
+  head() {
+    return {
+      title: "科研动态 -普瑞森基因",
+      meta: [{ hid: "dynamic", name: "description", content: "科研动态" }]
+    };
+  },
+  filters: {
+    time(val) {
+      val = new Date(val);
+      let year = val.getFullYear();
+      let month = val.getMonth() + 1;
+      let day = val.getDate();
+      return `${year}-${month}-${day}`;
     }
   }
+};
 </script>
 
 <style lang="scss">
-@import '../../../assets/style/variable';
+@import "../../../assets/style/variable";
 .itv-research {
   padding-bottom: 80px;
   &-list {
@@ -101,7 +86,7 @@
         h3 {
           font-size: 18px;
         }
-        >p {
+        > p {
           color: $font-sub;
           span {
             margin-right: 24px;

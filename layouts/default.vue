@@ -59,10 +59,10 @@
               </ul>
             </transition>
           </li>
-          <li class="item">
-            <!-- 暂无功能，合作方要求先加上 -->
+          <!-- 暂无功能，合作方要求先加上 -->
+          <!-- <li class="item">
             <nuxt-link to="/">合作咨询</nuxt-link>
-          </li>
+          </li> -->
           <template v-if="user == null">
             <li class="item login">
               <span @click="openLoginDialog">登录</span>

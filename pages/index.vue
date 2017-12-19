@@ -7,7 +7,7 @@
             <div class="itv-content">
               <div class="itv-banner-cnt">
                 <h2 class="itv-banner-cnt__title">儿童肠道检测</h2>
-                <p class="itv-banner-cnt__desc">检测3000+种微生物自称的菌群及其丰富程度，全面评估儿童的倡导健康</p>
+                <p class="itv-banner-cnt__desc">检测3000+种微生物自称的菌群及其丰富程度，全面评估儿童的肠道健康</p>
                 <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-child'})">了解更多
                 </base-Button>
               </div>
@@ -22,7 +22,7 @@
         <div class="section-2__desc">
           <h3 class="desc__title">你的肠道健康他们都知道</h3>
           <p class="desc__bd">
-            您的肠道内住着大约8888种数以亿计的微生物。其中888种有益菌，8888万种有害菌。最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
+            最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
           <base-button class="itv-view-index--btn" size="big" @click="$router.push({name:'research-microbiology'})">
             了解微生物组学
           </base-button>
@@ -84,7 +84,8 @@
         </nuxt-link>
       </div>
     </section>
-    <section class="section section-7">
+    <!-- 用户故事 -->
+    <!-- <section class="section section-7">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
@@ -93,8 +94,9 @@
         </h3>
         <img width="1059px" src="../assets/index/pic-section7.png" srcset="../assets/index/pic-section7.png 2x" alt="pic-section7">
       </div>
-    </section>
-    <section class="section section-8">
+    </section> -->
+    <!-- 我们的合作伙伴 -->
+    <!-- <section class="section section-8">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
@@ -103,7 +105,7 @@
         </h3>
         <img class="pic" src="../assets/index/pic-section8.png" alt="">
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 

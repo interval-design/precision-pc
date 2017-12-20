@@ -89,7 +89,7 @@
         }else {
           payPage = window.open('','_blank');
           channel = 'ALI_QRCODE';
-          returnUrl = encodeURI('http://localhost:3000/user/pay/status');
+          returnUrl = encodeURI('http://www.precisiongene.cn/user/pay/status');
         }
         ApiUser.createPayment(order.id,{
           channel: channel,

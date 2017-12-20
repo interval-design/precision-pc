@@ -29,7 +29,7 @@ module.exports = {
   },
   modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
   env: {
-    BASE_URL: "http://precision.interval.im"
+    BASE_URL: "http://www.precisiongene.cn"
   },
   plugins: [
     { src: "~plugins/custom.js" },

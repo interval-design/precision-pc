@@ -360,7 +360,7 @@
           id:"qrCode",
           appid: "wx3fc6282daee79b7d",
           scope: "snsapi_login",
-          redirect_uri: encodeURI(`http://precision.interval.im/extensions/wx/user/login/`),
+          redirect_uri: encodeURI(`http://www.precisiongene.cn/extensions/wx/user/login/`),
           state: path,
           style: "",
           href: ""

@@ -78,7 +78,7 @@
                 <img v-else class="avatar" src="../assets/default-avatar.png" alt="avatar">
               </nuxt-link>
             </li>
-            <li class="item" style="padding-left: 0">
+            <li class="item">
               <span @click="quitLogin">退出</span>
             </li>
           </template>
@@ -357,7 +357,7 @@
         this.loginDialog = false;
         this.qrCodeDialog = true;
         this.weixin = new WxLogin({
-          id:"qrCode", 
+          id:"qrCode",
           appid: "wx3fc6282daee79b7d",
           scope: "snsapi_login",
           redirect_uri: encodeURI(`http://precision.interval.im/extensions/wx/user/login/`),

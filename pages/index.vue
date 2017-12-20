@@ -3,7 +3,7 @@
     <section class="itv-banner">
       <div v-swiper:banner="bannerOption">
         <div class="swiper-wrapper">
-          <div class="swiper-slide n1">
+          <div class="swiper-slide">
             <div class="itv-content">
               <div class="itv-banner-cnt">
                 <h2 class="itv-banner-cnt__title">儿童肠道检测</h2>
@@ -13,6 +13,28 @@
               </div>
             </div>
             <img class="itv-banner-img" src="../assets/index/banner-1.jpg">
+          </div>
+          <div class="swiper-slide">
+            <div class="itv-content">
+              <div class="itv-banner-cnt">
+                <h2 class="itv-banner-cnt__title">肠癌风险评估</h2>
+                <p class="itv-banner-cnt__desc">普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议</p>
+                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-filter'})">了解更多
+                </base-Button>
+              </div>
+            </div>
+            <img class="itv-banner-img" src="../assets/filter/banner.jpg">
+          </div>
+          <div class="swiper-slide">
+            <div class="itv-content">
+              <div class="itv-banner-cnt">
+                <h2 class="itv-banner-cnt__title">肠道微生态检测</h2>
+                <p class="itv-banner-cnt__desc">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病</p>
+                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-ecosystem'})">了解更多
+                </base-Button>
+              </div>
+            </div>
+            <img class="itv-banner-img" src="../assets/ecosystem/banner.jpg">
           </div>
         </div>
       </div>

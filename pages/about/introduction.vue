@@ -9,7 +9,7 @@
     </header>
     <div class="itv-introduction-wrap">
       <div class="itv-about-top-pic">
-        <img src="../../assets/pic-about-1.png">
+        <img src="../../assets/about/pic-company-1.jpg">
       </div>
       <div class="itv-introduction-logo">
         <img src="../../assets/logo3.png">
@@ -20,6 +20,7 @@
       </div>
       <div class="itv-introduction-founder">
         <header class="itv-introduction-founder__name">
+          <img src="../../assets/about/pic-company-2.jpg" alt="doctor">
           <h4>创始人朱永亮博士</h4>
           <p>95年自费留学加州大学伯克利分校（UCB）获生物信息学博士学位 / 南京大学学士</p>
         </header>
@@ -54,7 +55,7 @@
         </ul>
       </div>
       <div class="itv-about-top-pic itv-introduction-middle-pic">
-        <img src="../../assets/pic-about-2.png">
+        <img src="../../assets/about/pic-company-3.jpg">
       </div>
       <div class="itv-introduction-company">
         <header>公司情况</header>
@@ -135,10 +136,11 @@
     line-height: 24px;
   }
   &-founder {
-    margin-top: 90px;
+    margin-top: 88px;
     &__name {
       text-align: center;
       h4 {
+        margin-top: 32px;
         font-size: 22px;
         line-height: 33px;
         color: $blue;

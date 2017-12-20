@@ -9,7 +9,7 @@
     </header>
     <div class="itv-join-wrap">
       <div class="itv-about-top-pic">
-        <img src="../../assets/pic-about-4.png">
+        <img src="../../assets/about/pic-join-1.jpg">
       </div>
       <h3 class="itv-join-title">
         <span>加入我们</span>

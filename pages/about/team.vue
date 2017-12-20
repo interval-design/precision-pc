@@ -9,7 +9,7 @@
     </header>
     <div class="itv-team-wrap">
       <div class="itv-about-top-pic">
-        <img src="../../assets/pic-about-3.png">
+        <img src="../../assets/about/pic-team-1.jpg">
       </div>
       <h3 class="itv-team-title">
         <span>团队成员</span>

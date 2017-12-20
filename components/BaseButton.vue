@@ -174,6 +174,7 @@
     &--disabled{
       border-color: $gray;
       background: $gray;
+      cursor: not-allowed;
     }
 
     &:active {

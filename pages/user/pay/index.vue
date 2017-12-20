@@ -78,10 +78,50 @@
         </tbody>
       </table>
     </div>
+    <div class="itv-pay-consent">
+      <header class="itv-table-header itv-pay-address-title">知情同意书</header>
+      <div class="itv-pay-consent-content">
+        <h3 class="itv-pay-consent-content-title">《普瑞森基因服务知情通知书》</h3>
+        <p class="itv-pay-consent-content-item">本知情同意书将提供给您必要的信息以帮助您决定是否参加此项目。请您仔细阅读，如有任何疑问请向我们的工作人员提出。确认您参加本项研究是自愿的。本项目已通过本研究机构伦理审查委员会审查。未成年人（未满18周岁）或者没有独立的行为能力的人需要由其监护人签署本知情同意。</p>
+        <p class="itv-pay-consent-content-item">普瑞森希望在带领大家了解微生物奥秘的同时鼓励更多的人参与到有意义的科研项目中。我们在帮助您了解微生物同时，也同有兴趣的科学家一起，使用您和其他用户的信息，研究人和微生物的关系。</p>
+        <p class="itv-pay-consent-content-item">我们将在您同意的情境下，收集您的微生物样品（如粪便、体表微生物等），取样方式不会对您产生任何伤害。此外，我们还需要您完成关于您的生活方式的调查问卷。调查问卷中会涉及到一些私人的信息，如您的家族病史，个人的病史等内容。这将帮助我们更好的为您提供服务。</p>
+        <div class="itv-pay-consent-content-item">
+          <h3>您需要做的事</h3>
+          <p>1、按照取样试剂盒的指示，完成取样的过程。</p>
+          <p>2、允许我们的研究者在保证实验结果准确性的前提下使用您的个人信息</p>
+        </div>
+        <div class="itv-pay-consent-content-item">
+          <h3>您的权益</h3>
+          <p>这是一项科学研究工作，主要是推动科学和技术的进步。我公司并不提供任何的临床治疗方案，同时也不能作为临床诊断的依据。</p>
+        </div>
+        <div class="itv-pay-consent-content-item">
+          <h3>可能的风险</h3>
+          <p>1、本项目的调查问卷的某些问题可能会引起您的不适。</p>
+          <p>2、除非获得您的许可，我们不会将这些信息泄露给第三方。在我们对公众发布的研究结果中，您的个人信息会经过一定的处理。通过研究结果找到您的个人信息是不太可能的。</p>
+        </div>
+        <div class="itv-pay-consent-content-item">
+          <h3>我们的承诺</h3>
+          <p>1、我们保证不会在未经您同意的情况下公布您的个人信息，您所提供的生物样本及该样本所产生的数据都会以一个编号命名。只有少数经过授权的人才能给将您的个人信息同这些编号联系到一起，参与本项目研究人员并不会知道您的个人信息。</p>
+          <p>2、我们保证所有参加实验的个人信息将被妥善保管，不会向任何人或者机构透露；公开发表的出版物中不会包含和使用任何您的个人信息。</p>
+        </div>
+        <div class="itv-pay-consent-content-item">
+          <h3>退出</h3>
+          <p>您可以现在就做出决定，同意将您的样本信息用于科学研究，但也可以随时改变您的决定并申请退出，您的样本将会被销毁，您的数据将不纳入研究结果。您的退出并不会影响我公司为您提供服务。</p>
+        </div>
+      </div>
+      <div class="itv-pay-consent-check">
+        <label>
+          <input type="checkbox" v-model="checked" style="display: none">
+          <span v-if="!checked" class="itv-icon itv-icon-check"></span>
+          <span v-else class="itv-icon itv-icon-checked"></span>
+        </label>
+        <span>我已阅读并同意<a href="javascript:;">《普瑞森基因服务知情同意书》</a></span>
+      </div>
+    </div>
     <div class="itv-pay-to-order">
       <div>应付金额：<span class="itv-pay-to-order-price">{{(order.price-order.discount)*order.num | toFix}}</span></div>
       <div class="itv-pay-to-order-btn">
-        <base-button size="huge" type="error" @click="createOrder">确认下单</base-button>
+        <base-button size="huge" type="error" @click="createOrder" :disabled="!checked">确认下单</base-button>
       </div>
     </div>
 
@@ -107,6 +147,7 @@
     },
     data() {
       return {
+        checked: true,
         payDialogInfo: {
           show: false,
           order: {}
@@ -307,6 +348,9 @@
        * @param {} type 微信/支付宝
        */
       createOrder(type) {
+        if (!this.checked) {
+          return;
+        }
         var order = this.order;
         ApiUser.createOrder(order.cardCode,{
           product_id: order.productId,
@@ -355,11 +399,11 @@
   padding-bottom: 80px;
   &-address {
     margin-top: 42px;
-    border: 1px solid $border;
+    border: 1px solid $border-light;
     background: $white;
     &-title {
       padding: 0 40px;
-      border-bottom: 1px solid $border;
+      border-bottom: 1px solid $border-light;
     }
     &-content {
       padding: 8px 40px 32px;
@@ -370,7 +414,7 @@
           margin-right: 24px;
           margin-top: 24px;
           padding: 8px 16px;
-          border: 1px solid $border;
+          border: 1px solid $border-light;
           border-radius: 2px;
           width: 300px;
           cursor: pointer;
@@ -381,7 +425,7 @@
           header {
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid $border;
+            border-bottom: 1px solid $border-light;
             line-height: 30px;
             height: 31px;
           }
@@ -425,7 +469,7 @@
         }
         input,
         textarea {
-          border: 1px solid $border;
+          border: 1px solid $border-light;
           border-radius: 2px;
           vertical-align: middle;
           margin: 0 8px;
@@ -450,10 +494,11 @@
   &-order {
     margin-top: 24px;
     background: $white;
+    border: 1px solid $border-light;
     &-table {
       width: 100%;
       tr {
-        border-top: 1px solid $border;
+        border-top: 1px solid $border-light;
       }
       th {
         padding: 0 40px;
@@ -491,14 +536,50 @@
   &-product-count {
     display: flex;
     margin: 0 auto;
-    border: 1px solid $border;
+    border: 1px solid $border-light;
     width: 96px;
     &__num {
-      border-left: 1px solid $border;
-      border-right: 1px solid $border;
+      border-left: 1px solid $border-light;
+      border-right: 1px solid $border-light;
       width: 48px;
       line-height: 22px;
       text-align: center;
+    }
+  }
+  &-consent {
+    margin-top: 24px;
+    background: $white;
+    border: 1px solid $border-light;
+    &-content {
+      height: 254px;
+      overflow-y: auto;
+      padding: 24px;
+      &-title {
+        font-size: 22px;
+        line-height: 30px;
+        text-align: center;
+      }
+      &-item {
+        margin-top: 24px;
+        h3 {
+          font-size: 18px;
+        }
+      }
+    }
+    &-check {
+      line-height: 52px;
+      text-align: center;
+      border-top: 1px solid $border-light;
+      label {
+        display: inline-block;
+        vertical-align: top;
+      }
+      a {
+        color: $blue;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

@@ -159,5 +159,14 @@ export default {
    */
   bindChange(params) {
     return axios.put(`/api/user/switch/`, params)
+  },
+
+  /**
+   * 获取产品详情
+   * @param {int} productId 
+   * @param {Object} params 
+   */
+  getProductInfo(productId, params) {
+    return axios.get(`/api/products/${productId}/`, params);
   }
 }

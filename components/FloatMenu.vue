@@ -2,7 +2,8 @@
   <div class="itv-float-menu">
     <div class="itv-float-menu-wrap">
       <transition name="custom-classes-transition" enter-active-class="animated zoomInDown">
-        <a class="itv-icon itv-icon-buy" @click="$emit('open')" v-show="show2"></a>
+        <a class="itv-icon itv-icon-buy" @click="productShow && $emit('open')"
+           :class="{'itv-not-allowed-btn': !productShow}" v-show="show2"></a>
       </transition>
       <a class="itv-icon itv-icon-top" @click="toTop" v-show="show"></a>
     </div>
@@ -24,6 +25,14 @@
         }else {
           this.show = true;
         }
+      }
+    },
+    props: {
+      // 产品是否上架
+      productShow: {
+        type: Boolean,
+        default: true,
+        required: true
       }
     },
     data() {
@@ -70,5 +79,8 @@
       margin-top: 8px;
     }
   }
+}
+.itv-not-allowed-btn {
+  cursor: not-allowed;
 }
 </style>

@@ -92,11 +92,11 @@
       </section>
     </common-page>
     <!-- 邀请码输入窗 -->
-    <code-form @login="openLoginDialog"></code-form>
+    <code-form @login="openLoginDialog" :productShow="productShow" :productId="productId"></code-form>
 
     <!-- 邀请码弹窗 -->
     <base-dialog :visible.sync="showDialog" width="1000px" class="itv-code-center-dialog">
-      <code-form @login="openLoginDialog" class="itv-code-tips"></code-form>
+      <code-form @login="openLoginDialog" class="itv-code-tips" :productShow="productShow" :productId="productId"></code-form>
       <div class="itv-code-tips">
         <h4 class="itv-code-tips-title" @click="showDialogImg=!showDialogImg">
           如何找到邀请码？
@@ -109,7 +109,7 @@
     </base-dialog>
 
     <!-- 悬浮菜单 -->
-    <float-menu @open="openCodeDialog"></float-menu>
+    <float-menu @open="openCodeDialog" :productShow="productShow"></float-menu>
   </div>
 </template>
 
@@ -128,11 +128,16 @@
         ]
       }
     },
+    mounted() {
+      this.getProductInfo();
+    },
     data() {
       return {
         code: '',
         showDialog: false,
-        showDialogImg: false
+        showDialogImg: false,
+        productShow: true,
+        productId: 2
       }
     },
     methods: {
@@ -144,6 +149,17 @@
       // 打开邀请码弹窗
       openCodeDialog() {
         this.showDialog = true;
+      },
+
+      // 获取产品详情
+      getProductInfo() {
+        ApiUser.getProductInfo(this.productId).then(
+          res => {
+            if (res.data.code === 1104) {
+              this.productShow = false;
+            }
+          }
+        )
       }
     }
   }

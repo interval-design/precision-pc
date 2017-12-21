@@ -38,7 +38,7 @@ module.exports = {
     { src: "~plugins/vue-area-linkage.js", ssr: false },
     { src: "~plugins/vue-cookie.js", ssr: false }
   ],
-  proxy: [["/api", { target: "http://precision.interval.im/" }]],
+  // proxy: [["/api", { target: "http://www.precisiongene.cn/" }]],
   build: {
     /*
     ** Run ESLint on save

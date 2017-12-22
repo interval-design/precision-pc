@@ -67,7 +67,7 @@
             }).then(
               res => {
                 if (res.data.code === 0) {
-                  this.$router.push({name: 'user-pay',params: {cardCode: cardCode}});
+                  this.$router.push({name: 'user-pay',params: {cardCode: cardCode, productId: this.productId}});
                 }else if (res.data.code === 1419) {
                   this.showCodeInfo = '该产品已下架';
                 }else if (res.data.code === 1807) {

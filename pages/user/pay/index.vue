@@ -325,7 +325,11 @@
        * 根据微信卡券code获取邀请码组详情
        */
       getCodeGroup(cardCode) {
-        ApiUser.getCodeGroup(cardCode).then(
+        ApiUser.getCodeGroup(cardCode,{
+          params: {
+            product_id: this.$route.params.productId
+          }
+        }).then(
           res => {
             if (res.data.code === 0) {
               let codeInfo = res.data.data.invite_code_group;

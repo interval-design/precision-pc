@@ -88,7 +88,7 @@
           channel = 'WX_NATIVE';
         }else {
           payPage = window.open('','_blank');
-          channel = 'ALI_QRCODE';
+          channel = 'ALI_WEB';
           returnUrl = encodeURI('http://www.precisiongene.cn/user/pay/status');
         }
         ApiUser.createPayment(order.id,{

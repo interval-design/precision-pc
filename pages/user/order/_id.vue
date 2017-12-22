@@ -340,7 +340,7 @@ export default {
       }
       var channel = orderDetail.transaction.channel;
       if (channel) {
-        if (channel === "ALI_QRCODE") {
+        if (channel === "ALI_WEB") {
           return "支付宝支付";
         } else {
           return "微信支付";

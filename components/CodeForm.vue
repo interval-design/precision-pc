@@ -62,7 +62,7 @@
           if (cardCode) {
             ApiUser.getCodeGroup(cardCode,{
               params: {
-                product_id: productId
+                product_id: this.productId
               }
             }).then(
               res => {

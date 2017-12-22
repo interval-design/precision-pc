@@ -18,7 +18,7 @@
         <p>苏州普瑞森基因科技有限公司是一家领先的基因分子诊断技术研发企业，专注于人体肠道微生态健康和微生物基因大数据分析领域。公司前身是由留美博士在美国硅谷创立的生物科技公司Precision Gene lnc。</p>
         <p>普瑞森公司拥有一支由多年从事分子生物学、计算生物学和大数据分析的专业人士组成的队伍。公司基于自身在生物信息分析领域的优势，利用目前国际上最先进的高通量测序和分子诊断技术，结合公司自主研发的微生物基因大数据分析平台和疾病数据模型，提供多种肠道微生态检测服务和专业的微生物数据分析服务。同时普瑞森公司将利用自身的检测数据建立中华民族特有的肠道微生物基因数据库和疾病模型，以期为国内制药和分子诊断等领域的研发工作提供数据支持。</p>
       </div>
-      <div class="itv-introduction-founder">
+      <!-- <div class="itv-introduction-founder">
         <header class="itv-introduction-founder__name">
           <img src="../../assets/about/pic-company-2.jpg" alt="doctor">
           <h4>创始人朱永亮博士</h4>
@@ -53,7 +53,7 @@
             </p>
           </li>
         </ul>
-      </div>
+      </div> -->
       <div class="itv-about-top-pic itv-introduction-middle-pic">
         <img src="../../assets/about/pic-company-3.jpg">
       </div>

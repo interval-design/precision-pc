@@ -88,22 +88,6 @@
     <!-- 邀请码输入窗 -->
     <code-form @login="openLoginDialog" :productShow="productShow" :productId="productId"></code-form>
 
-    <!-- 邀请码弹窗 -->
-    <base-dialog :visible.sync="showDialog" width="1000px">
-      <code-form @login="openLoginDialog" class="itv-code-tips" :productShow="productShow" :productId="productId"></code-form>
-      <div class="itv-code-tips">
-        <h4 class="itv-code-tips-title" @click="showDialogImg=!showDialogImg">
-          如何找到邀请码？
-          <span class="itv-icon" :class="'itv-icon-arrow-'+ (showDialogImg?'up':'down')"></span>
-        </h4>
-        <div class="itv-code-tips-img" v-show="showDialogImg">
-          <img src="../../assets/code-tips.png" alt="code-tips">
-        </div>
-      </div>
-    </base-dialog>
-
-    <!-- 悬浮菜单 -->
-    <float-menu @open="openCodeDialog" :productShow="productShow"></float-menu>
   </div>
 </template>
 

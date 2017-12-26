@@ -184,6 +184,7 @@
 
   &-question {
     position: relative;
+    top: -1px;
     width: 18px;
     height: 18px;
     background-position: -225px -328px;
@@ -197,21 +198,71 @@
     &-img {
       display: none;
       position: absolute;
-      top: -420px;
-      left: -400px;
+      top: -465px;
+      right: -171px;
       border: 1px solid rgba(236,236,236,1);
       border-radius: 2px;
       img {
         position: relative;
         box-sizing: content-box;
         padding: 40px;
-        width: 940px;
-        height: 311px;
+        width: 923px;
         background: $white;
       }
       &-triangle {
         position: absolute;
-        left: 40%;
+        right: 140px;
+        bottom: -20px;
+        width: 40px;
+        height: 40px;
+        background: $white;
+        border: 1px solid rgba(236,236,236,1);
+        transform: translateX(-50%) rotate(45deg);
+      }
+    }
+  }
+  &-question-black {
+    position: relative;
+    top: -1px;
+    width: 18px;
+    height: 18px;
+    background-position: -191px -328px;
+    cursor: help;
+    &:hover {
+      background-position-y: -304px;
+      .itv-icon-question-black-img {
+        display: block;
+      }
+    }
+    &-img {
+      display: none;
+      position: absolute;
+      top: -298px;
+      right: -100px;
+      border: 1px solid rgba(236,236,236,1);
+      border-radius: 2px;
+      &-content {
+        position: relative;
+        display: block;
+        box-sizing: content-box;
+        padding: 40px 0;
+        width: 240px;
+        background: $white;
+        img {
+          display: block;
+          margin: 0 auto;
+          width: 120px;
+        }
+        span {
+          color: $font-sub;
+          line-height: 1.5;
+          display: block;
+          text-align: center;
+        }
+      }
+      &-triangle {
+        position: absolute;
+        right: 70px;
         bottom: -20px;
         width: 40px;
         height: 40px;
@@ -265,5 +316,24 @@
   }
   &-checked {
     background-position: -357px -331px;
+  }
+  &-code-buy {
+    width: 40px;
+    height: 40px;
+    background-position: -84px -305px;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+  &-open-btn,
+  &-close-btn {
+    vertical-align: top;
+    width: 10px;
+    height: 12px;
+    background-position: -165px -308px;
+  }
+  &-close-btn {
+    background-position-y: -333px;
   }
 }

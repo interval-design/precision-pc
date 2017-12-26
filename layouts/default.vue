@@ -89,7 +89,7 @@
       <!-- 这里我暂时改成 router-view 了，用nuxt是无效的 -->
       <router-view class="itv-container" @openUserDialog="openLoginDialog"/>
     </transition>
-    <footer class="itv-footer">
+    <footer class="itv-footer" id="itv-footer">
       <div class="itv-footer-bd">
         <div class="itv-footer-bd-item">
           <img width="182px" class="logo" src="../assets/logo-white.png" srcset="../assets/logo-white.png 2x" alt="logo-white">
@@ -205,6 +205,7 @@
       if (this.$route.query.bind === '0') {
         this.openLoginDialog();
       }
+      this.$store.state.footerEl = document.querySelector('#itv-footer');
     },
     data() {
       return {

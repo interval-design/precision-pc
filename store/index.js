@@ -11,7 +11,8 @@ Vue.use(Vuex);
 const store = () => new Vuex.Store({
   state: {
     layoutsFull: false,
-    user: null
+    user: null,
+    footerEl: null
   },
   mutations: {
     SET_LAYOUTS_FULL(state, action) {

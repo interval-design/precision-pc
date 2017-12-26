@@ -86,7 +86,7 @@
           无需出门的“0负担”检测
           <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/index/pic-section4.png" alt="" style="width: 970px;height: 458px">
+        <img src="../assets/index/pic-section4.png" alt="" style="width: 970px;">
       </div>
     </section>
     <common-page></common-page>

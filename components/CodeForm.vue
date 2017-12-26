@@ -1,31 +1,53 @@
 <template>
-  <section class="itv-buy">
-    <div class="itv-buy—form">
-      <p class="itv-buy—form__title" :class="{'itv-not-allowed-text': !productShow}">
-        {{productShow? '输入邀请码体验检测服务':'服务暂不支持体验'}}
-        <span class="itv-icon itv-icon-question" v-if="productShow">
-          <span class="itv-icon-question-img">
-            <span class="itv-icon-question-img-triangle"></span>
-            <img src="../assets/code-tips.png" alt="code-tips">
-          </span>
-        </span>
-      </p>
-      <div class="itv-input-group">
-        <input class="itv-input-group__input" type="text" v-model="code" :placeholder="productShow? '输入邀请码':''"
-               :class="{'itv-input-not-allowed': !productShow}" :disabled="!productShow">
-        <base-button class="itv-input-group__button" @click="submit">体验服务</base-button>
+  <div>
+    <p :style="{height: float?'94px':'0'}"></p>
+    <section class="itv-code-form" :class="{'itv-code-form-float': float}" id="itv-code-form">
+      <div class="itv-code-form-box">
+        <div class="itv-code-form__buy">
+          <span class="itv-icon itv-icon-code-buy" @click="showForm = !showForm"></span>
+        </div>
+
+
+        <div class="itv-code-form__content" v-if="showForm">
+          <div class="itv-input-group">
+            <input class="itv-input-group__input" type="text" v-model="code" :placeholder="productShow? '输入邀请码':'服务暂不支持体验'"
+                  :class="{'itv-input-not-allowed': !productShow}" :disabled="!productShow">
+            <base-button class="itv-input-group__button" @click="submit">体验服务</base-button>
+          </div>
+          <p class="itv-code-form__content--info"><span>{{showCodeInfo}}</span></p>
+          <p style="flex:1"></p>
+          <p class="itv-buy—form__title">
+            如何使用邀请码
+            <span class="itv-icon itv-icon-question" v-if="productShow">
+              <span class="itv-icon-question-img">
+                <span class="itv-icon-question-img-triangle"></span>
+                <img src="../assets/code-tips.png" alt="code-tips">
+              </span>
+            </span>
+          </p>
+          <p class="itv-buy—form__title" style="margin-left: 40px; color: inherit">
+            如何获取邀请码
+            <span class="itv-icon itv-icon-question-black" v-if="productShow">
+              <span class="itv-icon-question-black-img">
+                <span class="itv-icon-question-black-img-triangle"></span>
+                <span class="itv-icon-question-black-img-content">
+                  <img src="../assets/qrcode.png" alt="code-tips">
+                  <span style="margin-top: 16px">扫描关注微信公众号</span>
+                  <span>参与公众号内的讲座获取邀请码</span>
+                </span>
+              </span>
+            </span>
+          </p>
+        </div>
+
+
+        <div class="itv-code-form__open" @click="showForm = !showForm">
+          <span class="itv-icon" :class="'itv-icon-'+(!showForm? 'open':'close')+'-btn'"></span>
+        </div>
       </div>
-      <p class="itv-buy—form__info"><span>{{showCodeInfo}}</span></p>
-    </div>
-    <div class="itv-buy—form qr">
-      <img src="../assets/qrcode-text.png" alt="qr">
-      <div class="qr-desc">
-        <h3>如何获取邀请码</h3>
-        <p>扫描关注微信公众号</p>
-        <p>参与公众号内的讲座获取邀请码</p>
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
+  
 </template>
 
 <script>
@@ -44,10 +66,25 @@
         required: true
       }
     },
+    mounted() {
+      window.onscroll = () => {
+        let floatTop = document.querySelector('#itv-code-form').getBoundingClientRect().top;
+        let footerTop = this.$store.state.footerEl.getBoundingClientRect().top;
+        let viewHeight = document.documentElement.clientHeight;
+        // console.log(footerTop,viewHeight);
+        if (footerTop - floatTop >= 78 && footerTop - viewHeight > 0) {
+          this.float = true;
+        }else {
+          this.float = false;
+        }
+      }
+    },
     data() {
       return {
         showCodeInfo: '',
-        code: ''
+        code: '',
+        showForm: true,
+        float: true
       }
     },
     methods: {
@@ -85,10 +122,52 @@
 </script>
 
 <style lang="scss">
+@import '../assets/style/variable.scss';
 .itv-input-not-allowed {
   cursor: not-allowed;
 }
-.itv-not-allowed-text {
-  text-align: center;
+.itv-code-form {
+  display: flex;
+  margin: 16px auto;
+  width: 1100px;
+  &-box {
+    display: flex;
+    border-radius: 2px;
+    border: 1px solid $border-light;
+    background: $white;
+  }
+  &__buy {
+    padding: 10px 14px;
+  }
+  &__open {
+    padding: 24px 6px;
+    background: $blue;
+    line-height: 12px;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(1.1);
+    }
+  }
+  &__content {
+    flex: 1;
+    display: flex;
+    width: 1010px;
+    padding: 13px 40px 13px 16px;
+    border-left: 1px solid #F2F2F2;
+    &--info {
+      padding-top: 8px;
+      line-height: 24px;
+      text-indent: 1em;
+      color: $red;
+    }
+  }
+}
+.itv-code-form-float {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
 }
 </style>

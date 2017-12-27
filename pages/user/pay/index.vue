@@ -122,6 +122,7 @@
       <div>应付金额：<span class="itv-pay-to-order-price">{{(order.price-order.discount)*order.num | toFix}}</span></div>
       <div class="itv-pay-to-order-btn">
         <base-button size="huge" type="error" @click="createOrder" :disabled="!checked">确认下单</base-button>
+        <p style="height: 30px;line-height: 30px; color: #fe5462">{{errorText}}</p>
       </div>
     </div>
 
@@ -147,6 +148,7 @@
     },
     data() {
       return {
+        errorText: '',
         checked: true,
         payDialogInfo: {
           show: false,
@@ -355,6 +357,7 @@
         if (!this.checked) {
           return;
         }
+        this.errorText = '';
         var order = this.order;
         ApiUser.createOrder(order.cardCode,{
           product_id: order.productId,
@@ -368,6 +371,8 @@
                 show: true,
                 order: res.data.data.order
               };
+            }else {
+              this.errorText = res.data.message;
             }
           }
         )

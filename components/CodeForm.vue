@@ -110,11 +110,9 @@
                   this.$router.push({name: 'user-pay',params: {cardCode: cardCode, productId: this.productId}});
                 }else if (res.data.code === 1419) {
                   this.showCodeInfo = '该产品已下架';
-                }else if (res.data.code === 1807) {
-                  this.showCodeInfo = '邀请码与该产品不符';
                 }else {
-                  this.showCodeInfo = '该邀请码无效或已被使用';
-                }
+                  this.showCodeInfo = res.data.message;
+                };
               }
             )
           }

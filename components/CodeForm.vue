@@ -68,6 +68,9 @@
     },
     mounted() {
       window.onscroll = () => {
+        if (!document.querySelector('#itv-code-form')) {
+          return;
+        }
         let floatTop = document.querySelector('#itv-code-form').getBoundingClientRect().top;
         let footerTop = this.$store.state.footerEl.getBoundingClientRect().top;
         let viewHeight = document.documentElement.clientHeight;

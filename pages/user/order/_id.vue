@@ -275,7 +275,7 @@ export default {
       var newPage = window.open("", "_blank");
       ApiUser.updateReportViews(order.id, {}).then(res => {
         if (res.data.code === 0) {
-          newPage.location = order.report_download_link;
+          newPage.location = order.report_full_link;
         }
       });
     },
@@ -284,13 +284,8 @@ export default {
      * 下载报告
      */
     downLoadReport(order) {
-      // 更新报告查看次数
       var newPage = window.open("", "_blank");
-      ApiUser.updateReportViews(order.id, {}).then(res => {
-        if (res.data.code === 0) {
-          newPage.location = order.report_full_link;
-        }
-      });
+      newPage.location = order.report_download_link;
     },
 
     /**

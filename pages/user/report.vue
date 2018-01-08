@@ -32,7 +32,7 @@
               <base-button size="small" line @click="openReport(report)">查看完整报告</base-button>
             </td>
             <td>
-              <base-button size="small" line @click="downLoadReport(order)">下载报告</base-button>
+              <base-button size="small" line @click="downLoadReport(report)">下载报告</base-button>
             </td>
           </tr>
         </tbody>
@@ -91,14 +91,9 @@
       /**
        * 下载报告
        */
-      downLoadReport(order) {
-        // 更新报告查看次数
+      downLoadReport(report) {
         var newPage = window.open("", "_blank");
-        ApiUser.updateReportViews(order.id, {}).then(res => {
-          if (res.data.code === 0) {
-            newPage.location = order.report_full_link;
-          }
-        });
+        newPage.location = report.report_download_link;
       },
     },
     watch: {

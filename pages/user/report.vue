@@ -17,7 +17,8 @@
             <th>被测人</th>
             <th>性别</th>
             <th>年龄</th>
-            <th></th>
+            <th style="width: 150px"></th>
+            <th style="width: 120px"></th>
           </tr>
         </thead>
         <tbody class="itv-paper-main-table-body">
@@ -29,6 +30,9 @@
             <td>{{report.person_age}}</td>
             <td>
               <base-button size="small" line @click="openReport(report)">查看完整报告</base-button>
+            </td>
+            <td>
+              <base-button size="small" line @click="downLoadReport(order)">下载报告</base-button>
             </td>
           </tr>
         </tbody>
@@ -82,7 +86,20 @@
             }
           }
         )
-      }
+      },
+
+      /**
+       * 下载报告
+       */
+      downLoadReport(order) {
+        // 更新报告查看次数
+        var newPage = window.open("", "_blank");
+        ApiUser.updateReportViews(order.id, {}).then(res => {
+          if (res.data.code === 0) {
+            newPage.location = order.report_full_link;
+          }
+        });
+      },
     },
     watch: {
       '$store.state.user'(newVal,oldVal) {

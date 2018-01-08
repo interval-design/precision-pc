@@ -118,7 +118,8 @@
               <th>被测人</th>
               <th>性别</th>
               <th>年龄</th>
-              <th></th>
+              <th style="width: 150px"></th>
+              <th style="width: 120px"></th>
             </tr>
           </thead>
           <tbody class="itv-order-finished-table-body">
@@ -130,6 +131,9 @@
               <td>{{order.person_age}}</td>
               <td>
                 <base-button size="small" line @click="openReport(order)">查看完整报告</base-button>
+              </td>
+              <td>
+                <base-button size="small" line @click="downLoadReport(order)">下载报告</base-button>
               </td>
             </tr>
           </tbody>
@@ -243,8 +247,8 @@ export default {
   },
   methods: {
     /**
-       * 打开支付弹窗
-       */
+     * 打开支付弹窗
+     */
     openPayDialog(order) {
       this.payDialogInfo = {
         show: true,
@@ -253,8 +257,8 @@ export default {
     },
 
     /**
-       * 获取订单详情
-       */
+     * 获取订单详情
+     */
     getOrderdetail(orderId) {
       ApiUser.getOrderdetail(orderId).then(res => {
         if (res.data.code === 0) {
@@ -264,9 +268,22 @@ export default {
     },
 
     /**
-       * 跳转到报告页面
-       */
+     * 跳转到报告页面
+     */
     openReport(order) {
+      // 更新报告查看次数
+      var newPage = window.open("", "_blank");
+      ApiUser.updateReportViews(order.id, {}).then(res => {
+        if (res.data.code === 0) {
+          newPage.location = order.report_download_link;
+        }
+      });
+    },
+
+    /**
+     * 下载报告
+     */
+    downLoadReport(order) {
       // 更新报告查看次数
       var newPage = window.open("", "_blank");
       ApiUser.updateReportViews(order.id, {}).then(res => {
@@ -277,9 +294,9 @@ export default {
     },
 
     /**
-       * 追踪快递单号
-       * bills {Array} 单号数组
-       */
+     * 追踪快递单号
+     * bills {Array} 单号数组
+     */
     billTracking(bills) {
       window.open(
         `http://www.sf-express.com/cn/sc/dynamic_function/waybill/#search/bill-number/${bills.join(
@@ -289,17 +306,17 @@ export default {
     },
 
     /**
-       * 获取分析时间(检测时间+7天)
-       * receiveTime {str} 收到试剂盒时间即开始检测的时间
-       */
+     * 获取分析时间(检测时间+7天)
+     * receiveTime {str} 收到试剂盒时间即开始检测的时间
+     */
     getAnalyzeTime(receiveTime) {
       var time = new Date(receiveTime).getTime();
       return time + 7 * 24 * 60 * 60 * 1000 + 0.9527 * 60 * 60 * 1000;
     },
 
     /**
-       * 根据当前订单状态判断是否激活图标
-       */
+     * 根据当前订单状态判断是否激活图标
+     */
     orderStatus(statusCode) {
       if (
         statusCode <= this.orderDetail.status &&
@@ -310,8 +327,8 @@ export default {
     },
 
     /**
-       * 订单关闭倒计时
-       */
+     * 订单关闭倒计时
+     */
     updateCountDown() {
       var time =
         new Date(this.orderDetail.iso_create_time).getTime() +
@@ -332,8 +349,8 @@ export default {
     },
 
     /**
-       * 支付渠道
-       */
+     * 支付渠道
+     */
     payChannel(orderDetail) {
       if (!this.orderDetail.transaction) {
         return "-";
@@ -351,8 +368,8 @@ export default {
     },
 
     /**
-       * 打开留言弹窗
-       */
+     * 打开留言弹窗
+     */
     openMessageDialog() {
       this.showMessageDialog = true;
       this.getOrderdetail(this.$route.params.id);
@@ -360,15 +377,15 @@ export default {
   },
   computed: {
     /**
-       * 订单总价
-       */
+     * 订单总价
+     */
     orderPrice() {
       return this.orderDetail.product_price * this.orderDetail.quantity;
     },
 
     /**
-       * 运单数组转字符串
-       */
+     * 运单数组转字符串
+     */
     trackingToStr() {
       if (this.orderDetail.tracking_nos) {
         return this.orderDetail.tracking_nos.join(",");
@@ -378,8 +395,8 @@ export default {
     },
 
     /**
-       * 是否显示分析时间
-       */
+     * 是否显示分析时间
+     */
     showAnalyzeTime() {
       if (!this.orderDetail.iso_receive_time) {
         return;
@@ -391,15 +408,15 @@ export default {
   },
   filters: {
     /**
-       * 日期格式化
-       */
+     * 日期格式化
+     */
     toDate(val) {
       if (!val) {
         return "-";
       }
       /**
-         * 数字补零
-         */
+       * 数字补零
+       */
       var addZero = num => {
         return (num < 10 ? "0" : "") + num;
       };

@@ -123,19 +123,34 @@
             </tr>
           </thead>
           <tbody class="itv-order-finished-table-body">
-            <tr v-for="order in orderDetail.sub_orders" :key="order.id" v-if="order.status === 4">
-              <td>{{order.product_name}}</td>
-              <td>{{order.iso_report_time | toDate}}</td>
-              <td>{{order.person_name}}</td>
-              <td>{{order.person_sex}}</td>
-              <td>{{order.person_age}}</td>
-              <td>
-                <base-button size="small" line @click="openReport(order)">查看完整报告</base-button>
-              </td>
-              <td>
-                <base-button size="small" line @click="downLoadReport(order)">下载报告</base-button>
-              </td>
-            </tr>
+            <template v-for="order in orderDetail.sub_orders" v-if="order.status === 4">
+              <tr>
+                <td>{{order.product_name}}</td>
+                <td>{{order.iso_report_time | toDate}}</td>
+                <td>{{order.person_name}}</td>
+                <td>{{order.person_sex}}</td>
+                <td>{{order.person_age}}</td>
+                <td>
+                  <base-button size="small" line @click="openReport(order,0)">查看完整报告</base-button>
+                </td>
+                <td>
+                  <base-button size="small" line @click="downLoadReport(order,0)">下载报告</base-button>
+                </td>
+              </tr>
+              <tr v-if="order.report_full_link.split(',').length>1">
+                <td>肠道微生态检测</td>
+                <td>{{order.iso_report_time | toDate}}</td>
+                <td>{{order.person_name}}</td>
+                <td>{{order.person_sex}}</td>
+                <td>{{order.person_age}}</td>
+                <td>
+                  <base-button size="small" line @click="openReport(order,1)">查看完整报告</base-button>
+                </td>
+                <td>
+                  <base-button size="small" line @click="downLoadReport(order,1)">下载报告</base-button>
+                </td>
+              </tr>
+            </template>
           </tbody>
         </table>
       </div>
@@ -185,7 +200,7 @@
               </li>
               <li>
                 <p class="itv-order-info-table-content-info-title">试剂盒运单信息</p>
-                <p><i style="width: 72px">快递公司：</i><span>顺丰快递</span></p>
+                <p><i style="width: 72px">快递公司：</i><span>{{orderDetail.tracking_nos > 0? '顺丰快递': '-'}}</span></p>
                 <p><i style="width: 72px">运单号：</i><span>{{trackingToStr}}</span></p>
                 <p><i style="width: 72px">寄出时间：</i><span>{{orderDetail.iso_send_time | toDate}}</span></p>
                 <p>
@@ -270,12 +285,12 @@ export default {
     /**
      * 跳转到报告页面
      */
-    openReport(order) {
+    openReport(order,index) {
       // 更新报告查看次数
       var newPage = window.open("", "_blank");
       ApiUser.updateReportViews(order.id, {}).then(res => {
         if (res.data.code === 0) {
-          newPage.location = order.report_full_link;
+          newPage.location = order.report_full_link.split(',')[index];
         }
       });
     },
@@ -283,9 +298,9 @@ export default {
     /**
      * 下载报告
      */
-    downLoadReport(order) {
+    downLoadReport(order,index) {
       var newPage = window.open("", "_blank");
-      newPage.location = order.report_download_link;
+      newPage.location = order.report_download_link.split(',')[index];
     },
 
     /**
@@ -382,7 +397,7 @@ export default {
      * 运单数组转字符串
      */
     trackingToStr() {
-      if (this.orderDetail.tracking_nos) {
+      if (this.orderDetail.tracking_nos>0) {
         return this.orderDetail.tracking_nos.join(",");
       } else {
         return "-";

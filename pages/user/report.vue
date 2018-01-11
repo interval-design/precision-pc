@@ -22,19 +22,34 @@
           </tr>
         </thead>
         <tbody class="itv-paper-main-table-body">
-          <tr v-for="report in reportList" :key="report.id">
-            <td>{{report.product_name}}</td>
-            <td>{{report.iso_report_time | toDate}}</td>
-            <td>{{report.person_name}}</td>
-            <td>{{report.person_sex}}</td>
-            <td>{{report.person_age}}</td>
-            <td>
-              <base-button size="small" line @click="openReport(report)">查看完整报告</base-button>
-            </td>
-            <td>
-              <base-button size="small" line @click="downLoadReport(report)">下载报告</base-button>
-            </td>
-          </tr>
+          <template v-for="report in reportList">
+            <tr>
+              <td>{{report.product_name}}</td>
+              <td>{{report.iso_report_time | toDate}}</td>
+              <td>{{report.person_name}}</td>
+              <td>{{report.person_sex}}</td>
+              <td>{{report.person_age}}</td>
+              <td>
+                <base-button size="small" line @click="openReport(report,0)">查看完整报告</base-button>
+              </td>
+              <td>
+                <base-button size="small" line @click="downLoadReport(report,0)">下载报告</base-button>
+              </td>
+            </tr>
+            <tr v-if="report.report_full_link.split(',').length>1">
+              <td>肠道微生态检测</td>
+              <td>{{report.iso_report_time | toDate}}</td>
+              <td>{{report.person_name}}</td>
+              <td>{{report.person_sex}}</td>
+              <td>{{report.person_age}}</td>
+              <td>
+                <base-button size="small" line @click="openReport(report,1)">查看完整报告</base-button>
+              </td>
+              <td>
+                <base-button size="small" line @click="downLoadReport(report,1)">下载报告</base-button>
+              </td>
+            </tr>
+          </template>
         </tbody>
       </table>
     </div>
@@ -76,13 +91,13 @@
       /**
        * 跳转到报告页面
        */
-      openReport(report) {
+      openReport(report,index) {
         // 更新报告查看次数
         var newPage = window.open('','_blank');
         ApiUser.updateReportViews(report.id,{}).then(
           res => {
             if (res.data.code === 0) {
-              newPage.location = report.report_full_link;
+              newPage.location = report.report_full_link.split(',')[index];
             }
           }
         )
@@ -91,9 +106,9 @@
       /**
        * 下载报告
        */
-      downLoadReport(report) {
+      downLoadReport(report,index) {
         var newPage = window.open("", "_blank");
-        newPage.location = report.report_download_link;
+        newPage.location = report.report_download_link.split(',')[index];
       },
     },
     watch: {

@@ -16,7 +16,7 @@
           </div>
           <p class="itv-code-form__content--info"><span>{{showCodeInfo}}</span></p>
           <p style="flex:1"></p>
-          <p class="itv-buy—form__title">
+          <p class="itv-buy—form__title question">
             如何使用邀请码
             <span class="itv-icon itv-icon-question" v-if="productShow">
               <span class="itv-icon-question-img">
@@ -25,7 +25,7 @@
               </span>
             </span>
           </p>
-          <p class="itv-buy—form__title" style="margin-left: 40px; color: inherit">
+          <p class="itv-buy—form__title question-black" style="margin-left: 40px; color: inherit">
             如何获取邀请码
             <span class="itv-icon itv-icon-question-black" v-if="productShow">
               <span class="itv-icon-question-black-img">

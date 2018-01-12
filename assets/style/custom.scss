@@ -276,6 +276,23 @@
       line-height: 34px;
       color: $blue;
       text-align: right;
+      cursor: help;
+      &.question:hover {
+        .itv-icon-question {
+          background-position-y: -304px;
+          &-img {
+            display: block;
+          }
+        }
+      }
+      &.question-black:hover {
+        .itv-icon-question-black {
+          background-position-y: -304px;
+          &-img {
+            display: block;
+          }
+        }
+      }
     }
     &__info {
       height: 21px;

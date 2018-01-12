@@ -189,12 +189,12 @@
     height: 18px;
     background-position: -225px -328px;
     cursor: help;
-    &:hover {
-      background-position-y: -304px;
-      .itv-icon-question-img {
-        display: block;
-      }
-    }
+    // &:hover {
+    //   background-position-y: -304px;
+    //   .itv-icon-question-img {
+    //     display: block;
+    //   }
+    // }
     &-img {
       display: none;
       position: absolute;
@@ -228,12 +228,12 @@
     height: 18px;
     background-position: -191px -328px;
     cursor: help;
-    &:hover {
-      background-position-y: -304px;
-      .itv-icon-question-black-img {
-        display: block;
-      }
-    }
+    // &:hover {
+    //   background-position-y: -304px;
+    //   .itv-icon-question-black-img {
+    //     display: block;
+    //   }
+    // }
     &-img {
       display: none;
       position: absolute;

@@ -4,7 +4,7 @@ import BaseDialog from './BaseDialog.vue'
 import BaseMessage from './BaseMessage.vue'
 import BaseConfirm from './BaseConfirm.vue'
 import FloatMenu from './FloatMenu.vue'
-import CodeForm from './CodeForm.vue'
+import CodeForm from './CodeForm.vue'
 import PayDialog from './PayDialog.vue'
 
 const PRECISION = {

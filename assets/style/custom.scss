@@ -21,6 +21,7 @@
 }
 
 .itv-nav {
+  position: fixed;
   height: 50px;
   width: 100%;
   background: $white;
@@ -149,6 +150,7 @@
     &-item.nav {
       display: flex;
       justify-content: space-between;
+      flex: initial !important;
       .title {
         opacity: .5;
       }

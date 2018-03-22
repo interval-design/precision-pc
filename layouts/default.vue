@@ -1,90 +1,89 @@
 <template>
   <div class="itv-layout-default itv-wrapper" :class="{'full':full}">
-    <nav class="itv-nav">
-      <div class="itv-nav-bar">
-        <h1>
-          <nuxt-link to="/">
-            <img width="182px" src="../assets/logo.png" srcset="../assets/logo.png 2x" alt="logo">
-          </nuxt-link>
-        </h1>
-        <ul class="itv-nav-bar-menu">
-          <li class="item" :class="{active:$route.name == 'index'}">
-            <nuxt-link to="/">首页</nuxt-link>
-          </li>
-          <li class="item" :class="{active:$route.name.indexOf('research') > -1 }" @mouseover="active = 1"
-              @mouseleave="active = null">
-            研究与技术
-            <transition name="slideInDown" mode="out-in">
-              <ul class="item__dropdown" v-show="active == 1">
-                <li>
-                  <nuxt-link :to="{name:'research-microbiology'}">微生物组学</nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>
-                </li>
-              </ul>
-            </transition>
-          </li>
-          <li class="item" :class="{active:$route.name.indexOf('service') > -1 }" @mouseover="active = 2"
-              @mouseleave="active = null">
-            产品与服务
-            <transition name="slideInDown" mode="out-in">
-              <ul class="item__dropdown" v-show="active == 2">
-                <li>
-                  <nuxt-link :to="{name:'service-filter'}">肠癌风险评估</nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
-                </li>
-                <li>
-                  <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
-                </li>
-              </ul>
-            </transition>
-          </li>
-          <li class="item" :class="{active:$route.name.indexOf('about') > -1 }" @mouseover="active = 3"
-              @mouseleave="active = null">
-            关于普瑞森
-            <transition name="slideInDown" mode="out-in">
-              <ul class="item__dropdown" v-show="active == 3">
-                <li>
-                  <nuxt-link :to="{name:'about-introduction'}">了解普瑞森</nuxt-link>
-                </li>
-                <!-- <li>
-                  <nuxt-link :to="{name:'about-team'}">普瑞森团队</nuxt-link>
-                </li> -->
-                <li>
-                  <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
-                </li>
-              </ul>
-            </transition>
-          </li>
-          <!-- 暂无功能，合作方要求先加上 -->
-          <!-- <li class="item">
-            <nuxt-link to="/">合作咨询</nuxt-link>
-          </li> -->
-          <template v-if="user == null">
-            <li class="item login">
-              <span @click="openLoginDialog">登录</span>
+    <div style="width: 100%; height: 50px">
+      <nav class="itv-nav">
+        <div class="itv-nav-bar">
+          <h1>
+            <nuxt-link to="/">
+              <img width="182px" src="../assets/logo.png" srcset="../assets/logo.png 2x" alt="logo">
+            </nuxt-link>
+          </h1>
+          <ul class="itv-nav-bar-menu">
+            <li class="item" :class="{active:$route.name == 'index'}">
+              <nuxt-link to="/">首页</nuxt-link>
             </li>
-            <li class="item">
-              <base-button line size="small" @click="openLoginDialog">注册</base-button>
+            <li class="item" :class="{active:$route.name.indexOf('platform') > -1 }" @mouseover="active = 1"
+                @mouseleave="active = null">
+              技术平台
+              <transition name="slideInDown" mode="out-in">
+                <ul class="item__dropdown" v-show="active == 1">
+                  <li>
+                    <nuxt-link :to="{name:'platform-teamwork'}">合作科研单位</nuxt-link>
+                  </li>
+                </ul>
+              </transition>
             </li>
-          </template>
-          <template v-else>
-            <li class="item login">
-              <nuxt-link to="/user">
-                <img v-if="user.wx_user_info.headimgurl" class="avatar" :src="user.wx_user_info.headimgurl" alt="avatar">
-                <img v-else class="avatar" src="../assets/default-avatar.png" alt="avatar">
-              </nuxt-link>
+            <li class="item" :class="{active:$route.name == 'microbiology'}">
+              <nuxt-link :to="{name:'microbiology'}">微生物组学</nuxt-link>
             </li>
-            <li class="item">
-              <span @click="quitLogin">退出</span>
+            <li class="item" :class="{active:$route.name.indexOf('service') > -1 }" @mouseover="active = 2"
+                @mouseleave="active = null">
+              产品与服务
+              <transition name="slideInDown" mode="out-in">
+                <ul class="item__dropdown" v-show="active == 2">
+                  <li>
+                    <nuxt-link :to="{name:'service-filter'}">肠癌风险评估</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
+                  </li>
+                </ul>
+              </transition>
             </li>
-          </template>
-        </ul>
-      </div>
-    </nav>
+            <li class="item" :class="{active:$route.name.indexOf('about') > -1 }" @mouseover="active = 3"
+                @mouseleave="active = null">
+              关于普瑞森
+              <transition name="slideInDown" mode="out-in">
+                <ul class="item__dropdown" v-show="active == 3">
+                    <li>
+                    <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
+                  </li>
+                    <li>
+                    <nuxt-link :to="{name:'about-dynamic'}">科研动态</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link :to="{name:'about-introduction'}">了解普瑞森</nuxt-link>
+                  </li>
+                </ul>
+              </transition>
+            </li>
+            <template v-if="user == null">
+              <li class="item login">
+                <span @click="openLoginDialog">登录</span>
+              </li>
+              <li class="item">
+                <base-button line size="small" @click="openLoginDialog">注册</base-button>
+              </li>
+            </template>
+            <template v-else>
+              <li class="item login">
+                <nuxt-link to="/user">
+                  <img v-if="user.wx_user_info.headimgurl" class="avatar" :src="user.wx_user_info.headimgurl" alt="avatar">
+                  <img v-else class="avatar" src="../assets/default-avatar.png" alt="avatar">
+                </nuxt-link>
+              </li>
+              <li class="item">
+                <span @click="quitLogin">退出</span>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    
     <transition name="page">
       <!-- 这里我暂时改成 router-view 了，用nuxt是无效的 -->
       <router-view class="itv-container" @openUserDialog="openLoginDialog"/>
@@ -98,12 +97,15 @@
         </div>
         <div class="itv-footer-bd-item nav">
           <ul class="item">
-            <li class="title">技术</li>
+            <li class="title">技术平台</li>
             <li>
-              <nuxt-link :to="{name:'research-microbiology'}">微生物组学</nuxt-link>
+              <nuxt-link :to="{name:'platform-teamwork'}">合作科研单位</nuxt-link>
             </li>
+          </ul>
+          <ul class="item">
+            <li class="title">微生物组学</li>
             <li>
-              <nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>
+              <nuxt-link :to="{name:'microbiology'}">微生物组学</nuxt-link>
             </li>
           </ul>
           <ul class="item">
@@ -121,13 +123,13 @@
           <ul class="item">
             <li class="title">关于普瑞森</li>
             <li>
-              <nuxt-link :to="{name:'about-introduction'}">了解普瑞森</nuxt-link>
-            </li>
-            <!-- <li>
-              <nuxt-link :to="{name:'about-team'}">普瑞森团队</nuxt-link>
-            </li> -->
-            <li>
               <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'about-dynamic'}">科研动态</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'about-introduction'}">了解普瑞森</nuxt-link>
             </li>
           </ul>
         </div>

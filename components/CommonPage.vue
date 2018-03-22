@@ -25,7 +25,7 @@
               <p>GutCheck™肠道微生物基因检测平台 / illumina Miseq 高通量测序仪</p>
               <p>16S rRNA 测序技术 / 高灵敏度和特异性</p>
             </div>
-            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
+            <nuxt-link class="itv-link" :to="{name:'microbiology',hash:'#two'}">继续了解普瑞森测序 ></nuxt-link>
           </div>
         </div>
         <div class="part-1-item">
@@ -36,7 +36,7 @@
               <p>因突变、疾病、药物数据千万条 / 上万篇肠道微生物与疾病的英文文献</p>
               <p>自主的测序数据分析计算机程序 / 肠道微生物组成与疾病关系的数学模型、基因大数据库</p>
             </div>
-            <nuxt-link class="itv-link" :to="{name:'research-microbiology',hash:'#three'}">继续了解普瑞森大数据平台 ></nuxt-link>
+            <nuxt-link class="itv-link" :to="{name:'microbiology',hash:'#three'}">继续了解普瑞森大数据平台 ></nuxt-link>
           </div>
           <img src="../assets/pic-flow-3.png" alt="pic-3">
         </div>
@@ -62,7 +62,7 @@
             示例报告
             <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
           </h3>
-          <img width="944px" src="../assets/pic-report-demo.png" srcset="../assets/pic-report-demo.png 2x"
+          <img width="961px" src="../assets/pic-report-demo.png" srcset="../assets/pic-report-demo.png 2x"
                alt="pic-section-11">
         </div>
       </section>

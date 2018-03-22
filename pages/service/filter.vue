@@ -16,55 +16,97 @@
       </div>
       <img class="itv-banner-img" src="../../assets/filter/banner.jpg" alt="banner">
     </section>
-    <section class="section section-2 bg--white">
+
+    <section class="section section-new bg--white">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          中国的结肠癌的趋势
+          定期检查的重要性
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-          <p class="hint">数据来源：2017中国肿瘤登记年报</p>
         </h3>
-        <div class="section-2-item">
-          <div class="desc">
-            <h2 class="desc__title">肠癌发病率高</h2>
-            <div class="desc__bd">
-              <p>肠癌在男性和女性中的发病率都排在 <span class="section-emphasize">前5</span>，并有上升趋势</p>
-            </div>
-          </div>
-          <img width="548px"  src="../../assets/filter/pic-section2-1.png" srcset="../../assets/filter/pic-section2-1.png 2x" alt="pic-1">
-        </div>
-        <div class="section-2-item">
-          <img width="586px" src="../../assets/filter/pic-section2-2.png" srcset="../../assets/filter/pic-section2-2.png 2x" alt="pic-2">
-          <div class="desc">
-            <h2 class="desc__title">年轻化</h2>
-            <div class="desc__bd">
-              <p>我国肠癌的发病递增速度已经是世界平均的 <span class="section-emphasize">2倍</span>，且有明显年轻化趋势。</p>
-              <p>发现有腺瘤息肉的患者最年轻的只有 <span class="section-emphasize">16岁</span>，确诊为肠癌的仅 <span class="section-emphasize">23岁</span>。</p>
-            </div>
-          </div>
-        </div>
-        <div class="section-2-item">
-          <div class="desc">
-            <h2 class="desc__title">城市化进程与发病率成正比</h2>
-            <div class="desc__bd">
-              <p>肠癌发病率与城市化程度呈正相关，大城市发病率可达小城市发病率的<span class="section-emphasize">2倍</span>，主要与不健康饮食、久坐、腰围增粗有关。右图以男性为例，女性发病情况与男性相似。</p>
-            </div>
-          </div>
-          <img width="597px"  src="../../assets/filter/pic-section2-3.png" srcset="../../assets/filter/pic-section2-3.png 2x" alt="pic-3">
+        <img width="585px"  src="../../assets/filter/pic-section4-2.png" srcset="../../assets/filter/pic-section4-2.png 2x" alt="">
+        <div class="section-new__text" style="width: 585px;">
+          <p>在中国，平均每天新发现肿瘤病例约为10,080例，平均每1分钟约有6人死于癌症，7人确认肿瘤</p>
+          <p>超过80%的癌症被发现时已经是中晚期，但早期癌症的治愈率普遍超过90%。让癌症发现在癌</p>
+          <p>前病变阶段，精准医疗为其提供可能。</p>
         </div>
       </div>
     </section>
-    <section class="section">
+
+    <section class="section section-new bg--white">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          癌症的发病原因
+          普瑞森常安易™肠癌风险评估与传统检测方式
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img width="585px"  src="../../assets/filter/pic-section3.png" srcset="../../assets/filter/pic-section3.png 2x" alt="">
+        <img width="732px" src="../../assets/filter/pic-section6.png" srcset="../../assets/filter/pic-section6.png 2x" alt="pic-section6">
+        <div class="section-new__text" style="width: 760px;">
+          <p>普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议。</p>
+        </div>
       </div>
     </section>
-    <section class="section section-4">
+
+    <section class="section section-7 bg--white">
+      <div class="itv-content">
+        <h3 class="section-title">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
+          普瑞森常安易™肠癌风险评估与国外最畅销产品ColoGuard<span style="font-size: 14px;vertical-align: top;">®</span>
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
+        </h3>
+        <img width="791px" src="../../assets/filter/pic-section7.png" srcset="../../assets/filter/pic-section7.png 2x" alt="pic-section7">
+      </div>
+    </section>
+
+    <section class="section section-4 bg--white">
+      <div class="itv-content">
+        <h3 class="section-title">
+          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
+          常见问题
+          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
+        </h3>
+        <ol class="section-new-answer">
+          <li class="section-new-answer-item">
+            <header class="section-new-answer-item__header">
+              <img src="../../assets/filter/q1.png" class="icon">
+              什么是结直肠癌？
+            </header>
+            <div class="section-new-answer-item__content">
+              结直肠癌（Colorectal Cancer,CRC）又称大肠癌，发生在结肠或直肠中，发生发展过程较长，从增生性病变到腺瘤、癌变、临床期癌以致晚期肿瘤发展过程平均为10~15年。我国肠癌的发病递增速度已经是世界平均的 2倍，且有明显年轻化趋势。发现有腺瘤息肉的患者最年轻的只有 16岁，确诊为肠癌的仅 23岁。
+            </div>
+          </li>
+          <li class="section-new-answer-item">
+            <header class="section-new-answer-item__header">
+              <img src="../../assets/filter/q2.png" class="icon">
+              结直肠癌的发生发展？
+            </header>
+            <div class="section-new-answer-item__content">
+              <img src="../../assets/filter/pic-section5.png" width="455px">
+            </div>
+          </li>
+          <li class="section-new-answer-item">
+            <header class="section-new-answer-item__header">
+              <img src="../../assets/filter/q3.png" class="icon">
+              为什么做结直肠癌早期筛查？
+            </header>
+            <div class="section-new-answer-item__content">
+              “无症状”是大肠癌的隐形衣，早期不易引起人们的警惕。临床上大肠癌早期诊断的比例仅为5-10%，60-70%的大肠癌患者被发现时已是晚期。如果早期发现大肠癌，不仅治疗费用低，还可达到预防甚至治愈的目的。
+            </div>
+          </li>
+          <li class="section-new-answer-item">
+            <header class="section-new-answer-item__header">
+              <img src="../../assets/filter/q4.png" class="icon">
+              哪些是需要做结直肠癌早期筛查的高风险人群？
+            </header>
+            <div class="section-new-answer-item__content">
+              <img src="../../assets/filter/pic-section3.png" width="585px">
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-4 bg--white">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
@@ -81,59 +123,6 @@
             </div>
           </div>
         </div>
-        <div class="section-4-item">
-          <div class="desc">
-            <h2 class="desc__title">定期检查</h2>
-            <div class="desc__bd">
-              <p>在中国，平均每天新发现肿瘤病例约为<span class="section-emphasize">10,080例</span></p>
-              <p>平均每1分钟约有<span class="section-emphasize">6人</span>死于癌症，<span class="section-emphasize">7人</span>确认肿瘤</p>
-              <p>超过80%的癌症被发现时已经是中晚期</p>
-              <p>但早期癌症的治愈率普遍超过<span class="section-emphasize">90%</span></p>
-              <p>让癌症发现在癌前病变阶段，精准医疗为其提供可能</p>
-            </div>
-            <div class="desc__bd">
-              <p>在中国<span class="section-emphasize">40岁</span>以上的人群中，</p>
-              <p>大约有<span class="section-emphasize">1.2亿</span>人属于结直肠癌高危人群。</p>
-              <p>其中至少有<span class="section-emphasize">600万</span>人是肠癌或早起肠癌癌前病变。</p>
-              <p>2015年中国每<span class="section-emphasize">3分钟</span>就有一个人死于肠癌。</p>
-              <p>美中患者生存率的差异原因主要在于：筛查不及时，发<br>现已经是晚期，治疗率低</p>
-            </div>
-          </div>
-          <img width="519px" src="../../assets/filter/pic-section4-2.png" srcset="../../assets/filter/pic-section4-2.png 2x" alt="pic-2">
-        </div>
-      </div>
-    </section>
-    <section class="section section-5 bg--white">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          普瑞森基因肠癌风险评估——常安易™
-          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img width="455px" src="../../assets/filter/pic-section5.png"  srcset="../../assets/filter/pic-section5.png 2x" alt="pic-section5">
-        <p>
-          肠道中的正常菌群以厌氧菌组成为主，正常时与机体处于相对的平衡状态，当肠道出现异常时，肠道中的微生态平衡也被打破，菌群的种类和丰度与正常时会有显著差异。肠道微生物是引起肠癌的重要因素，与肠道内炎症肿瘤的发生密切相关，通过分析3000位肠癌患者、腺癌患者和正常人的肠道菌群样本，基于生物信息学分析粪便微生物的组成可早预测肠癌风险。</p>
-      </div>
-    </section>
-    <section class="section section-6 bg--white">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          普瑞森常安易™肠癌风险评估与传统检测方式
-          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img width="732px" src="../../assets/filter/pic-section6.png" srcset="../../assets/filter/pic-section6.png 2x" alt="pic-section6">
-        <p>普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议</p>
-      </div>
-    </section>
-    <section class="section section-7 bg--white">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          普瑞森常安易™肠癌风险评估与国外最畅销产品ColoGuard<span style="font-size: 14px;vertical-align: top;">®</span>
-          <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img width="791px" src="../../assets/filter/pic-section7.png" srcset="../../assets/filter/pic-section7.png 2x" alt="pic-section7">
       </div>
     </section>
     <common-page>
@@ -270,6 +259,43 @@
       p {
         color: $font-sub;
         padding: 40px 160px;
+      }
+    }
+    .section-new {
+      &__text {
+        text-align: left;
+        margin: 40px auto 0;
+        color: $font-sub;
+        line-height: 24px;
+      }
+      &-answer {
+        margin: 0 auto;
+        width: 600px;
+        text-align: left;
+        &-item {
+          margin-top: 60px;
+          &:first-child {
+            margin-top: 0;
+          }
+          &__header {
+            display: flex;
+            align-items: center;
+            line-height: 48px;
+            font-size: 18px;
+            font-weight: bold;
+            .icon {
+              position: relative;
+              top: -4px;
+              margin-right: 24px;
+              width: 36px;
+              height: 27px;
+            }
+          }
+          &__content {
+            margin-top: 24px;
+            line-height: 24px;
+          }
+        }
       }
     }
   }

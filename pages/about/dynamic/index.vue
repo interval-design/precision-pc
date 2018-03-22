@@ -9,7 +9,7 @@
     </header>
     <ul class="itv-research-list" v-if="articleList && articleList.length>0">
       <li class="itv-research-list-item" v-for="item in articleList" :key="item.id"
-          @click="$router.push({name: 'research-dynamic-id',params:{id: item.id}})">
+          @click="$router.push({name: 'about-dynamic-id',params:{id: item.id}})">
         <div class="itv-research-list-item__img">
           <img :src="item.image">
         </div>

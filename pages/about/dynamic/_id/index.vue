@@ -5,7 +5,7 @@
         <span>技术</span>
         <i>&gt;</i>
       </span>
-      <nuxt-link :to="{name:'research-dynamic'}">科研动态</nuxt-link>
+      <nuxt-link :to="{name:'about-dynamic'}">科研动态</nuxt-link>
       <span class="itv-breadcrumbs-item">
         <i>&gt;</i>
         <span>文章详情</span>

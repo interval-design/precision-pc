@@ -45,7 +45,7 @@
           <h3 class="desc__title">你的肠道健康他们都知道</h3>
           <p class="desc__bd">
             最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
-          <base-button class="itv-view-index--btn" size="big" @click="$router.push({name:'research-microbiology'})">
+          <base-button class="itv-view-index--btn" size="big" @click="$router.push({name:'microbiology'})">
             了解微生物组学
           </base-button>
         </div>
@@ -86,7 +86,7 @@
           无需出门的“0负担”检测
           <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
         </h3>
-        <img src="../assets/index/pic-section4.png" alt="" style="width: 970px;">
+        <img src="../assets/index/pic-section4.png" alt="" style="width: 969px;">
       </div>
     </section>
     <common-page></common-page>
@@ -106,28 +106,6 @@
         </nuxt-link>
       </div>
     </section>
-    <!-- 用户故事 -->
-    <!-- <section class="section section-7">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
-          用户故事
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img width="1059px" src="../assets/index/pic-section7.png" srcset="../assets/index/pic-section7.png 2x" alt="pic-section7">
-      </div>
-    </section> -->
-    <!-- 我们的合作伙伴 -->
-    <!-- <section class="section section-8">
-      <div class="itv-content">
-        <h3 class="section-title">
-          <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
-          我们的合作伙伴
-          <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
-        </h3>
-        <img class="pic" src="../assets/index/pic-section8.png" alt="">
-      </div>
-    </section> -->
   </div>
 </template>
 

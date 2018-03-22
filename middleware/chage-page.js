@@ -15,7 +15,7 @@ export default function ({ isServer, route, store, redirect }, next) {
     });
   }
 
-  const fullPageNames = ['index', 'service-child', 'service-ecosystem','service-filter','research-microbiology'];
+  const fullPageNames = ['index', 'service-child', 'service-ecosystem','service-filter','microbiology'];
   const full = fullPageNames.includes(route.name);
 
   // set full

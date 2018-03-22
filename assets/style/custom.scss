@@ -25,7 +25,7 @@
   height: 50px;
   width: 100%;
   background: $white;
-  z-index: 10;
+  z-index: 999;
   min-width: 1100px;
   &-bar {
     display: flex;
@@ -458,5 +458,123 @@
   }
 }
 
+.itv-banner-swiper-pagination {
+  left: 50%;
+  bottom: 20px;
+  z-index: 99;
+  .swiper-pagination-bullet {
+    margin: 0 10px !important;
+    width: 16px !important;
+    height: 16px !important;
+    outline: none !important;
+  }
+}
+.itv-banner-swiper {
+  position: relative;
+  margin: 0 auto;
+  width: 1100px;
+  height: 660px;
+  .wrap-box {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1920px;
+    height: 660px;
+    &-item {
+      position: relative;
+      height: 660px;
+      &__img {
+        height: 100%;
+      }
+      &__text-1,
+      &__text-2,
+      &__text-3,
+      &__text-4, {
+        position: absolute;
+        left: 480px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &__text-1 {
+        .title {
+          font-size: 24px;
+        }
+        .p1 {
+          margin-top: 16px;
+          line-height: 20px;
+        }
+      }
+      &__text-2 {
+        color: $white;
+        font-weight: bold;
+        .title {
+          font-size: 48px;
+        }
+        .p1 {
+          margin: 24px 0 12px;
+          font-size: 18px;
+        }
+        .p2 {
+          font-size: 14px;
+          line-height: 20px;
+        }
+        .line {
+          margin: 16px 0;
+          width: 65px;
+          height: 1px;
+          background: $white;
+        }
+      }
+      &__text-3 {
+        top: 20%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        .title {
+          text-align: center;
+          font-size: 24px;
+          margin-bottom: 16px;
+          font-weight: bold;
+        }
+        .p1 {
+          line-height: 20px;
+        }
+      }
+      &__text-4 {
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: $white;
+        font-weight: bold;
+        .title {
+          margin-bottom: 16px;
+          font-size: 24px;
+          text-align: center;
+        }
+        .p1 {
+          line-height: 24px;
+        }
+        .btn {
+          margin-top: 32px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .banner-button-prev,
+  .banner-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    outline: none;
+    cursor: pointer;
+  }
+  .banner-button-prev {
+    left: -100px;
+  }
+  .banner-button-next {
+    right: -100px;
+  }
+}
 
 

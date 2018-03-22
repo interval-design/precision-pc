@@ -319,10 +319,10 @@
         }
       }
       &.fixed {
-        z-index: 10;
+        z-index: 999;
         position: fixed;
         left: 0;
-        top: 0;
+        top: 50px;
       }
       .active {
         color: $font;

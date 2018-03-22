@@ -1,43 +1,63 @@
 <template>
   <div class="itv-view-index">
-    <section class="itv-banner">
-      <div v-swiper:banner="bannerOption">
+    <section class="itv-banner-swiper">
+      <div class="wrap-box" v-swiper:banner="bannerOption">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <div class="itv-content">
-              <div class="itv-banner-cnt">
-                <h2 class="itv-banner-cnt__title">儿童肠道检测</h2>
-                <p class="itv-banner-cnt__desc">检测3000+种微生物自称的菌群及其丰富程度，全面评估儿童的肠道健康</p>
-                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-child'})">了解更多
-                </base-Button>
+            <div class="wrap-box-item">
+              <div class="wrap-box-item__text-1">
+                <header class="title">普瑞森结直肠癌风险评估——常安易™</header>
+                <p class="p1">操作简便居家取样、无创无痛适用广泛、灵敏准</p>
               </div>
+              <img class="wrap-box-item__img" src="../assets/index/pic-banner-1.jpg" @click="$router.push({name:'service-filter'})">
             </div>
-            <img class="itv-banner-img" src="../assets/index/banner-1.jpg">
           </div>
           <div class="swiper-slide">
-            <div class="itv-content">
-              <div class="itv-banner-cnt">
-                <h2 class="itv-banner-cnt__title">肠癌风险评估</h2>
-                <p class="itv-banner-cnt__desc">普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议</p>
-                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-filter'})">了解更多
-                </base-Button>
+            <div class="wrap-box-item">
+              <div class="wrap-box-item__text-2">
+                <h2 class="title">儿童肠道检测</h2>
+                <p class="p1">担心孩子出现各种问题</p>
+                <p class="p2">腹泻 / 食欲不振 / 肥胖 / 营养不良 / 抗生素滥用</p>
+                <p class="line"></p>
+                <p class="p2">各种问题可能时刻威胁着我们的宝贝，但您有时也许感到无从下手。</p>
+                <p class="p2">其实儿童肠道菌群检测能帮您预防这些问题。</p>
               </div>
+              <img class="wrap-box-item__img" src="../assets/index/pic-banner-2.jpg" @click="$router.push({name:'service-child'})">
             </div>
-            <img class="itv-banner-img" src="../assets/filter/banner.jpg">
           </div>
           <div class="swiper-slide">
-            <div class="itv-content">
-              <div class="itv-banner-cnt">
-                <h2 class="itv-banner-cnt__title">肠道微生态检测</h2>
-                <p class="itv-banner-cnt__desc">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病</p>
-                <base-Button class="itv-view-index--btn" size="big" @click="$router.push({name:'service-ecosystem'})">了解更多
-                </base-Button>
+            <div class="wrap-box-item">
+              <div class="wrap-box-item__text-3">
+                <header class="title">肠道微生态检测</header>
+                <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、</p>
+                <p class="p1">胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
               </div>
+              <img class="wrap-box-item__img" src="../assets/index/pic-banner-3.jpg" @click="$router.push({name:'service-ecosystem'})">
             </div>
-            <img class="itv-banner-img" src="../assets/ecosystem/banner.jpg">
+          </div>
+          <div class="swiper-slide">
+            <div class="wrap-box-item">
+              <div class="wrap-box-item__text-4">
+                <header class="title">你的肠道健康他们都知道</header>
+                <p class="p1">最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和</p>
+                <p class="p1">有害菌相互作用此消彼长，维持着肠道生态平衡。</p>
+                <div class="btn">
+                  <base-button size="small" @click="$router.push({name:'microbiology'})">了解微生物组学</base-button>
+                </div>
+              </div>
+              <img class="wrap-box-item__img" src="../assets/index/pic-banner-4.jpg" @click="$router.push({name:'microbiology'})">
+            </div>
           </div>
         </div>
+       
       </div>
+      <div class="banner-button-prev">
+        <img src="../assets/btn-arrow-left.png">
+      </div>
+      <div class="banner-button-next">
+        <img src="../assets/btn-arrow-right.png">
+      </div>
+      <div class="swiper-pagination itv-banner-swiper-pagination"></div>
     </section>
     <section class="section section-2">
       <div class="itv-content">
@@ -56,7 +76,7 @@
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
-          {{ bacteriaTitle }}
+          <span id="bacteriaTitle">肥胖菌</span>
           <img class="section-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
         </h3>
         <div v-swiper:mySwiper="swiperOption">
@@ -124,39 +144,54 @@ import CommonPage from '../components/CommonPage';
     },
     data() {
       return {
-        bannerActive: 0,
-        bacteriaTitle: '肥胖菌',
         bannerOption: {
-          effect: 'fade',
-          fade: {
-            crossFade: true,
+          effect : 'fade',
+          fadeEffect: {
+            crossFade: false,
           },
-          autoplay: 3000,
-          onSlideChangeStart: swiper => {
-            this.bannerActive = swiper.realIndex;
-          }
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          },
+          autoplay: {
+            disableOnInteraction: false
+          },
+          loop : true,
+          navigation: {
+            nextEl: '.banner-button-next',
+            prevEl: '.banner-button-prev',
+          },
         },
         swiperOption: {
           loop: true,
-          autoplay: 5000,
-          paginationClickable: true,
-          nextButton: '.swiper-button-next',
-          prevButton: '.swiper-button-prev',
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          on: {
+            slideChangeTransitionStart: function() {
+              switch (this.activeIndex) {
+                case 1:
+                  document.querySelector('#bacteriaTitle').innerHTML = '肥胖菌';
+                  break;
+                case 2:
+                document.querySelector('#bacteriaTitle').innerHTML = '疾病相关细菌';
+                  break;
+                case 3:
+                document.querySelector('#bacteriaTitle').innerHTML = '有害菌';
+                  break;
+                case 4:
+                document.querySelector('#bacteriaTitle').innerHTML = '有益菌';
+                  break;
+              }
+            },
+          },
           onSlideChangeStart: swiper => {
-            switch (swiper.realIndex) {
-              case 0:
-                this.bacteriaTitle = '肥胖菌';
-                break;
-              case 1:
-                this.bacteriaTitle = '疾病相关细菌';
-                break;
-              case 2:
-                this.bacteriaTitle = '有害菌';
-                break;
-              case 3:
-                this.bacteriaTitle = '有益菌';
-                break;
-            }
+            
           }
         }
       }

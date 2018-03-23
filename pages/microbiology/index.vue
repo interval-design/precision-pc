@@ -21,11 +21,7 @@
             <div class="wrap-box-item" style="height: 450px">
               <div class="wrap-box-item__text-4">
                 <header class="title">你的肠道健康他们都知道</header>
-                <p class="p1">最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和</p>
-                <p class="p1">有害菌相互作用此消彼长，维持着肠道生态平衡。</p>
-                <div class="btn">
-                  <base-button size="small" @click="$router.push({name:'microbiology'})">了解微生物组学</base-button>
-                </div>
+                <p class="p1">设想生活在一个疾病可选择的世界您肠道有一只数以亿计、独一无二的微生物大军供您支配。现在，参加健康革命，争取让他们为您工作。肠道微生物群对健康、表现和寿命的影响可能比您自身基因的影响还要大。现在，在普瑞森的协助下，您可以成为它们更好的主人，并远离疾病。</p>
               </div>
               <img class="wrap-box-item__img" src="../../assets/index/pic-banner-4.jpg" @click="$router.push({name:'microbiology'})">
             </div>

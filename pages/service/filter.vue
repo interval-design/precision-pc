@@ -12,7 +12,7 @@
         <div class="wrap-box-item">
           <div class="wrap-box-item__text-1">
             <header class="title">普瑞森结直肠癌风险评估——常安易™</header>
-            <p class="p1">操作简便居家取样、无创无痛适用广泛、灵敏准</p>
+            <p class="p1">操作简便居家取样、无创无痛适用广泛、灵敏度高</p>
           </div>
           <img class="wrap-box-item__img" src="../../assets/index/pic-banner-1.jpg">
         </div>
@@ -23,14 +23,15 @@
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          定期检查的重要性
+          肠癌早筛的必要性
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
+        <div class="section-new__text top" style="width: 640px;">
+          <p>在中国，平均每天新发现肿瘤病例约为<span class="red">10,080例</span>，<span class="red">平均每1分钟约有6人死于癌症，7人确认肿瘤，</span>肠癌是目前中国城市发病率仅次于肺癌的第二大癌症。据《2015年中国癌症统计数据》显示：<span class="red">在中国40岁以上的人群中，大约有1.2亿人属于结直肠癌高危人群，其中至少有600万人是肠癌或早期肠癌及癌前病变，每3分钟就有一个人死于肠癌。</span></p>
+        </div>
         <img width="585px"  src="../../assets/filter/pic-section4-2.png" srcset="../../assets/filter/pic-section4-2.png 2x" alt="">
         <div class="section-new__text" style="width: 585px;">
-          <p>在中国，平均每天新发现肿瘤病例约为10,080例，平均每1分钟约有6人死于癌症，7人确认肿瘤</p>
-          <p>超过80%的癌症被发现时已经是中晚期，但早期癌症的治愈率普遍超过90%。让癌症发现在癌</p>
-          <p>前病变阶段，精准医疗为其提供可能。</p>
+          <p>早期筛查是发现早期结直肠癌及癌前病变的重要方法，可以显著提高五年生存率。由于大多数中国患者没有进行癌症早期筛查的意识，所以五年生产率远远低于美国。</p>
         </div>
       </div>
     </section>
@@ -257,6 +258,16 @@
         margin: 40px auto 0;
         color: $font-sub;
         line-height: 24px;
+        &.top {
+          margin-top: -24px;
+          padding-bottom: 24px;
+          font-size: 16px;
+          line-height: 1.5;
+          .red {
+            color: $red;
+            font-weight: bold;
+          }
+        }
       }
       &-answer {
         margin: 0 auto;

@@ -35,10 +35,10 @@
                     <nuxt-link :to="{name:'service-filter'}">肠癌风险评估</nuxt-link>
                   </li>
                   <li>
-                    <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
+                    <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
                   </li>
                   <li>
-                    <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
+                    <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
                   </li>
                 </ul>
               </transition>
@@ -114,10 +114,10 @@
               <nuxt-link :to="{name:'service-filter'}">肠癌风险评估</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
+              <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
             </li>
             <li>
-              <nuxt-link :to="{name:'service-ecosystem'}">肠道微生态检测</nuxt-link>
+              <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
             </li>
           </ul>
           <ul class="item">

@@ -12,8 +12,7 @@
         <div class="wrap-box-item">
           <div class="wrap-box-item__text-3">
             <header class="title">肠道微生态检测</header>
-            <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、</p>
-            <p class="p1">胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
+            <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
           </div>
           <img class="wrap-box-item__img" src="../../assets/index/pic-banner-3.jpg">
         </div>

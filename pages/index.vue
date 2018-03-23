@@ -8,8 +8,11 @@
               <div class="wrap-box-item__text-1">
                 <header class="title">普瑞森结直肠癌风险评估——常安易™</header>
                 <p class="p1">操作简便居家取样、无创无痛适用广泛、灵敏准</p>
+                <div class="btn">
+                  <base-button size="small" @click="$router.push({name:'service-filter'})">了解更多</base-button>
+                </div>
               </div>
-              <img class="wrap-box-item__img" src="../assets/index/pic-banner-1.jpg" @click="$router.push({name:'service-filter'})">
+              <img class="wrap-box-item__img" src="../assets/index/pic-banner-1.jpg">
             </div>
           </div>
           <div class="swiper-slide">
@@ -21,35 +24,27 @@
                 <p class="line"></p>
                 <p class="p2">各种问题可能时刻威胁着我们的宝贝，但您有时也许感到无从下手。</p>
                 <p class="p2">其实儿童肠道菌群检测能帮您预防这些问题。</p>
+                <div class="btn">
+                  <base-button size="small" @click="$router.push({name:'service-child'})">了解更多</base-button>
+                </div>
               </div>
-              <img class="wrap-box-item__img" src="../assets/index/pic-banner-2.jpg" @click="$router.push({name:'service-child'})">
+              <img class="wrap-box-item__img" src="../assets/index/pic-banner-2.jpg">
             </div>
           </div>
           <div class="swiper-slide">
             <div class="wrap-box-item">
               <div class="wrap-box-item__text-3">
                 <header class="title">肠道微生态检测</header>
-                <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、</p>
-                <p class="p1">胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
-              </div>
-              <img class="wrap-box-item__img" src="../assets/index/pic-banner-3.jpg" @click="$router.push({name:'service-ecosystem'})">
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="wrap-box-item">
-              <div class="wrap-box-item__text-4">
-                <header class="title">你的肠道健康他们都知道</header>
-                <p class="p1">最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和</p>
-                <p class="p1">有害菌相互作用此消彼长，维持着肠道生态平衡。</p>
+                <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等</p>
+                <p class="p1">方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
                 <div class="btn">
-                  <base-button size="small" @click="$router.push({name:'microbiology'})">了解微生物组学</base-button>
+                  <base-button size="small" @click="$router.push({name:'service-ecosystem'})">了解更多</base-button>
                 </div>
               </div>
-              <img class="wrap-box-item__img" src="../assets/index/pic-banner-4.jpg" @click="$router.push({name:'microbiology'})">
+              <img class="wrap-box-item__img" src="../assets/index/pic-banner-3.jpg">
             </div>
           </div>
         </div>
-       
       </div>
       <div class="banner-button-prev">
         <img src="../assets/btn-arrow-left.png">
@@ -59,18 +54,20 @@
       </div>
       <div class="swiper-pagination itv-banner-swiper-pagination"></div>
     </section>
-    <section class="section section-2">
-      <div class="itv-content">
-        <div class="section-2__desc">
-          <h3 class="desc__title">你的肠道健康他们都知道</h3>
-          <p class="desc__bd">
-            最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
-          <base-button class="itv-view-index--btn" size="big" @click="$router.push({name:'microbiology'})">
-            了解微生物组学
-          </base-button>
+    <section class="itv-banner-swiper" style="height: 450px">
+      <div class="wrap-box" style="height: 450px">
+        <div class="wrap-box-item" style="height: 450px">
+          <div class="wrap-box-item__text-4">
+            <header class="title">你的肠道健康他们都知道</header>
+            <p class="p1">最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和</p>
+            <p class="p1">有害菌相互作用此消彼长，维持着肠道生态平衡。</p>
+            <div class="btn">
+              <base-button size="small" @click="$router.push({name:'microbiology'})">了解微生物组学</base-button>
+            </div>
+          </div>
+          <img class="wrap-box-item__img" src="../assets/index/pic-banner-4.jpg" @click="$router.push({name:'microbiology'})">
         </div>
       </div>
-      <img class="section-2__banner itv-banner-img" src="../assets/index/banner-2.jpg" alt="banner">
     </section>
     <section class="section section-3">
       <div class="itv-content">

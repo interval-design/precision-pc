@@ -1,7 +1,7 @@
 <template>
   <div class="itv-layout-default itv-wrapper" :class="{'full':full}">
     <div style="width: 100%; height: 50px">
-      <nav class="itv-nav">
+      <nav class="itv-nav" :class="{'itv-nav-float': $route.name !== 'microbiology'}">
         <div class="itv-nav-bar">
           <h1>
             <nuxt-link to="/">

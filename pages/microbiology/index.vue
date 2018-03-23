@@ -16,19 +16,21 @@
     </div>
     <div ref="microbiology">
       <section id="one" class="section section-1">
-        <div class="bg--white">
-          <div class="itv-content section-head">
-            <div class="section__desc">
-              <h1 class="desc__title highlight">你的肠道健康他们都知道</h1>
-              <div class="desc__bd">
-                <!-- <p>您的肠道内住着大约8888种数以亿计的微生物。其中888种有益菌，8888种有害菌。</p> -->
-                <p>最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关</p>
-                <p>有益菌和有害菌相互作用此消彼长，维持着肠道生态平衡</p>
+        <section class="itv-banner-swiper" style="height: 450px">
+          <div class="wrap-box" style="height: 450px">
+            <div class="wrap-box-item" style="height: 450px">
+              <div class="wrap-box-item__text-4">
+                <header class="title">你的肠道健康他们都知道</header>
+                <p class="p1">最新医学研究认为，肠道微生物与人类健康和疾病的发生密切相关。有益菌和</p>
+                <p class="p1">有害菌相互作用此消彼长，维持着肠道生态平衡。</p>
+                <div class="btn">
+                  <base-button size="small" @click="$router.push({name:'microbiology'})">了解微生物组学</base-button>
+                </div>
               </div>
+              <img class="wrap-box-item__img" src="../../assets/index/pic-banner-4.jpg" @click="$router.push({name:'microbiology'})">
             </div>
-            <img class="itv-banner-img" src="../../assets/index/banner-2.jpg" alt="banner">
           </div>
-        </div>
+        </section>
         <div class="itv-plane itv-content bg--white">
           <h2 class="itv-plane-title">苗条菌与肥胖菌</h2>
           <div class="list">
@@ -319,10 +321,10 @@
         }
       }
       &.fixed {
-        z-index: 999;
+        z-index: 99;
         position: fixed;
         left: 0;
-        top: 50px;
+        top: 0;
       }
       .active {
         color: $font;

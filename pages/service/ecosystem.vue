@@ -7,22 +7,23 @@
       </span>
       <span>肠道微生态检测</span>
     </header>
-    <section class="itv-banner bg--white ">
-      <div class="itv-content">
-        <div class="itv-banner-cnt">
-          <h2 class="itv-banner-cnt__title">肠道微生态检测</h2>
-          <div class="itv-banner-cnt__desc">
-            <p>肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
+    <section class="itv-banner-swiper">
+      <div class="wrap-box">
+        <div class="wrap-box-item">
+          <div class="wrap-box-item__text-3">
+            <header class="title">肠道微生态检测</header>
+            <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、</p>
+            <p class="p1">胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
           </div>
+          <img class="wrap-box-item__img" src="../../assets/index/pic-banner-3.jpg">
         </div>
-        <img class="itv-banner-img" src="../../assets/ecosystem/banner.jpg" alt="">
       </div>
     </section>
     <section class="section section-2">
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-          {{ bacteriaTitle }}
+          <span id="bacteriaTitle">肥胖菌</span>
           <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
         </h3>
         <div v-swiper:mySwiper="swiperOption">
@@ -73,18 +74,7 @@
         </div>
       </div>
     </section>
-    <common-page>
-      <section class="section">
-        <div class="itv-content">
-          <h3 class="section-title">
-            <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-            普瑞森基因肠道微生态检测包含项目明细
-            <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-          </h3>
-          <img width="962px" src="../../assets/ecosystem/pic-section6.png" srcset="../../assets/ecosystem/pic-section6.png 2x" alt="pic-section-10">
-        </div>
-      </section>
-    </common-page>
+    <common-page></common-page>
     <!-- 邀请码输入窗 -->
     <code-form @login="openLoginDialog" :productShow="productShow" :productId="productId"></code-form>
 
@@ -118,25 +108,34 @@
         code: '',
         swiperOption: {
           loop: true,
-          autoplay: 5000,
-          paginationClickable: true,
-          nextButton: '.swiper-button-next',
-          prevButton: '.swiper-button-prev',
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          on: {
+            slideChangeTransitionStart: function() {
+              switch (this.activeIndex) {
+                case 1:
+                  document.querySelector('#bacteriaTitle').innerHTML = '肥胖菌';
+                  break;
+                case 2:
+                document.querySelector('#bacteriaTitle').innerHTML = '疾病相关细菌';
+                  break;
+                case 3:
+                document.querySelector('#bacteriaTitle').innerHTML = '有害菌';
+                  break;
+                case 4:
+                document.querySelector('#bacteriaTitle').innerHTML = '有益菌';
+                  break;
+              }
+            },
+          },
           onSlideChangeStart: swiper => {
-            switch (swiper.realIndex) {
-              case 0:
-                this.bacteriaTitle = '肥胖菌';
-                break;
-              case 1:
-                this.bacteriaTitle = '疾病相关细菌';
-                break;
-              case 2:
-                this.bacteriaTitle = '有害菌';
-                break;
-              case 3:
-                this.bacteriaTitle = '有益菌';
-                break;
-            }
+            
           }
         }
       }

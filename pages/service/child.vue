@@ -7,21 +7,20 @@
       </span>
       <span>儿童肠道检测</span>
     </header>
-    <section class="itv-banner">
-      <div class="itv-content">
-        <div class="itv-banner-cnt">
-          <h2 class="itv-banner-cnt__title">儿童肠道检测</h2>
-          <div class="itv-banner-cnt__desc">
-            <div class="block">
-              <h3>担心孩子出现各种问题</h3>
-              <p>腹泻 / 食欲不振 / 肥胖 / 营养不良 / 抗生素滥用</p>
-            </div>
-            <p>各种问题可能时刻威胁着我们的宝贝，但您有时也许感到无从下手。</p>
-            <p>其实儿童肠道菌群检测能帮您预防这些问题</p>
+    <section class="itv-banner-swiper">
+      <div class="wrap-box">
+        <div class="wrap-box-item">
+          <div class="wrap-box-item__text-2">
+            <h2 class="title">儿童肠道检测</h2>
+            <p class="p1">担心孩子出现各种问题</p>
+            <p class="p2">腹泻 / 食欲不振 / 肥胖 / 营养不良 / 抗生素滥用</p>
+            <p class="line"></p>
+            <p class="p2">各种问题可能时刻威胁着我们的宝贝，但您有时也许感到无从下手。</p>
+            <p class="p2">其实儿童肠道菌群检测能帮您预防这些问题。</p>
           </div>
+          <img class="wrap-box-item__img" src="../../assets/index/pic-banner-2.jpg">
         </div>
       </div>
-      <img class="itv-banner-img" src="../../assets/index/banner-1.jpg" alt="banner">
     </section>
     <section class="section section-2 bg--white">
       <div class="itv-content">
@@ -78,19 +77,7 @@
         </div>
       </div>
     </section>
-    <common-page>
-      <section class="section">
-        <div class="itv-content">
-          <h3 class="section-title">
-            <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-            普瑞森基因儿童倡导检测包含项目明细
-            <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-          </h3>
-          <img width="962px" src="../../assets/child/pic-section5.png" srcset="../../assets/child/pic-section5.png 2x"
-               alt="pic-section-10">
-        </div>
-      </section>
-    </common-page>
+    <common-page></common-page>
     <!-- 邀请码输入窗 -->
     <code-form @login="openLoginDialog" :productShow="productShow" :productId="productId"></code-form>
 

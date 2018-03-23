@@ -7,14 +7,16 @@
       </span>
       <span>肠癌风险评估</span>
     </header>
-    <section class="itv-banner bg--white">
-      <div class="itv-content">
-        <div class="itv-banner-cnt">
-          <h2 class="itv-banner-cnt__title">肠癌风险评估</h2>
-          <p class="itv-banner-cnt__desc">普瑞森提供试剂盒，被测者装入粪便样后寄回，普瑞森会对粪便样本进行基因测序检测和计算，根据与普瑞森肠道基因数据库对比，给出肠癌风险评估、其他疾病风险评估和饮食建议</p>
+    <section class="itv-banner-swiper">
+      <div class="wrap-box">
+        <div class="wrap-box-item">
+          <div class="wrap-box-item__text-1">
+            <header class="title">普瑞森结直肠癌风险评估——常安易™</header>
+            <p class="p1">操作简便居家取样、无创无痛适用广泛、灵敏准</p>
+          </div>
+          <img class="wrap-box-item__img" src="../../assets/index/pic-banner-1.jpg">
         </div>
       </div>
-      <img class="itv-banner-img" src="../../assets/filter/banner.jpg" alt="banner">
     </section>
 
     <section class="section section-new bg--white">
@@ -125,19 +127,7 @@
         </div>
       </div>
     </section>
-    <common-page>
-      <section class="section">
-        <div class="itv-content">
-          <h3 class="section-title">
-            <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
-            普瑞森基因肠癌风险评估包含项目明细
-            <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
-            <p class="hint">肠癌风险评估包含肠道微生态检测全部检测项目</p>
-          </h3>
-          <img width="962px" src="../../assets/filter/pic-section-10.png" srcset="../../assets/filter/pic-section-10.png 2x" alt="pic-section-10">
-        </div>
-      </section>
-    </common-page>
+    <common-page></common-page>
     <!-- 邀请码输入窗 -->
     <code-form @login="openLoginDialog" :productShow="productShow" :productId="productId"></code-form>
 

@@ -20,8 +20,8 @@
           <div class="wrap-box" style="height: 450px">
             <div class="wrap-box-item" style="height: 450px">
               <div class="wrap-box-item__text-4">
-                <header class="title">你的肠道健康他们都知道</header>
-                <p class="p1">设想生活在一个疾病可选择的世界您肠道有一只数以亿计、独一无二的微生物大军供您支配。现在，参加健康革命，争取让他们为您工作。肠道微生物群对健康、表现和寿命的影响可能比您自身基因的影响还要大。现在，在普瑞森的协助下，您可以成为它们更好的主人，并远离疾病。</p>
+                <header class="title">设想生活在一个疾病可选择的世界</header>
+                <p class="p1">您肠道有一支数以亿计、独一无二的微生物大军供您支配。现在，参加健康革命，争取让他们为您工作。肠道微生物群对健康、表现和寿命的影响可能比您自身基因的影响还要大。现在，在普瑞森的协助下，您可以成为它们更好的主人，并远离疾病。</p>
               </div>
               <img class="wrap-box-item__img" src="../../assets/index/pic-banner-4.jpg" @click="$router.push({name:'microbiology'})">
             </div>

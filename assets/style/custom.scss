@@ -21,7 +21,7 @@
 }
 
 .itv-nav {
-  height: 50px;
+  height: 80px;
   width: 100%;
   background: $white;
   z-index: 999;
@@ -42,7 +42,7 @@
       display: inline-flex;
       align-items: center;
       height: 100%;
-      line-height: 50px;
+      line-height: 80px;
       .login {
         padding-right: 0 !important;
         position: relative;
@@ -498,7 +498,7 @@
       &__text-1,
       &__text-2,
       &__text-3,
-      &__text-4, {
+      &__text-4{
         position: absolute;
         left: 480px;
         top: 50%;

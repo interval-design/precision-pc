@@ -19,33 +19,5 @@ $ npm start
 $ npm run generate
 ```
 
-## 部署
-```
-
-# 服务器需要运行node.js
-# 获取.nuxt文件
-# 创建package.json
-{
-  "name": "precision-pc",
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start"
-  },
-  "config": {
-    "nuxt": {
-      "host": "0.0.0.0",
-      "port": "3000"
-    }
-  },
- }
-
-# 安装依赖
-$npm install
-
-#运行
-$npm start
-```
-
 
 For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).

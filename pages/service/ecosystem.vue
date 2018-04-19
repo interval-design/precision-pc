@@ -12,13 +12,23 @@
         <div class="wrap-box-item">
           <div class="wrap-box-item__text-3">
             <header class="title">肠道微生态检测</header>
-            <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
+            <p class="p1">科学证实，很多疾病是由肠道微生态失去平衡引起的。普瑞森创新技术，定量地检测肠道微生态失衡，精确地评估健康状态及多种疾病的风险。
+            </p>
           </div>
           <img class="wrap-box-item__img" src="../../assets/index/pic-banner-3.jpg">
         </div>
       </div>
     </section>
     <section class="section section-2">
+      <h3 class="section-title">
+        <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
+        <div class="content">
+          <p>检测1000＋种微生物，有益菌、有害菌、疾病相关菌及
+          </p>
+          <p>其丰度，全面评估肠道健康、预测疾病风险</p>
+        </div>
+        <img class="section-title__icon--right" src="../../assets/icon-title-right.png" alt="icon">
+      </h3>
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../../assets/icon-title-left.png" alt="icon">
@@ -134,7 +144,7 @@
             },
           },
           onSlideChangeStart: swiper => {
-            
+
           }
         }
       }

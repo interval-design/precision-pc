@@ -12,7 +12,8 @@
         <div class="wrap-box-item">
           <div class="wrap-box-item__text-1">
             <header class="title">普瑞森结直肠癌风险评估——常安易™</header>
-            <p class="p1">操作简便居家取样、无创无痛适用广泛、灵敏度高</p>
+            <p class="p1">肠癌早筛，早五年知道患癌风险。操作简便，居家取样，无创无痛，灵敏度高
+            </p>
           </div>
           <img class="wrap-box-item__img" src="../../assets/index/pic-banner-1.jpg">
         </div>

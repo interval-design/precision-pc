@@ -4,11 +4,13 @@
       <div class="wrap-box" style="height: 450px">
         <div class="wrap-box-item" style="height: 450px">
           <div class="wrap-box-item__text-4">
-            <header class="title">设想生活在一个疾病可选择的世界</header>
-            <p class="p1">您肠道有一支数以亿计、独一无二的微生物大军供您支配。现在，参加健康革命，争取让他们为您工作。肠道微生物群对健康、表现和寿命的影响可能比您自身基因的影响还要大。现在，在普瑞森的协助下，您可以成为它们更好的主人，并远离疾病。</p>
-            <div class="btn">
+            <header class="title">试想一个没有疾病的世界
+            </header>
+            <p class="p1">您肠道里有一支数以亿计的微生物大军，最新科学研究表明，这支大军对人体健康和寿命的影响比人体自身基因的影响还要大。现在，请跟随普瑞森加入一场健康革命，使您成为这支大军的主人，选择健康、远离疾病。
+            </p>
+            <!--<div class="btn">
               <base-button size="small" @click="$router.push({name:'microbiology'})">了解微生物组学</base-button>
-            </div>
+            </div>-->
           </div>
           <img class="wrap-box-item__img" src="../assets/index/pic-banner-4.jpg" @click="$router.push({name:'microbiology'})">
         </div>
@@ -21,7 +23,8 @@
             <div class="wrap-box-item">
               <div class="wrap-box-item__text-1">
                 <header class="title">普瑞森结直肠癌风险评估——常安易™</header>
-                <p class="p1">操作简便居家取样、无创无痛适用广泛、灵敏度高</p>
+                <p class="p1">肠癌早筛，早五年知道患癌风险。操作简便，居家取样，无创无痛，灵敏度高
+                </p>
                 <div class="btn">
                   <base-button size="small" @click="$router.push({name:'service-filter'})">了解更多</base-button>
                 </div>
@@ -33,7 +36,8 @@
             <div class="wrap-box-item">
               <div class="wrap-box-item__text-3">
                 <header class="title">肠道微生态检测</header>
-                <p class="p1">肠道内数以亿计的微生物及其代谢产物在人体能量代谢、营养物质吸收、先天和获得性免疫、胃肠道功能等方面发挥着重要作用，一旦宿主与肠道微生物之间共栖共生的稳态被打破，就会诱发多种人类疾病。</p>
+                <p class="p1">科学证实，很多疾病是由肠道微生态失去平衡引起的。普瑞森创新技术，定量地检测肠道微生态失衡，精确地评估健康状态及多种疾病的风险。
+                </p>
                 <div class="btn">
                   <base-button size="small" @click="$router.push({name:'service-ecosystem'})">了解更多</base-button>
                 </div>
@@ -67,7 +71,17 @@
       </div>
       <div class="swiper-pagination itv-banner-swiper-pagination"></div>
     </section>
+
     <section class="section section-3">
+      <h3 class="section-3-title">
+        <img class="section-3-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
+        <div class="content">
+          <p>检测1000＋种微生物，有益菌、有害菌、疾病相关菌及
+          </p>
+          <p>其丰度，全面评估肠道健康、预测疾病风险</p>
+        </div>
+        <img class="section-3-title__icon--right" src="../assets/icon-title-right.png" alt="icon">
+      </h3>
       <div class="itv-content">
         <h3 class="section-title">
           <img class="section-title__icon--left" src="../assets/icon-title-left.png" alt="icon">
@@ -261,6 +275,26 @@ import CommonPage from '../components/CommonPage';
       background: $light-blue;
       .swiper-wrapper {
         padding: 20px 0;
+      }
+      &-title {
+        padding-bottom: 72px;
+        font-size: 22px;
+        &__icon--left {
+          width: 43px;
+          height: 30px;
+          margin-right: 32px;
+          vertical-align: middle;
+        }
+        &__icon--right {
+          width: 43px;
+          height: 30px;
+          margin-left: 32px;
+          vertical-align: middle;
+        }
+        .content {
+          display: inline-block;
+          vertical-align: middle;
+        }
       }
       .swiper-slide {
         &:last-child {

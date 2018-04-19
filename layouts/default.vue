@@ -20,12 +20,21 @@
                   <li>
                     <nuxt-link :to="{name:'platform-teamwork'}">合作科研单位</nuxt-link>
                   </li>
+                  <li>
+                    <nuxt-link :to="{name:'platform-sequence'}">测序平台</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link :to="{name:'platform-bigdata'}">大数据平台</nuxt-link>
+                  </li>
+                  <li>
+                    <nuxt-link :to="{name:'platform-introduction'}">了解普瑞森</nuxt-link>
+                  </li>
                 </ul>
               </transition>
             </li>
-            <li class="item" :class="{active:$route.name == 'microbiology'}">
+            <!--<li class="item" :class="{active:$route.name == 'microbiology'}">
               <nuxt-link :to="{name:'microbiology'}">微生物组学</nuxt-link>
-            </li>
+            </li>-->
             <li class="item" :class="{active:$route.name.indexOf('service') > -1 }" @mouseover="active = 2"
                 @mouseleave="active = null">
               产品与服务
@@ -43,7 +52,13 @@
                 </ul>
               </transition>
             </li>
-            <li class="item" :class="{active:$route.name.indexOf('about') > -1 }" @mouseover="active = 3"
+            <li class="item" :class="{active:$route.name == 'about'}">
+              <nuxt-link :to="{name:'about-dynamic'}">新闻动态</nuxt-link>
+            </li>
+            <li class="item" :class="{active:$route.name == 'about'}">
+              <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
+            </li>
+            <!--<li class="item" :class="{active:$route.name.indexOf('about') > -1 }" @mouseover="active = 3"
                 @mouseleave="active = null">
               关于普瑞森
               <transition name="slideInDown" mode="out-in">
@@ -59,7 +74,7 @@
                   </li>
                 </ul>
               </transition>
-            </li>
+            </li>-->
             <template v-if="user == null">
               <li class="item login">
                 <span @click="openLoginDialog">登录</span>
@@ -102,13 +117,22 @@
             <li>
               <nuxt-link :to="{name:'platform-teamwork'}">合作科研单位</nuxt-link>
             </li>
+            <li>
+              <nuxt-link :to="{name:'platform-sequence'}">测序平台</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'platform-bigdata'}">大数据平台</nuxt-link>
+            </li>
+            <li>
+              <nuxt-link :to="{name:'platform-introduction'}">了解普瑞森</nuxt-link>
+            </li>
           </ul>
-          <ul class="item">
+          <!--<ul class="item">
             <li class="title">微生物组学</li>
             <li>
               <nuxt-link :to="{name:'microbiology'}">微生物组学</nuxt-link>
             </li>
-          </ul>
+          </ul>-->
           <ul class="item">
             <li class="title">产品及服务</li>
             <li>
@@ -121,7 +145,7 @@
               <nuxt-link :to="{name:'service-child'}">儿童肠道检测</nuxt-link>
             </li>
           </ul>
-          <ul class="item">
+          <!--<ul class="item">
             <li class="title">关于普瑞森</li>
             <li>
               <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
@@ -132,7 +156,13 @@
             <li>
               <nuxt-link :to="{name:'about-introduction'}">了解普瑞森</nuxt-link>
             </li>
-          </ul>
+          </ul>-->
+          <ul><li class="item" :class="{active:$route.name == 'about'}">
+            <nuxt-link :to="{name:'about-dynamic'}">新闻动态</nuxt-link>
+          </li></ul>
+          <ul><li class="item" :class="{active:$route.name == 'about'}">
+            <nuxt-link :to="{name:'about-join-us'}">加入我们</nuxt-link>
+          </li></ul>
         </div>
         <div class="itv-footer-bd-item qr-code">
           <img src="../assets/qrcode-text.png" alt="qr-code">

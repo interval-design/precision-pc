@@ -109,7 +109,7 @@
           <img width="182px" class="logo" src="../assets/logo-white.png" srcset="../assets/logo-white.png 2x" alt="logo-white">
           <p>联系电话：400-822-6270</p>
           <p>公司邮箱：zhuyongliang@precisiongene.cn</p>
-          <p>地址：江苏省苏州市公园园区星湖街218号，生物医药产业园A5-505</p>
+          <p>地址：江苏省苏州市工业园区星湖街218号，生物医药产业园A5-505</p>
         </div>
         <div class="itv-footer-bd-item nav">
           <ul class="item">

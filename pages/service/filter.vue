@@ -32,7 +32,7 @@
         </div>
         <img width="585px"  src="../../assets/filter/pic-section4-2.png" srcset="../../assets/filter/pic-section4-2.png 2x" alt="">
         <div class="section-new__text" style="width: 585px;">
-          <p>早期筛查是发现早期结直肠癌及癌前病变的重要方法，可以显著提高五年生存率。由于大多数中国患者没有进行癌症早期筛查的意识，所以五年生产率远远低于美国。</p>
+          <p>早期筛查是发现早期结直肠癌及癌前病变的重要方法，可以显著提高五年生存率。由于大多数中国患者没有进行癌症早期筛查的意识，所以五年生存率远远低于美国。</p>
         </div>
       </div>
     </section>

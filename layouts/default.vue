@@ -168,7 +168,7 @@
           <img src="../assets/qrcode-text.png" alt="qr-code">
         </div>
       </div>
-      <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 <a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备16065635号-1</a></div>
+      <div class="itv-footer-copy">©2017 苏州普瑞森基因科技有限公司 <a href="http://www.beian.miit.gov.cn/" target="_blank">苏ICP备16065635号-1</a></div>
     </footer>
     <base-dialog :visible.sync="loginDialog" class="itv-login">
       <div class="itv-dialog-title">
